@@ -1,0 +1,28 @@
+h1 {
+    text-align: center;
+    font-size: 60px
+}
+
+h3::after{
+    display: block;
+    content: '';
+    margin-top: 1px;
+    border-bottom: 1px solid #000;
+}
+ul li { 
+    padding: 0px 0px; 
+    margin-top: 1px;
+}
+
+p {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+div.info {
+    text-align: center !important
+}
+
+div.skill {
+    column-count: 3
+}

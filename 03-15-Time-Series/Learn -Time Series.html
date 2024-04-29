@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.552">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Young Frank">
+<meta name="dcterms.date" content="2024-04-20">
+
+<title>Frank’s Goldfish Projects - Engineering Features for Time Series</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Frank’s Goldfish Projects</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#trend" id="toc-trend" class="nav-link active" data-scroll-target="#trend">Trend</a></li>
+  <li><a href="#seasonality" id="toc-seasonality" class="nav-link" data-scroll-target="#seasonality">Seasonality</a></li>
+  <li><a href="#compute-fourier-feature-statmodels" id="toc-compute-fourier-feature-statmodels" class="nav-link" data-scroll-target="#compute-fourier-feature-statmodels">Compute Fourier Feature (<code>statmodels</code>)</a></li>
+  <li><a href="#detrend-or-deseasonalising" id="toc-detrend-or-deseasonalising" class="nav-link" data-scroll-target="#detrend-or-deseasonalising">Detrend or deseasonalising</a></li>
+  <li><a href="#time-series-as-features" id="toc-time-series-as-features" class="nav-link" data-scroll-target="#time-series-as-features">Time Series as Features</a></li>
+  <li><a href="#cycle" id="toc-cycle" class="nav-link" data-scroll-target="#cycle">Cycle</a></li>
+  <li><a href="#hybrid-models" id="toc-hybrid-models" class="nav-link" data-scroll-target="#hybrid-models">Hybrid Models</a></li>
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning">Machine Learning</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Engineering Features for Time Series</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Machine-Learning</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Young Frank </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 20, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="459a8a67" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#pip install -U scikit-learn scipy</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="data" class="level4">
+<h4 class="anchored" data-anchor-id="data">Data</h4>
+<p><a href="https://www.kaggle.com/code/ryanholbrook/linear-regression-with-time-series#Welcome-to-Time-Series!">kaggle timeserires tutorial</a></p>
+<p><a href="https://www.kaggle.com/code/ryanholbrook/linear-regression-with-time-series/data">store sale data</a></p>
+</section>
+<section id="python-enviroment-version" class="level4">
+<h4 class="anchored" data-anchor-id="python-enviroment-version">Python Enviroment Version</h4>
+<p><del>I’ve created conda enviroment <code>py10</code> for this running the python 3.10.4. Always use <code>python --version</code> to check if you are on py10. This should have package pyeath installed.</del> Uninstalled conda. use Python 3.11.</p>
+</section>
+<section id="setting-figures" class="level4">
+<h4 class="anchored" data-anchor-id="setting-figures">Setting Figures</h4>
+<div id="f14ae9d2" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plot_params <span class="op">=</span> {<span class="st">'color'</span>: <span class="st">'0.75'</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> <span class="st">'style'</span>: <span class="st">'.-'</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="st">'markeredgecolor'</span>: <span class="st">'0.25'</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> <span class="st">'markerfacecolor'</span>: <span class="st">'0.25'</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> <span class="st">'legend'</span>: <span class="va">False</span>}</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'seaborn-whitegrid'</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.rc(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"figure"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    autolayout<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">4</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    titlesize<span class="op">=</span><span class="dv">18</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    titleweight<span class="op">=</span><span class="st">'bold'</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.rc(</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axes"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    labelweight<span class="op">=</span><span class="st">"bold"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    labelsize<span class="op">=</span><span class="st">"large"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    titleweight<span class="op">=</span><span class="st">"bold"</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    titlesize<span class="op">=</span><span class="dv">16</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    titlepad<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="a112e6cb" class="cell" data-scrolled="true" data-tags="[&quot;data&quot;]" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pip install kaggle</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!kaggle kernels output ryanholbrook/linear-regression-with-time-series -p data</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/store-sales-time-series-forecasting/train.csv'</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                 index_col<span class="op">=</span><span class="st">'date'</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                 parse_dates<span class="op">=</span>[<span class="st">'date'</span>]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>df.info()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(df.index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+DatetimeIndex: 3000888 entries, 2013-01-01 to 2017-08-15
+Data columns (total 5 columns):
+ #   Column       Dtype  
+---  ------       -----  
+ 0   id           int64  
+ 1   store_nbr    int64  
+ 2   family       object 
+ 3   sales        float64
+ 4   onpromotion  int64  
+dtypes: float64(1), int64(3), object(1)
+memory usage: 137.4+ MB</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="56">
+<pre><code>pandas.core.indexes.datetimes.DatetimeIndex</code></pre>
+</div>
+</div>
+</section>
+<section id="time-step-feature" class="level4">
+<h4 class="anchored" data-anchor-id="time-step-feature">Time Step Feature</h4>
+<p>Simply index time as x. Day 1, Day 2 ect</p>
+<div id="911e72dc" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Engineer a time step feature</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>gross_sale <span class="op">=</span> df.groupby(<span class="st">'date'</span>)[[<span class="st">'sales'</span>]].<span class="bu">sum</span>()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>gross_sale[<span class="st">'Time'</span>]<span class="op">=</span>np.arange(<span class="bu">len</span>(gross_sale.index))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>gross_sale.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="57">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sales</th>
+<th data-quarto-table-cell-role="th">Time</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2013-01-01</td>
+<td>2511.618999</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2013-01-02</td>
+<td>496092.417944</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2013-01-03</td>
+<td>361461.231124</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="63fdd9b0" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># scatter plot</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="st">'Time'</span>, <span class="st">'sales'</span>, data<span class="op">=</span>gross_sale, color<span class="op">=</span><span class="st">'0.75'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># regression plot</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.regplot(x<span class="op">=</span><span class="st">'Time'</span>, y<span class="op">=</span><span class="st">'sales'</span>, data<span class="op">=</span>gross_sale, ci<span class="op">=</span><span class="va">None</span>, scatter_kws<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'0.25'</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Time Plot of Gross Sales'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Advantage of a timestep feature instead of just time is it scales verywell. So you don’t have to worry too much about does it matter we measure in date units or in month units.</p>
+</section>
+<section id="lag-features" class="level4">
+<h4 class="anchored" data-anchor-id="lag-features">Lag Features</h4>
+<p>This one is about use previous value to predict future recent value</p>
+<div id="92701823" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gross_sale[<span class="st">'Lag_1'</span>] <span class="op">=</span> gross_sale[<span class="st">'sales'</span>].shift(<span class="dv">1</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.regplot(x<span class="op">=</span><span class="st">'Lag_1'</span>, y<span class="op">=</span><span class="st">'sales'</span>, data<span class="op">=</span>gross_sale, ci<span class="op">=</span><span class="va">None</span>, scatter_kws<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'0.25'</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Lag Plot of Hardcover Sales'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="59">
+<pre><code>Text(0.5, 1.0, 'Lag Plot of Hardcover Sales')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>serial dependence</strong> high sales on one day usually means hig sales on the next day</p>
+<div id="0932eab9" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> gross_sale.loc[:, [<span class="st">'Time'</span>]]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> gross_sale.loc[:, <span class="st">'sales'</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'X looks like this: '</span>), <span class="bu">print</span>(X.head(<span class="dv">3</span>)), <span class="bu">print</span>(<span class="st">'...'</span>), <span class="bu">print</span>(<span class="ss">f"X is </span><span class="sc">{</span><span class="bu">type</span>(X)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'y looks like this: '</span>), <span class="bu">print</span>(y.head(<span class="dv">3</span>)), <span class="bu">print</span>(<span class="st">'...'</span>), <span class="bu">print</span>(<span class="ss">f"y is </span><span class="sc">{</span><span class="bu">type</span>(y)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># HINT: do you know now why when fit X they prefer use the higher X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>X looks like this: 
+            Time
+date            
+2013-01-01     0
+2013-01-02     1
+2013-01-03     2
+...
+X is &lt;class 'pandas.core.frame.DataFrame'&gt;
+y looks like this: 
+date
+2013-01-01      2511.618999
+2013-01-02    496092.417944
+2013-01-03    361461.231124
+Name: sales, dtype: float64
+...
+y is &lt;class 'pandas.core.series.Series'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<pre><code>(None, None, None, None)</code></pre>
+</div>
+</div>
+<div id="e879a46d" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit a model be like:</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> gross_sale.loc[:, [<span class="st">'Time'</span>]]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> gross_sale.loc[:, <span class="st">'sales'</span>]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>model.fit(X, y)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>pred_y <span class="op">=</span> pd.Series(model.predict(X), index <span class="op">=</span> X.index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="plus-multi-assign-and-plot-several-plot" class="level4">
+<h4 class="anchored" data-anchor-id="plus-multi-assign-and-plot-several-plot">Plus: Multi-assign and Plot several plot</h4>
+<div id="6a3bdef3" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># python hack about multi-assign</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>a, (b, c) <span class="op">=</span> [<span class="dv">1</span>, (<span class="dv">2</span>, <span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="trend" class="level3">
+<h3 class="anchored" data-anchor-id="trend">Trend</h3>
+<section id="data-1" class="level4">
+<h4 class="anchored" data-anchor-id="data-1">Data</h4>
+<div id="b6acbe50" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/store-sales-time-series-forecasting/train.csv'</span>,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                        index_col <span class="op">=</span> <span class="st">'date'</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                        parse_dates <span class="op">=</span> [<span class="st">'date'</span>]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                        ).to_period(<span class="st">'D'</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>average_sales <span class="op">=</span> df.groupby(<span class="st">'date'</span>)[<span class="st">'sales'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="2bbfb0b8" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>average_sales.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="64">
+<pre><code>date
+2013-01-01      1.409438
+2013-01-02    278.390807
+2013-01-03    202.840197
+2013-01-04    198.911154
+2013-01-05    267.873244
+Freq: D, Name: sales, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="moving-average" class="level4">
+<h4 class="anchored" data-anchor-id="moving-average">Moving Average</h4>
+<p>Moving average is the idea of observe overage value within a window of time frame. But instead of those windows being mutually exclusive, those windows roll on.</p>
+<div id="e0863352" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(average_sales.loc[<span class="st">'2013'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="65">
+<pre><code>364</code></pre>
+</div>
+</div>
+<p>In the gross_sale data, one enclose cycle is one years. So window should be set as 360. minimum periods is typically half this window (not sure why)</p>
+<div id="7ae41486" class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>moving_average <span class="op">=</span> average_sales.rolling(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    window <span class="op">=</span> <span class="dv">364</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    center <span class="op">=</span> <span class="va">True</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    min_periods<span class="op">=</span><span class="dv">183</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>).mean()</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> average_sales.plot(style <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'0.5'</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>moving_average.plot(</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> ax,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    linewidth <span class="op">=</span> <span class="dv">3</span>,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">'Ploting Moving Average'</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="d77f1a1e" class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>moving_average.sample(<span class="dv">3</span>), gross_sale.sample(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="67">
+<pre><code>(date
+ 2015-12-20    437.490098
+ 2014-04-11    288.010483
+ 2015-12-17    436.879765
+ Freq: D, Name: sales, dtype: float64,
+                    sales  Time          Lag_1
+ date                                         
+ 2016-05-25  6.375120e+05  1237  606377.205216
+ 2015-03-24  4.073697e+05   810  462664.237004
+ 2016-04-02  1.150825e+06  1184  872467.320075)</code></pre>
+</div>
+</div>
+</section>
+<section id="deterministic-model" class="level4">
+<h4 class="anchored" data-anchor-id="deterministic-model">Deterministic Model</h4>
+<p>which is a fancy term for linear regression with time series. This is also a linear model. To make this model work requries you to converge time index <code>to_period</code> index.</p>
+<p>This process is similar to linear model. Instead fitting x, y, z three independ varaibles, you are fitting three x of different ‘orders’.</p>
+<p><span class="math display">\[
+y = a + b\,x + c\,x^2 + d\,x^3 + ... + n\,x^{n}
+\]</span></p>
+<p>(Somewhat reminds me of Taylor’s series. Maybe that’s what order mans) What’s interesting about this function is odd quatric functions can vary ups and downs, so to fit into any shape you like.</p>
+<div id="cf59a8fe" class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pip install statsmodels</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.deterministic <span class="im">import</span> DeterministicProcess</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> average_sales.copy()</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>dp <span class="op">=</span> DeterministicProcess(</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>y.index,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    constant <span class="op">=</span> <span class="va">True</span>, <span class="co"># dummy features</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> <span class="dv">3</span>,       <span class="co"># time dummy trend, 1 is linear, 2 is quadratic, 3 cubic</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    drop <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> dp.in_sample()</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>X.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="68">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">const</th>
+<th data-quarto-table-cell-role="th">trend</th>
+<th data-quarto-table-cell-role="th">trend_squared</th>
+<th data-quarto-table-cell-role="th">trend_cubed</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-08-11</td>
+<td>1.0</td>
+<td>1680.0</td>
+<td>2822400.0</td>
+<td>4.741632e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-08-12</td>
+<td>1.0</td>
+<td>1681.0</td>
+<td>2825761.0</td>
+<td>4.750104e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-08-13</td>
+<td>1.0</td>
+<td>1682.0</td>
+<td>2829124.0</td>
+<td>4.758587e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-08-14</td>
+<td>1.0</td>
+<td>1683.0</td>
+<td>2832489.0</td>
+<td>4.767079e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-08-15</td>
+<td>1.0</td>
+<td>1684.0</td>
+<td>2835856.0</td>
+<td>4.775582e+09</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="cc09f5f3" class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>X_fore <span class="op">=</span> dp.out_of_sample(steps <span class="op">=</span> <span class="dv">90</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>X_fore.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="69">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">const</th>
+<th data-quarto-table-cell-role="th">trend</th>
+<th data-quarto-table-cell-role="th">trend_squared</th>
+<th data-quarto-table-cell-role="th">trend_cubed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-08-16</td>
+<td>1.0</td>
+<td>1685.0</td>
+<td>2839225.0</td>
+<td>4.784094e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-08-17</td>
+<td>1.0</td>
+<td>1686.0</td>
+<td>2842596.0</td>
+<td>4.792617e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-08-18</td>
+<td>1.0</td>
+<td>1687.0</td>
+<td>2845969.0</td>
+<td>4.801150e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-08-19</td>
+<td>1.0</td>
+<td>1688.0</td>
+<td>2849344.0</td>
+<td>4.809693e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-08-20</td>
+<td>1.0</td>
+<td>1689.0</td>
+<td>2852721.0</td>
+<td>4.818246e+09</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="d5b34e86" class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> average_sales</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression(fit_intercept <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>model.fit(X, y)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pd.Series(model.predict(X), index <span class="op">=</span> X.index)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>y_fore <span class="op">=</span> pd.Series(model.predict(X_fore), index <span class="op">=</span> X_fore.index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="05d7515c" class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> average_sales.plot(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    style <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'0.5'</span>, title <span class="op">=</span> <span class="st">'average sales'</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y_pred.plot(ax<span class="op">=</span> ax, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">'Trend'</span>) <span class="co"># underscore is for temporary variable</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y_fore.plot(ax <span class="op">=</span> ax, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"Trend Forcast"</span>, color <span class="op">=</span> <span class="st">'C3'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="risks-of-highorder-ploynomials" class="level4">
+<h4 class="anchored" data-anchor-id="risks-of-highorder-ploynomials">Risks of Highorder Ploynomials</h4>
+<p>Due to the property of function &gt; An order 11 polynomial will include terms like t ** 11. Terms like these tend to diverge rapidly outside of the training period making forecasts very unreliable.</p>
+<div id="10d44ae0" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dp <span class="op">=</span> DeterministicProcess(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>y.index,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> <span class="dv">11</span>,       <span class="co"># time dummy trend, 1 is linear, 2 is quadratic, 3 cubic</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> dp.in_sample()</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression(fit_intercept <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>model.fit(X, y)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>X_fore <span class="op">=</span> dp.out_of_sample(steps<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pd.Series(model.predict(X), index<span class="op">=</span>X.index)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>y_fore <span class="op">=</span> pd.Series(model.predict(X_fore), index <span class="op">=</span> X_fore.index)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y.plot(style <span class="op">=</span> <span class="st">'.'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, title<span class="op">=</span><span class="st">"Average Sales"</span>, ylabel<span class="op">=</span><span class="st">"items sold"</span>)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y_pred.plot(ax<span class="op">=</span>ax, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"Trend"</span>, color<span class="op">=</span><span class="st">'C0'</span>)</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y_fore.plot(ax<span class="op">=</span>ax, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"Trend Forecast"</span>, color<span class="op">=</span><span class="st">'C3'</span>)</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>ax.legend()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fit-trend-with-spines" class="level4">
+<h4 class="anchored" data-anchor-id="fit-trend-with-spines">Fit Trend with Spines</h4>
+<p>Multivariate Adaptive Regression Splines (MARS) &gt; Splines are a nice alternative to polynomials when you want to fit a trend. The Multivariate Adaptive Regression Splines (MARS) algorithm in the pyearth library is powerful and easy to use. There are a lot of hyperparameters you may want to investigate.</p>
+<p>This use <code>Earth()</code> model in pyearth package by Stephen Milborrow, the originsl is R version. <a href="https://contrib.scikit-learn.org/py-earth/index.html#">API here</a> You will need to install via conda. Use the one under scikit-learn.</p>
+<p><del>conda install</del> <code>pip install sklearn-contrib-py-earth</code></p>
+<div id="f825fa6c" class="cell" data-tags="[&quot;optional&quot;]" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#from pyearth import Earth</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>: </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> average_sales.copy()</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    dp <span class="op">=</span> DeterministicProcess(index<span class="op">=</span>y.index, order<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> dp.in_sample()</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fit a MARS model with `Earth`</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> Earth()</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    model.fit(X, y)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    y_pred <span class="op">=</span> pd.Series(model.predict(X), index<span class="op">=</span>X.index)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> y.plot(<span class="co">#**plot_params, </span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>                title<span class="op">=</span><span class="st">"Average Sales"</span>, ylabel<span class="op">=</span><span class="st">"items sold"</span>)</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> y_pred.plot(ax<span class="op">=</span>ax, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"Trend"</span>)</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>: </span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'This code will no execute until pyearth is installed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>This code will no execute until pyearth is installed</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="seasonality" class="level3">
+<h3 class="anchored" data-anchor-id="seasonality">Seasonality</h3>
+<p>You already know sine and cosine functions are used to model these. Terms are called <strong>Fourtier features</strong>.</p>
+<section id="fourier-features" class="level4">
+<h4 class="anchored" data-anchor-id="fourier-features">Fourier Features</h4>
+<p>1 pair of fourier features are: <span class="math display">\[
+k =  2 \pi \frac{t}{f}
+\\
+f(j) = \beta_1 \sin(j * k) + \beta_2 \cos(j * k)
+\]</span></p>
+<p><span class="math inline">\(n\)</span> order(s) of fourier features: <span class="math display">\[
+F(n) = \sum_{j=1}^{n} f(j)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(k\)</span> is time scaled to frequency</li>
+<li><span class="math inline">\(i\)</span> is order of features</li>
+<li><span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> is what you throw into linear regression</li>
+</ul>
+<p>The advantage of a fourier pair is so that two parameters are at the same scale.</p>
+<div id="3563c8eb" class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create fourier feature for linear regression to figure out</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fourier_features(index, freq, order):</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    time <span class="op">=</span> np.arange(<span class="bu">len</span>(index), dtype<span class="op">=</span>np.float32)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> (<span class="dv">1</span> <span class="op">/</span> freq) <span class="op">*</span> time</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    features <span class="op">=</span> {}</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, order <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>        features.update({</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"sin_</span><span class="sc">{</span>freq<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>: np.sin(i <span class="op">*</span> k),</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"cos_</span><span class="sc">{</span>freq<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>: np.cos(i <span class="op">*</span> k),</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(features, index<span class="op">=</span>index)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co"># this transform it into something you are easy to fits into linear regression</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="periodogram" class="level4">
+<h4 class="anchored" data-anchor-id="periodogram">Periodogram</h4>
+<p>Given frequency y = $ {2}$ <span class="math inline">\(\beta_1\)</span>, <span class="math inline">\(\beta_2\)</span> is the coefficients of sine and cosine.</p>
+<p>A useful trigonometric identity is is: <span class="math display">\[
+A \cos(2 \pi \omega t + \phi) = \beta_1 \cos(2 \pi \omega t) + \beta_2 \sin(2 \pi \omega t) \\
+\beta_1 = A \cos(\phi) \\
+\beta_2 = - A \sin(\phi) \\
+2A^2 = \beta_1^2 + \beta_2^2
+\]</span> The whole time series is represented as: <span class="math display">\[
+x_t = \sum_{j = 1}^{n/2}
+      [
+        \beta_1(\frac{j}{n}) cos(2 \pi \omega_j t)+
+        \beta_2(\frac{j}{n}) sin(2 \pi \omega_j t)
+      ]
+\]</span> In periodogram given <span class="math inline">\(\frac{j} {n}\)</span> frequency: <span class="math display">\[
+P(\frac{j} {n}) = \beta_1^2 (\frac{j} {n}) + \beta_2^2(\frac{j}{n})
+\]</span></p>
+<blockquote class="blockquote">
+<p>A relatively large value of P(j/n) indicates relatively more importance for the frequency j/n (or near j/n) in explaining the oscillation in the observed series. P(j/n) is proportional to the squared correlation between the observed series and a cosine wave with frequency j/n.&nbsp;The dominant frequencies might be used to fit cosine (or sine) waves to the data, or might be used simply to describe the important periodicities in the series.</p>
+</blockquote>
+<p><a href="https://online.stat.psu.edu/stat510/lesson/6/6.1">source: PennState Eberly College of Science</a></p>
+<ul>
+<li>Estimate <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> is two of n parameters</li>
+<li>They are not neccessary estimated by regression but this math device called Fast Fourier Transformation (FFT)</li>
+</ul>
+</section>
+<section id="fast-fourier-transformation" class="level4">
+<h4 class="anchored" data-anchor-id="fast-fourier-transformation">(Fast) Fourier Transformation</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="image/FFT-Time-Frequency-View-540.png" class="img-fluid figure-img"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+<p>I think of it this way. Think you can fit a n sum of fontier pairs together. Your frequency is then coposed of n possible pair of fourier pairs. The higher order, the higher the freqency (lower the wave length). Some fourier will be more dominant than the other. When a fourier pair is not dominant, their sum of <span class="math inline">\(\beta\)</span> square may as well be 0. This means it cancels them out. So if you slice the equation by fourier pairs. Each pair will represent strenght of that wave function. With 0 indicate very low effect. Higher value indicate more dominate effect.</p>
+<p><a href="https://mriquestions.com/fourier-transform-ft.html">dig further: what is fourier transform</a></p>
+<section id="custom-functions" class="level5">
+<h5 class="anchored" data-anchor-id="custom-functions">Custom Functions</h5>
+<div id="d2fb28ed" class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.deterministic <span class="im">import</span> CalendarFourier, DeterministicProcess</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> seasonal_plot(X, y, period, freq, ax<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ax <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        _, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    palette <span class="op">=</span> sns.color_palette(<span class="st">"husl"</span>, n_colors<span class="op">=</span>X[period].nunique(),)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> sns.lineplot(</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>freq,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>y,</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>        hue<span class="op">=</span>period,</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>        data<span class="op">=</span>X,</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>        ci<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>ax,</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>        palette<span class="op">=</span>palette,</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>        legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"Seasonal Plot (</span><span class="sc">{</span>period<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>freq<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line, name <span class="kw">in</span> <span class="bu">zip</span>(ax.lines, X[period].unique()):</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>        y_ <span class="op">=</span> line.get_ydata()[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>        ax.annotate(</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>            name,</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>            xy<span class="op">=</span>(<span class="dv">1</span>, y_),</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>            xytext<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">0</span>),</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span>line.get_color(),</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>            xycoords<span class="op">=</span>ax.get_yaxis_transform(),</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>            textcoords<span class="op">=</span><span class="st">"offset points"</span>,</span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>            size<span class="op">=</span><span class="dv">14</span>,</span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>            va<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ax</span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_periodogram(ts, detrend<span class="op">=</span><span class="st">'linear'</span>, ax<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> scipy.signal <span class="im">import</span> periodogram</span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>    fs <span class="op">=</span> pd.Timedelta(<span class="st">"1Y"</span>) <span class="op">/</span> pd.Timedelta(<span class="st">"1D"</span>)</span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>    freqencies, spectrum <span class="op">=</span> periodogram( <span class="co"># this code do not generate graph it creates two vectors</span></span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a>        ts,</span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a>        fs<span class="op">=</span>fs,</span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a>        detrend<span class="op">=</span>detrend,</span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>        window<span class="op">=</span><span class="st">"boxcar"</span>,</span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a>        scaling<span class="op">=</span><span class="st">'spectrum'</span>,</span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ax <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a>        _, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a>    ax.step(freqencies, spectrum, color<span class="op">=</span><span class="st">"purple"</span>)</span>
+<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a>    ax.set_xscale(<span class="st">"log"</span>)</span>
+<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">26</span>, <span class="dv">52</span>, <span class="dv">104</span>])</span>
+<span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a>    ax.set_xticklabels(</span>
+<span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a>        [</span>
+<span id="cb31-48"><a href="#cb31-48" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Annual (1)"</span>,</span>
+<span id="cb31-49"><a href="#cb31-49" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Semiannual (2)"</span>,</span>
+<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Quarterly (4)"</span>,</span>
+<span id="cb31-51"><a href="#cb31-51" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Bimonthly (6)"</span>,</span>
+<span id="cb31-52"><a href="#cb31-52" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Monthly (12)"</span>,</span>
+<span id="cb31-53"><a href="#cb31-53" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Biweekly (26)"</span>,</span>
+<span id="cb31-54"><a href="#cb31-54" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Weekly (52)"</span>,</span>
+<span id="cb31-55"><a href="#cb31-55" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Semiweekly (104)"</span>,</span>
+<span id="cb31-56"><a href="#cb31-56" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb31-57"><a href="#cb31-57" aria-hidden="true" tabindex="-1"></a>        rotation<span class="op">=</span><span class="dv">30</span>,</span>
+<span id="cb31-58"><a href="#cb31-58" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb31-59"><a href="#cb31-59" aria-hidden="true" tabindex="-1"></a>    ax.ticklabel_format(axis<span class="op">=</span><span class="st">"y"</span>, style<span class="op">=</span><span class="st">"sci"</span>, scilimits<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb31-60"><a href="#cb31-60" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Variance"</span>)</span>
+<span id="cb31-61"><a href="#cb31-61" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"Periodogram"</span>)</span>
+<span id="cb31-62"><a href="#cb31-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example" class="level5">
+<h5 class="anchored" data-anchor-id="example">Example</h5>
+<div id="f6e5f01f" class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>average_sales_2017 <span class="op">=</span> average_sales.squeeze().loc[<span class="st">'2017'</span>]</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> average_sales_2017.to_frame()</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>X[<span class="st">'week'</span>] <span class="op">=</span> X.index.week</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>X[<span class="st">'day'</span>] <span class="op">=</span> X.index.dayofweek</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>seasonal_plot(X, </span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>              <span class="st">'sales'</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>              period <span class="op">=</span> <span class="st">'week'</span>,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>              freq <span class="op">=</span> <span class="st">'day'</span>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>plot_periodogram(average_sales_2017)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-24-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>NOTE: <strong>This set of features happens to have four spikes</strong> and <strong>the four spkes happens to be consecutive</strong></p>
+<p>Note x is completely different scale to what’s introduce in PenState’s text book (where frequency is represented as a fraction). Here frequency is represented as the inverse whole period with low frequency left and high frequency right.</p>
+<p>This graph tells you strong weekly seasonality. Because you want to reduce chances of over fitting. You want to try reduce the fourier sets. You can model these ways:</p>
+<ul>
+<li>12 month frequency (30/365) with 4 fourier pairs</li>
+<li>1 anual frequency (364/365) with 26 fourier paris (there will be a lot of frequency here)</li>
+</ul>
+<p>Set frequency as how you want period to return. As order increase it captures the intrinsic orders of the frequency.</p>
+<p>So in the one the first fourier feature is observed monthly hense the set frequency to month. There are about four additionaly waves (they all happens to be twice as frequent as the other one). Hense we set four fourier pairs.</p>
+</section>
+</section>
+</section>
+<section id="compute-fourier-feature-statmodels" class="level3">
+<h3 class="anchored" data-anchor-id="compute-fourier-feature-statmodels">Compute Fourier Feature (<code>statmodels</code>)</h3>
+<div id="ddeb376e" class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.deterministic <span class="im">import</span> CalendarFourier, DeterministicProcess</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>fourier <span class="op">=</span> CalendarFourier(freq<span class="op">=</span><span class="st">"M"</span>, order<span class="op">=</span><span class="dv">4</span>) <span class="co"># here parameter derived from periodogram</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>dp <span class="op">=</span> DeterministicProcess(</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>average_sales_2017.index,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    constant<span class="op">=</span><span class="va">True</span>,               <span class="co"># dummy feature for bias (y-intercept)</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    order<span class="op">=</span><span class="dv">1</span>,                     <span class="co"># trend (order 1 means linear)</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    seasonal<span class="op">=</span><span class="va">True</span>,               <span class="co"># weekly seasonality (indicators)</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    additional_terms<span class="op">=</span>[fourier],  <span class="co"># annual seasonality (fourier)</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    drop<span class="op">=</span><span class="va">True</span>,                   <span class="co"># drop terms to avoid collinearity</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> dp.in_sample()  </span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="co"># note fourier needs to be made as a list for it to be literatable</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> average_sales_2017</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression(fit_intercept<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> model.fit(X, y)</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pd.Series(model.predict(X), index<span class="op">=</span>y.index)</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>X_fore <span class="op">=</span> dp.out_of_sample(steps<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>y_fore <span class="op">=</span> pd.Series(model.predict(X_fore), index<span class="op">=</span>X_fore.index)</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y.plot(color<span class="op">=</span><span class="st">'0.25'</span>, style<span class="op">=</span><span class="st">'.-'</span>, alpha <span class="op">=</span> <span class="fl">0.25</span>,title<span class="op">=</span><span class="st">"Store Average Sales"</span>)</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y_pred.plot(ax<span class="op">=</span>ax, label<span class="op">=</span><span class="st">"Seasonal"</span>)</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y_fore.plot(ax<span class="op">=</span>ax, label<span class="op">=</span><span class="st">"Seasonal Forecast"</span>, color<span class="op">=</span><span class="st">'C3'</span>)</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> ax.legend()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="bbdb76ee" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#X.to_csv('data/output/Calenrier_output.csv')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="detrend-or-deseasonalising" class="level3">
+<h3 class="anchored" data-anchor-id="detrend-or-deseasonalising">Detrend or deseasonalising</h3>
+<p>Verify that we are not modeling random variance</p>
+<div id="c9819492" class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>y_deseason <span class="op">=</span> y <span class="op">-</span> y_pred</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2, ax3) <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plot_periodogram(y, ax<span class="op">=</span>ax1)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"Product Sales Frequency Components"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plot_periodogram(y_deseason, ax<span class="op">=</span>ax2)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">"Deseasonalized"</span>)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> plot_periodogram(y, ax<span class="op">=</span>ax3)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co">#ax.axes.set_facecolor('blue')</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> plot_periodogram(y_deseason, ax<span class="op">=</span>ax3)</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>ax3.axes.lines[<span class="dv">0</span>].set_color(<span class="st">'blue'</span>)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>ax3.set_title(<span class="st">"Product Sales Frequency Components"</span>)<span class="op">;</span> <span class="co"># take this out you would be creating a new plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-27-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This plot shows that our model ahs surverred very well in explaining seasonality variance.</p>
+<section id="holiday-special-events" class="level4">
+<h4 class="anchored" data-anchor-id="holiday-special-events">Holiday (Special Events)</h4>
+<p>You can fit spacial events by creating dummy variables (here it is convinent because we are only useing one years to train)</p>
+<div id="2b3e1fa8" class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>holidays_events <span class="op">=</span> pd.read_csv(</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'data/store-sales-time-series-forecasting/holidays_events.csv'</span>,</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    index_col <span class="op">=</span> <span class="st">'date'</span>,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    dtype<span class="op">=</span>{</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'type'</span>: <span class="st">'category'</span>,</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'locale'</span>: <span class="st">'category'</span>,</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'locale_name'</span>: <span class="st">'category'</span>,</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'description'</span>: <span class="st">'category'</span>,</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'transferred'</span>: <span class="st">'bool'</span>,</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    parse_dates <span class="op">=</span> [<span class="st">'date'</span>],</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    infer_datetime_format<span class="op">=</span><span class="va">True</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    ).to_period(<span class="st">'D'</span>)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="co">#type(holidays_events.index)</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>holidays <span class="op">=</span> (</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>    holidays_events</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>    .query(<span class="st">"locale in ['National', 'Regional']"</span>)</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>    .loc[<span class="st">'2017'</span>:<span class="st">'2017-08-15'</span>, [<span class="st">'description'</span>]]</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>    .assign(description<span class="op">=</span><span class="kw">lambda</span> x: x.description.cat.remove_unused_categories())</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>display(holidays)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">description</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-01-01</td>
+<td>Primer dia del ano</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-01-02</td>
+<td>Traslado Primer dia del ano</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-02-27</td>
+<td>Carnaval</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-02-28</td>
+<td>Carnaval</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-04-01</td>
+<td>Provincializacion de Cotopaxi</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-04-14</td>
+<td>Viernes Santo</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-05-01</td>
+<td>Dia del Trabajo</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-05-13</td>
+<td>Dia de la Madre-1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-05-14</td>
+<td>Dia de la Madre</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-05-24</td>
+<td>Batalla de Pichincha</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-05-26</td>
+<td>Traslado Batalla de Pichincha</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-06-25</td>
+<td>Provincializacion de Imbabura</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-08-10</td>
+<td>Primer Grito de Independencia</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-08-11</td>
+<td>Traslado Primer Grito de Independencia</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="cf10cbe6" class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y_deseason.plot(<span class="op">**</span>plot_params)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>plt.plot_date(holidays.index, y_deseason[holidays.index], color<span class="op">=</span><span class="st">'C3'</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'National and Regional Holidays'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-29-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="0270b4cc" class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>X_holidays <span class="op">=</span> pd.get_dummies(</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    holidays,</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> [<span class="st">'description'</span>]</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>X2 <span class="op">=</span> X.join(X_holidays, on<span class="op">=</span><span class="st">'date'</span>).fillna(<span class="fl">0.0</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression().fit(X2, y)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pd.Series(</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    model.predict(X2),</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    index <span class="op">=</span> X2.index,</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="st">'Fitted'</span>,</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="16b99fb6" class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>X_holidays.sample(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="84">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">description_Batalla de Pichincha</th>
+<th data-quarto-table-cell-role="th">description_Carnaval</th>
+<th data-quarto-table-cell-role="th">description_Dia de la Madre</th>
+<th data-quarto-table-cell-role="th">description_Dia de la Madre-1</th>
+<th data-quarto-table-cell-role="th">description_Dia del Trabajo</th>
+<th data-quarto-table-cell-role="th">description_Primer Grito de Independencia</th>
+<th data-quarto-table-cell-role="th">description_Primer dia del ano</th>
+<th data-quarto-table-cell-role="th">description_Provincializacion de Cotopaxi</th>
+<th data-quarto-table-cell-role="th">description_Provincializacion de Imbabura</th>
+<th data-quarto-table-cell-role="th">description_Traslado Batalla de Pichincha</th>
+<th data-quarto-table-cell-role="th">description_Traslado Primer Grito de Independencia</th>
+<th data-quarto-table-cell-role="th">description_Traslado Primer dia del ano</th>
+<th data-quarto-table-cell-role="th">description_Viernes Santo</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-01-01</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-08-10</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-08-11</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="28dfee61" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y.plot(<span class="op">**</span>plot_params, alpha<span class="op">=</span><span class="fl">0.5</span>, title<span class="op">=</span><span class="st">"Average Sales"</span>, ylabel<span class="op">=</span><span class="st">"items sold"</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y_pred.plot(ax<span class="op">=</span>ax, label<span class="op">=</span><span class="st">"Seasonal"</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>ax.legend()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-32-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="57547044" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y.plot(color<span class="op">=</span><span class="st">'0.25'</span>, style<span class="op">=</span><span class="st">'.-'</span>, alpha <span class="op">=</span> <span class="fl">0.25</span>,title<span class="op">=</span><span class="st">"Store Average Sales"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y_pred.plot(ax<span class="op">=</span>ax, label<span class="op">=</span><span class="st">"Seasonal"</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> y_fore.plot(ax<span class="op">=</span>ax, label<span class="op">=</span><span class="st">"Seasonal Forecast"</span>, color<span class="op">=</span><span class="st">'C3'</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.plot_date(holidays.index, y[holidays.index], color <span class="op">=</span> <span class="st">'C3'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-33-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="time-series-as-features" class="level3">
+<h3 class="anchored" data-anchor-id="time-series-as-features">Time Series as Features</h3>
+<section id="partial-autocorrelcation" class="level4">
+<h4 class="anchored" data-anchor-id="partial-autocorrelcation">Partial Autocorrelcation</h4>
+<div id="e7659eed" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_pacf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="208c375a" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>plot_pacf(average_sales_2017)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/statsmodels/graphics/tsaplots.py:348: FutureWarning: The default method 'yw' can produce PACF values outside of the [-1,1] interval. After 0.13, the default will change tounadjusted Yule-Walker ('ywm'). You can use this method now by setting method='ywm'.
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-35-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cycle" class="level3">
+<h3 class="anchored" data-anchor-id="cycle">Cycle</h3>
+</section>
+<section id="hybrid-models" class="level3">
+<h3 class="anchored" data-anchor-id="hybrid-models">Hybrid Models</h3>
+<p>Essentially all above combined:</p>
+<p>series = trend + seasons + cycles + error</p>
+<p>Regression algorithmn: * transform target: * for example <strong>decision tree</strong>. * <strong>group target value</strong> in training and make prediction of feature by averaging values in a group * transform features: * for example polynormial function. Use mathmatical function. * featues as input combines and transform</p>
+<p>Feature Transformer <strong>Extrapolate Target Value</strong> (think of this as a point inbetween two discrete value amongst a function) beyound <strong>bondary</strong> of training set. Same cannot be said for <strong>Decision Tree</strong>. Random Forest and Gradient boosted decision tree takes the last step.</p>
+<p>#kaggle recommend: 1. linear regression for extrapolate trend 2. transform target to remove trend 3. apply <a href="https://xgboost.readthedocs.io/en/stable/">XGBoost</a> to detrended residual</p>
+<section id="linbear-regression-xgbosst" class="level4">
+<h4 class="anchored" data-anchor-id="linbear-regression-xgbosst">linbear regression + XGBosst</h4>
+<div id="7ccee8dd" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> warnings <span class="im">import</span> simplefilter</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.deterministic <span class="im">import</span> CalendarFourier, DeterministicProcess</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBRegressor</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>simplefilter(<span class="st">"ignore"</span>)</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Set Matplotlib defaults</span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">"seaborn-whitegrid"</span>)</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>plt.rc(</span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"figure"</span>,</span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>    autolayout<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">4</span>),</span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>    titlesize<span class="op">=</span><span class="dv">18</span>,</span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>    titleweight<span class="op">=</span><span class="st">'bold'</span>,</span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>plt.rc(</span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axes"</span>,</span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a>    labelweight<span class="op">=</span><span class="st">"bold"</span>,</span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a>    labelsize<span class="op">=</span><span class="st">"large"</span>,</span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a>    titleweight<span class="op">=</span><span class="st">"bold"</span>,</span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a>    titlesize<span class="op">=</span><span class="dv">16</span>,</span>
+<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a>    titlepad<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a>plot_params <span class="op">=</span> <span class="bu">dict</span>(</span>
+<span id="cb45-31"><a href="#cb45-31" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"0.75"</span>,</span>
+<span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a>    style<span class="op">=</span><span class="st">".-"</span>,</span>
+<span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a>    markeredgecolor<span class="op">=</span><span class="st">"0.25"</span>,</span>
+<span id="cb45-34"><a href="#cb45-34" aria-hidden="true" tabindex="-1"></a>    markerfacecolor<span class="op">=</span><span class="st">"0.25"</span>,</span>
+<span id="cb45-35"><a href="#cb45-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb45-36"><a href="#cb45-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-37"><a href="#cb45-37" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> Path(<span class="st">"data/ts-course/"</span>)</span>
+<span id="cb45-38"><a href="#cb45-38" aria-hidden="true" tabindex="-1"></a>industries <span class="op">=</span> [<span class="st">"BuildingMaterials"</span>, <span class="st">"FoodAndBeverage"</span>]</span>
+<span id="cb45-39"><a href="#cb45-39" aria-hidden="true" tabindex="-1"></a>retail <span class="op">=</span> pd.read_csv(</span>
+<span id="cb45-40"><a href="#cb45-40" aria-hidden="true" tabindex="-1"></a>    data_dir <span class="op">/</span> <span class="st">"us-retail-sales.csv"</span>,</span>
+<span id="cb45-41"><a href="#cb45-41" aria-hidden="true" tabindex="-1"></a>    usecols<span class="op">=</span>[<span class="st">'Month'</span>] <span class="op">+</span> industries,</span>
+<span id="cb45-42"><a href="#cb45-42" aria-hidden="true" tabindex="-1"></a>    parse_dates<span class="op">=</span>[<span class="st">'Month'</span>],</span>
+<span id="cb45-43"><a href="#cb45-43" aria-hidden="true" tabindex="-1"></a>    index_col<span class="op">=</span><span class="st">'Month'</span>,</span>
+<span id="cb45-44"><a href="#cb45-44" aria-hidden="true" tabindex="-1"></a>).to_period(<span class="st">'D'</span>).reindex(columns<span class="op">=</span>industries)</span>
+<span id="cb45-45"><a href="#cb45-45" aria-hidden="true" tabindex="-1"></a>retail <span class="op">=</span> pd.concat({<span class="st">'Sales'</span>: retail}, names<span class="op">=</span>[<span class="va">None</span>, <span class="st">'Industries'</span>], axis<span class="op">=</span><span class="dv">1</span>) <span class="co"># this is a hayer of hierarachical index</span></span>
+<span id="cb45-46"><a href="#cb45-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-47"><a href="#cb45-47" aria-hidden="true" tabindex="-1"></a>retail.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">Sales</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Industries</th>
+<th data-quarto-table-cell-role="th">BuildingMaterials</th>
+<th data-quarto-table-cell-role="th">FoodAndBeverage</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Month</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1992-01-01</td>
+<td>8964</td>
+<td>29589</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1992-02-01</td>
+<td>9023</td>
+<td>28570</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1992-03-01</td>
+<td>10608</td>
+<td>29682</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1992-04-01</td>
+<td>11630</td>
+<td>30228</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1992-05-01</td>
+<td>12327</td>
+<td>31677</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Tips: now retail is hierarchically indexed you can only have to access a top layer column before you can access a bottom layer.</p>
+<div id="f672ccb8" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> retail.copy()</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>dp <span class="op">=</span> DeterministicProcess(</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>y.index,</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    constant<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    order<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    drop<span class="op">=</span><span class="va">True</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> dp.in_sample() <span class="co"># features for training data</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>idx_train, idx_test <span class="op">=</span> train_test_split(</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    y.index, test_size<span class="op">=</span><span class="dv">12</span> <span class="op">*</span> <span class="dv">4</span>, shuffle<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>X_train, X_test <span class="op">=</span> X.loc[idx_train, :], X.loc[idx_test, :]</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>y_train, y_test <span class="op">=</span> y.loc[idx_train], y.loc[idx_test]</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit trend model</span></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression(fit_intercept<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions</span></span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>y_fit <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>    model.predict(X_train),</span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>y_train.index, <span class="co"># index are index</span></span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>y_train.columns, <span class="co"># columns are column labels</span></span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>    model.predict(X_test),</span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>y_test.index,</span>
+<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>y_test.columns,</span>
+<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="704ea97c" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> y_train.plot(color<span class="op">=</span><span class="st">'0.25'</span>, subplots<span class="op">=</span><span class="va">True</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> y_test.plot(color<span class="op">=</span><span class="st">'0.25'</span>, subplots<span class="op">=</span><span class="va">True</span>, sharex<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>axs)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> y_fit.plot(color<span class="op">=</span><span class="st">'C0'</span>, subplots<span class="op">=</span><span class="va">True</span>, sharex<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>axs)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> y_pred.plot(color<span class="op">=</span><span class="st">'C3'</span>, subplots<span class="op">=</span><span class="va">True</span>, sharex<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>axs)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axs: ax.legend([])</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> plt.suptitle(<span class="st">"Trends"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-39-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Data Transformation before add XGBOOST</p>
+<blockquote class="blockquote">
+<p>While the linear regression algorithm is capable of multi-output regression, the XGBoost algorithm is not. To predict multiple series at once with XGBoost, we’ll instead convert these series from wide format, with one time series per column, to long format, with series indexed by categories along rows.</p>
+</blockquote>
+<div id="51d04b58" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> retail.stack()  <span class="co"># pivot dataset wide to long</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>display(X.head())</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> X.pop(<span class="st">'Sales'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Sales</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Month</th>
+<th data-quarto-table-cell-role="th">Industries</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">1992-01-01</td>
+<td data-quarto-table-cell-role="th">BuildingMaterials</td>
+<td>8964</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">FoodAndBeverage</td>
+<td>29589</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">1992-02-01</td>
+<td data-quarto-table-cell-role="th">BuildingMaterials</td>
+<td>9023</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">FoodAndBeverage</td>
+<td>28570</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1992-03-01</td>
+<td data-quarto-table-cell-role="th">BuildingMaterials</td>
+<td>10608</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="2027cb54" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"stack transform default retaill index </span><span class="ch">\n</span><span class="st"> from </span><span class="sc">{var1}</span><span class="st"> </span><span class="ch">\n</span><span class="st"> to </span><span class="sc">{var2}</span><span class="st"> </span><span class="ch">\</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="st">      ( y index)"</span>.<span class="bu">format</span>(</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>var1 <span class="op">=</span><span class="bu">type</span>(retail.head().index),</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>var2 <span class="op">=</span><span class="bu">type</span>(y.head().index)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>stack transform default retaill index 
+ from &lt;class 'pandas.core.indexes.period.PeriodIndex'&gt; 
+ to &lt;class 'pandas.core.indexes.multi.MultiIndex'&gt;       ( y index)</code></pre>
+</div>
+</div>
+<div id="e99d98ea" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn row labels into categorical feature columns with a label encoding</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X.reset_index(<span class="st">'Industries'</span>)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X.index is now </span><span class="sc">{var1}</span><span class="st">"</span>.<span class="bu">format</span>(var1<span class="op">=</span><span class="bu">type</span>(X.index)))</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Label encoding for 'Industries' feature</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> colname <span class="kw">in</span> X.select_dtypes([<span class="st">"object"</span>, <span class="st">"category"</span>]):</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    X[colname], _ <span class="op">=</span> X[colname].factorize()</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Label encoding for annual seasonality</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>X[<span class="st">"Month"</span>] <span class="op">=</span> X.index.month  <span class="co"># values are 1, 2, ..., 12</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create splits</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>X_train, X_test <span class="op">=</span> X.loc[idx_train, :], X.loc[idx_test, :]</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>y_train, y_test <span class="op">=</span> y.loc[idx_train], y.loc[idx_test]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>X.index is now &lt;class 'pandas.core.indexes.period.PeriodIndex'&gt;</code></pre>
+</div>
+</div>
+<div id="07cbb857" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot wide to long (stack) and convert DataFrame to Series (squeeze)</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>y_fit <span class="op">=</span> y_fit.stack().squeeze()    <span class="co"># trend from training set</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> y_pred.stack().squeeze()  <span class="co"># trend from test set</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"y is now </span><span class="sc">{y_index}</span><span class="st">"</span>.<span class="bu">format</span>(</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    y_index <span class="op">=</span> <span class="bu">type</span>(y_fit.index)</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create residuals (the collection of detrended series) from the training set</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>y_resid <span class="op">=</span> y_train <span class="op">-</span> y_fit</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Train XGBoost on the residuals</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>xgb <span class="op">=</span> XGBRegressor()</span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>xgb.fit(X_train, y_resid)</span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the predicted residuals onto the predicted trends</span></span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>y_fit_boosted <span class="op">=</span> xgb.predict(X_train) <span class="op">+</span> y_fit</span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>y_pred_boosted <span class="op">=</span> xgb.predict(X_test) <span class="op">+</span> y_pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>y is now &lt;class 'pandas.core.indexes.multi.MultiIndex'&gt;</code></pre>
+</div>
+</div>
+<div id="148783ae" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> y_train.unstack([<span class="st">'Industries'</span>]).plot(</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'0.25'</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">5</span>), subplots<span class="op">=</span><span class="va">True</span>, sharex<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span>[<span class="st">'BuildingMaterials'</span>, <span class="st">'FoodAndBeverage'</span>],</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> y_test.unstack([<span class="st">'Industries'</span>]).plot(</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'0.25'</span>, subplots<span class="op">=</span><span class="va">True</span>, sharex<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>axs,</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> y_fit_boosted.unstack([<span class="st">'Industries'</span>]).plot(</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'C0'</span>, subplots<span class="op">=</span><span class="va">True</span>, sharex<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>axs,</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> y_pred_boosted.unstack([<span class="st">'Industries'</span>]).plot(</span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'C3'</span>, subplots<span class="op">=</span><span class="va">True</span>, sharex<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>axs,</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axs: ax.legend([])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-45-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="machine-learning" class="level3">
+<h3 class="anchored" data-anchor-id="machine-learning">Machine Learning</h3>
+<div id="4433cdce" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> warnings <span class="im">import</span> simplefilter</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBRegressor</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_multistep(y, every<span class="op">=</span><span class="dv">1</span>, ax<span class="op">=</span><span class="va">None</span>, palette_kwargs<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>    palette_kwargs_ <span class="op">=</span> <span class="bu">dict</span>(palette<span class="op">=</span><span class="st">'husl'</span>, n_colors<span class="op">=</span><span class="dv">16</span>, desat<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> palette_kwargs <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>        palette_kwargs_.update(palette_kwargs)</span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>    palette <span class="op">=</span> sns.color_palette(<span class="op">**</span>palette_kwargs_)</span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ax <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>        fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>    ax.set_prop_cycle(plt.cycler(<span class="st">'color'</span>, palette))</span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> date, preds <span class="kw">in</span> y[::every].iterrows():</span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>        preds.index <span class="op">=</span> pd.period_range(start<span class="op">=</span>date, periods<span class="op">=</span><span class="bu">len</span>(preds))</span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a>        preds.plot(ax<span class="op">=</span>ax)</span>
+<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ax</span>
+<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-26"><a href="#cb56-26" aria-hidden="true" tabindex="-1"></a>flu_trends <span class="op">=</span> pd.read_csv(<span class="st">"data/ts-course/flu-trends.csv"</span>)</span>
+<span id="cb56-27"><a href="#cb56-27" aria-hidden="true" tabindex="-1"></a>flu_trends.set_index(</span>
+<span id="cb56-28"><a href="#cb56-28" aria-hidden="true" tabindex="-1"></a>    pd.PeriodIndex(flu_trends.Week, freq <span class="op">=</span> <span class="st">'W'</span>),</span>
+<span id="cb56-29"><a href="#cb56-29" aria-hidden="true" tabindex="-1"></a>    inplace <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb56-30"><a href="#cb56-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb56-31"><a href="#cb56-31" aria-hidden="true" tabindex="-1"></a>flu_trends.drop(<span class="st">"Week"</span>, axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="e35a56a4" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_lags(ts, lags, lead_time<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.concat(</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f'y_lag_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span>: ts.shift(i)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(lead_time, lags <span class="op">+</span> lead_time)</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>        axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> flu_trends.FluVisits.copy() <span class="co">#setting this up any change to flu_trend will be copied</span></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> make_lags(y, lags<span class="op">=</span><span class="dv">4</span>).fillna(<span class="fl">0.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ff1d19ae" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_multistep_target(ts, steps):</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.concat(</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>        {<span class="ss">f'y_step_</span><span class="sc">{</span>i <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">'</span>: ts.shift(<span class="op">-</span>i)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>         <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(steps)},</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>        axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> make_multistep_target(y, steps<span class="op">=</span><span class="dv">8</span>).dropna()</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> y.align(X, join<span class="op">=</span> <span class="st">"inner"</span>, axis <span class="op">=</span> <span class="dv">0</span>) <span class="co"># align make index of x and y homogenious</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>to read <a href="https://stackoverflow.com/questions/51645195/pandas-align-function-illustrative-example">more about align here</a></p>
+<div id="86c4d1d4" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.25</span>, shuffle<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>y_fit <span class="op">=</span> pd.DataFrame(model.predict(X_train), index<span class="op">=</span>X_train.index, columns<span class="op">=</span>y.columns)</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pd.DataFrame(model.predict(X_test), index<span class="op">=</span>X_test.index, columns<span class="op">=</span>y.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ddca7209" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>train_rmse <span class="op">=</span> mean_squared_error(y_train, y_fit, squared<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>test_rmse <span class="op">=</span> mean_squared_error(y_test, y_pred, squared<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((<span class="ss">f"Train RMSE: </span><span class="sc">{</span>train_rmse<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">"</span> <span class="ss">f"Test RMSE: </span><span class="sc">{</span>test_rmse<span class="sc">:.2f}</span><span class="ss">"</span>))</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>palette <span class="op">=</span> <span class="bu">dict</span>(palette<span class="op">=</span><span class="st">'husl'</span>, n_colors<span class="op">=</span><span class="dv">64</span>)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">6</span>))</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> flu_trends.FluVisits[y_fit.index].plot(<span class="op">**</span>plot_params, ax<span class="op">=</span>ax1)</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plot_multistep(y_fit, ax<span class="op">=</span>ax1, palette_kwargs<span class="op">=</span>palette)</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> ax1.legend([<span class="st">'FluVisits (train)'</span>, <span class="st">'Forecast'</span>])</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> flu_trends.FluVisits[y_pred.index].plot(<span class="op">**</span>plot_params, ax<span class="op">=</span>ax2)</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plot_multistep(y_pred, ax<span class="op">=</span>ax2, palette_kwargs<span class="op">=</span>palette)</span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> ax2.legend([<span class="st">'FluVisits (test)'</span>, <span class="st">'Forecast'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Train RMSE: 389.12
+Test RMSE: 582.33</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-50-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="direct-strategy---use-xgboost-regreesor" class="level4">
+<h4 class="anchored" data-anchor-id="direct-strategy---use-xgboost-regreesor">Direct Strategy - Use XGBoost regreesor</h4>
+<p>Here is short cut recursively produce mutli output regression model. &gt; XGBoost can’t produce multiple outputs for regression tasks. But by applying the Direct reduction strategy, we can still use it to produce multi-step forecasts. This is as easy as wrapping it with scikit-learn’s MultiOutputRegressor.</p>
+<div id="311b65a1" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.multioutput <span class="im">import</span> MultiOutputRegressor</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MultiOutputRegressor(XGBRegressor()) <span class="co">#cheat code</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>y_fit <span class="op">=</span> pd.DataFrame(model.predict(X_train), index<span class="op">=</span>X_train.index, columns<span class="op">=</span>y.columns)</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pd.DataFrame(model.predict(X_test), index<span class="op">=</span>X_test.index, columns<span class="op">=</span>y.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="53a34ce6" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#X_train.sample(3)</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>y_train.sample(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">y_step_1</th>
+<th data-quarto-table-cell-role="th">y_step_2</th>
+<th data-quarto-table-cell-role="th">y_step_3</th>
+<th data-quarto-table-cell-role="th">y_step_4</th>
+<th data-quarto-table-cell-role="th">y_step_5</th>
+<th data-quarto-table-cell-role="th">y_step_6</th>
+<th data-quarto-table-cell-role="th">y_step_7</th>
+<th data-quarto-table-cell-role="th">y_step_8</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Week</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2013-07-08/2013-07-14</td>
+<td>11</td>
+<td>13.0</td>
+<td>14.0</td>
+<td>10.0</td>
+<td>13.0</td>
+<td>13.0</td>
+<td>13.0</td>
+<td>22.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2014-05-19/2014-05-25</td>
+<td>80</td>
+<td>61.0</td>
+<td>47.0</td>
+<td>33.0</td>
+<td>27.0</td>
+<td>19.0</td>
+<td>22.0</td>
+<td>19.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2012-12-24/2012-12-30</td>
+<td>2961</td>
+<td>2303.0</td>
+<td>2291.0</td>
+<td>2258.0</td>
+<td>2012.0</td>
+<td>1510.0</td>
+<td>1134.0</td>
+<td>930.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="7fdb19ff" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>train_rmse <span class="op">=</span> mean_squared_error(y_train, y_fit, squared<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>test_rmse <span class="op">=</span> mean_squared_error(y_test, y_pred, squared<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((<span class="ss">f"Train RMSE: </span><span class="sc">{</span>train_rmse<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">"</span> <span class="ss">f"Test RMSE: </span><span class="sc">{</span>test_rmse<span class="sc">:.2f}</span><span class="ss">"</span>))</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>palette <span class="op">=</span> <span class="bu">dict</span>(palette<span class="op">=</span><span class="st">'husl'</span>, n_colors<span class="op">=</span><span class="dv">64</span>)</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">6</span>))</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> flu_trends.FluVisits[y_fit.index].plot(<span class="op">**</span>plot_params, ax<span class="op">=</span>ax1)</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plot_multistep(y_fit, ax<span class="op">=</span>ax1, palette_kwargs<span class="op">=</span>palette)</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> ax1.legend([<span class="st">'FluVisits (train)'</span>, <span class="st">'Forecast'</span>])</span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> flu_trends.FluVisits[y_pred.index].plot(<span class="op">**</span>plot_params, ax<span class="op">=</span>ax2)</span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plot_multistep(y_pred, ax<span class="op">=</span>ax2, palette_kwargs<span class="op">=</span>palette)</span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> ax2.legend([<span class="st">'FluVisits (test)'</span>, <span class="st">'Forecast'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Train RMSE: 1.22
+Test RMSE: 526.45</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Learn -Time Series_files/figure-html/cell-53-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>RegressorChain()</code> versus <code>MultiOutputRegressor</code></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/FzliangFrank\.github\.io\/Pet-Project\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
