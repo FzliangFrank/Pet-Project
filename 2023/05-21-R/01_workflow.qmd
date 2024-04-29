@@ -1,0 +1,133 @@
+---
+title: Statistic Inference
+format: html
+date: 2023-05-21
+author: Old Frank
+execute-dir: ./2023/05-21-R
+---
+
+source: https://www.tidymodels.org/books/moderndive/
+
+Key learnings: 
+- be careful when interpret statistical models.
+
+
+```{r}
+#| echo: False
+library(tidyverse) |> suppressMessages()
+library(skimr)
+theme_set(theme_bw())
+house_prices=read.csv("data/kc_house_data.csv")
+house_prices |> 
+  select(price, sqft_living, condition) |> 
+  skim()
+```
+
+> Observe that the mean price of \$540,088 is larger than the median of \$450,000. This is because a small number of very expensive houses are inflating the average. In other words, there are "outlier" house prices in our dataset.
+
+### EDA
+
+```{r}
+#| layout-ncol: 2
+# Histogram of house price:
+ggplot(house_prices, aes(x = price)) +
+  geom_histogram(color = "white") +
+  labs(x = "price (USD)", title = "House price")
+
+# Histogram of sqft_living:
+ggplot(house_prices, aes(x = sqft_living)) +
+  geom_histogram(color = "white") +
+  labs(x = "living space (square feet)", title = "House size") 
+  #geom_vline(aes(xintercept=57600), color='blue',alpha=0.3)
+
+# Barplot of condition:
+ggplot(house_prices, aes(x = condition)) +
+  geom_bar() +
+  labs(x = "condition", title = "House condition")
+```
+
+> First, observe in the bottom plot that most houses are of condition "3", with a few more of conditions "4" and "5", and almost none that are "1" or "2".
+> Observe in the histogram of sqft_living in the middle plot as well that most houses appear to have less than 5000 square feet of living space. 
+> For comparison, a football field in the US is about 57,600 square feet
+
+All three variable are right-skewed.
+```{r}
+#| layout-ncol: 2
+house_prices <- house_prices %>%
+  mutate(
+    log10_price = log10(price),
+    log10_size = log10(sqft_living),
+    condition=factor(condition)
+    )
+# Before log10 transformation:
+ggplot(house_prices, aes(x = price)) +
+  geom_histogram(color = "white") +
+  labs(x = "price (USD)", title = "House price: Before")
+
+# After log10 transformation:
+ggplot(house_prices, aes(x = log10_price)) +
+  geom_histogram(color = "white") +
+  labs(x = "log10 price (USD)", title = "House price: After")
+```
+
+> geom_parallel_slopes() function is a special purpose function that Evgeni Chasnovski created and included in the moderndive package, since the geom_smooth() method in the ggplot2 package does not have a convenient way to plot parallel slopes models. We plot both resulting models in Figure 11.6, with the interaction model on the left.
+
+```{r}
+#| layout-ncol: 2
+require(moderndive)
+# Plot interaction model
+ggplot(house_prices, 
+       aes(x = log10_size, y = log10_price, col = condition)) +
+  geom_point(alpha = 0.05) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(y = "log10 price", 
+       x = "log10 size", 
+       title = "House prices in Seattle")
+# Plot parallel slopes model
+ggplot(house_prices, 
+       aes(x = log10_size, y = log10_price, col = condition)) +
+  geom_point(alpha = 0.05) +
+  geom_parallel_slopes(se = FALSE) +
+  labs(y = "log10 price", 
+       x = "log10 size", 
+       title = "House prices in Seattle")
+```
+
+```{r}
+ggplot(house_prices, 
+       aes(x = log10_size, y = log10_price, col = condition)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(y = "log10 price", 
+       x = "log10 size", 
+       title = "House prices in Seattle") +
+  facet_wrap(~ condition)
+```
+
+
+```{r}
+# Fit regression model:
+price_interaction <- lm(log10_price ~ log10_size * condition, 
+                        data = house_prices)
+# Get regression table:
+get_regression_table(price_interaction)
+```
+
+How to interpreter this model? Remember `lm` model in R can hardly be interpreted intuitively: 
+
+> In this case, the “baseline for comparison” group for the categorical variable condition are the condition 1 houses, since “1” comes first alphanumerically. Thus, the intercept and log10_size values are the intercept and slope for log10_size for this baseline group. Next, the condition2 through condition5 terms are the offsets in intercepts relative to the condition 1 intercept. Finally, the log10_size:condition2 through log10_size:condition5 are the offsets in slopes for log10_size relative to the condition 1 slope for log10_size.
+
+Estimate is the value you should use. In the book they ignored p_value. 
+To make a simple linear prediction, you need get all the value down to make a calculation. 
+
+```{r}
+# easy way to make a prediction use predict function 
+# lucky me I have some background!
+pred = price_interaction |> predict(
+  data.frame(log10_size=log10(1900), condition = factor(5, levels=seq(5)))
+  )
+10^pred #don't forget your prediction is in log value.
+```
+
+
+

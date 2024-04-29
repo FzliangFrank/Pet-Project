@@ -1,0 +1,15 @@
+{
+  "hash": "91f7ca175bf85ef6167fd50e0e97a361",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Welcome\"\n---\n\n\n\n<!-- This section to use as presentation to both Technical audience and  -->\n<!-- non-technical audience (if I don't decide an a quarto presentation the last minutes?) -->\n\n<!-- Should evaluate as less as possible.  -->\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(tidygraph)\nlibrary(ggraph)\nlibrary(arrow)\nlibrary(tidytext)\n```\n:::\n\n\n\n## Welcome! \n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n\n\n<!-- SECTION 2: GENERAL STATISTICS -->\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

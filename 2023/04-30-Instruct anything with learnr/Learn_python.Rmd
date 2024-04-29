@@ -1,0 +1,10 @@
+---
+title: This is Pretending to learn sql
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=TRUE}
+library(learnr)
+```
+

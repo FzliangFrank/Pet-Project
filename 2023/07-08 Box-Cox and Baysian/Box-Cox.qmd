@@ -1,0 +1,108 @@
+---
+title: "Box-Cox Transformed Data"
+---
+
+Box-Cos Transformation are:
+
+Given lambda != 0 
+$$
+y^{lambda}  = \frac{y_{i}^{lambda} - 1}{lambda}
+$$
+lambda == 0 
+
+$$
+y^{lambda} = log(y_{i})
+$$
+When lambda is close to 1 there is no need to transform;
+
+
+My guess is lambda has something to do with moment statistics. 
+
+
+```{r}
+library(car)
+library(tidyverse)
+
+norm_x = rnorm(500, 5)
+skew = 1/norm_x
+hist(skew)
+```
+
+```{r}
+lambda = powerTransform(skew) |> coef()
+bcPower(skew, lambda) |> hist()
+```
+
+```{r}
+library(mosaic)
+bc_trans_fun = makeFun((x^lambda - 1)/lambda ~ x)
+x = 1:100
+plot(x, bc_trans_fun(x), type = 'l')
+```
+
+Let us study how close it is for box cox transformation to work given sample size
+```{r}
+get_lambda_x = \(sample_size, TRANS = makeFun(1/x ~ x)) {
+  # sample_size = n
+  norm_x = rnorm(sample_size, 5) |> discard(~.x <= 0)
+  skew = TRANS(norm_x)
+  lambda = powerTransform(skew) |> coef()
+  row = data.frame(
+    sample_size = sample_size,
+    lambda = lambda
+  )
+  return(row)
+}
+lambda_to_x = (1:100 * 50) |> 
+  map_dfr(get_lambda_x)
+
+lambda_to_x |> 
+  ggplot() + 
+  geom_line(aes(x = sample_size, y = lambda)) + 
+  geom_hline(aes(yintercept = -1), color = 'blue', linetype = 'dashed')
+```
+
+Easier to see that with sample size increase variance of getting the correct x gets closer.
+
+Now let us try a technique re-sample from the same normal distribution
+```{r}
+small_sample = 1/rnorm(100, mean = 5)
+get_lambda_x_resample = \(sample_size, pool) {
+  # sample_size = n
+  resampled = base::sample(pool, sample_size, replace = T) |>
+    discard(~.x <= 0)
+  
+  lambda = powerTransform(resampled) |> coef()
+  row = data.frame(
+    sample_size = sample_size,
+    lambda = lambda
+  )
+  return(row)
+}
+lambda_to_x = (1:100 * 50) |> 
+  map_dfr(get_lambda_x_resample, small_sample)
+
+lambda_to_x |> 
+  ggplot() + 
+  geom_line(aes(x = sample_size, y = lambda)) + 
+  geom_hline(aes(yintercept = -1), color = 'blue', linetype = 'dashed')
+```
+Re-sampling is not that accurate; 
+
+```{r}
+lambda_to_x_pw = (1:100 * 50) |> 
+  map_dfr(get_lambda_x, makeFun(x^2 ~ x))
+lambda_to_x_pw |> 
+  ggplot() + 
+  geom_line(aes(x = sample_size, y = lambda)) + 
+  geom_hline(aes(yintercept = 0.5), color = 'blue', linetype = 'dashed') + 
+  ggtitle("Skew data useing power")
+```
+
+`powerTransform` is not very good when you have less than 100 data points;
+
+
+```{r}
+
+```
+

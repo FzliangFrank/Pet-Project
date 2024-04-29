@@ -1,0 +1,17 @@
+{
+  "hash": "2e825e1617bf1baaa1709853c0cd6975",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Experiment of Zipf's Law\"\ncategories: [Text-Analysis, Statistic, Experiment]\n---\n\n\n# Intro\n\nZipf's Law is statistical distribution of word counts in human languages.\n\n\n## Word Frequency Experiment - Zipf's law\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nrequire(janeaustenr)\nrequire(tidytext)\nrequire(tidyverse)\n\nnatural = austen_books() |> \n  filter(book == \"Sense & Sensibility\") |> \n  unnest_tokens(word,text) |> \n  count(book,word,sort=T) |> \n  \n  ungroup() |> \n  group_by(book) |> \n  mutate(total = sum(n)) |>\n  ungroup() |> \n  \n  mutate(freq=n/total, rank=row_number()) |> \n  mutate(freq, rank, type=paste(\"natural - \", book)) |> \n  select(freq, rank,type)\n  \n\ngenerate_freq_rank = function( FUN=runif, n = max(natural$rank)) {\n  x = FUN(n)\n  x_nrom = x/sum(x)\n  freq = sort(x_nrom,decreasing=T)\n  rank = seq(length(freq))\n  return(data.frame(freq=freq,rank=rank))\n}\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nrbind(\n  natural,\n  cbind(generate_freq_rank(rexp), type=\"rexp\"),\n  cbind(generate_freq_rank(runif), type=\"runif\"),\n  cbind(generate_freq_rank(rnorm),type=\"normal\")\n  ) |> \n  ggplot(aes(x=rank,y=freq,color=type)) + \n  geom_line() + \n  theme_minimal() +\n  ggtitle(\"Compare Normal, Exponential, Univaritive Sample - At Normal Scale\",\n          \"Rank to Frequency of Terms\"\n          )\n```\n\n::: {.cell-output-display}\n![](10_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nrbind(\n  natural,\n  cbind(generate_freq_rank(rexp), type=\"rexp\"),\n  cbind(generate_freq_rank(runif), type=\"runif\"),\n  cbind(generate_freq_rank(rnorm),type=\"normal\")\n  ) |> \n  ggplot(aes(x=rank,y=freq,color=type)) + \n  geom_line() + \n  scale_x_log10() +\n  scale_y_log10() +\n  theme_minimal() +\n  ggtitle(\"Compare Normal, Exponential, Univaritive Sample - At Log10 Scale\",\n          \"Rank to Frequency of Terms\")\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning in transformation$transform(x): NaNs produced\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning in scale_y_log10(): log-10 transformation introduced infinite values.\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: Removed 3244 rows containing missing values or values outside the scale range\n(`geom_line()`).\n```\n\n\n:::\n\n::: {.cell-output-display}\n![](10_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nrbind(\n  natural,\n  cbind(generate_freq_rank(rexp), type=\"rexp\")\n  # cbind(generate_freq_rank(runif), type=\"runif\"),\n  # cbind(generate_freq_rank(rnorm),type=\"normal\")\n  ) |> \n  ggplot(aes(x=rank,y=freq,color=type)) + \n  geom_line() + \n  scale_x_log10() +\n  scale_y_log10() +\n  theme_minimal() +\n  ggtitle(\"Natual Language Is Mostly Close to Expential but much steaper than Exponetial\")\n```\n\n::: {.cell-output-display}\n![](10_files/figure-html/unnamed-chunk-4-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "10_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

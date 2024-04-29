@@ -1,0 +1,6 @@
+{
+    "files.watcherExclude": {
+        "**/target": true
+    },
+    "julia.environmentPath": "/Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet"
+}

@@ -1,0 +1,42 @@
+---
+title: "Fancy-header Example"
+format: 
+  html: 
+    css: style.css
+    filters: 
+      - play.lua
+  docx:
+    reference-doc: style.docx
+filters:
+  - fancy-header
+  - columns.lua
+  
+---
+
+## Heading
+
+This filter adds formatting to heading text.
+
+
+::: {.twocol}
+
+- bene gesserit
+- Paul Atreides
+- Leto I Atreides
+- Lady Jessica
+- Shaddam IV
+- Vladimir Harkonnen
+- Duncan Idaho
+- Wellington Yueh
+
+:::
+
+
+::: {.red}
+
+This paragraph should turns red
+
+:::
+
+
+Expect this to be substituted {{helloworld}}

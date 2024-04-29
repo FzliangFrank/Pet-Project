@@ -1,0 +1,109 @@
+---
+title: "Survival Analysis Simulation"
+---
+```{r}
+# make two functions for easier processing
+make_surv = function(x) {
+    x |>
+        arrange(time) |>
+        mutate(surv = n() - cumsum(event)) |>
+        mutate(
+        surv_prev = lag(surv) |> coalesce(surv),
+        pc_change =surv/surv_prev,
+        cum_pct = cumprod(pc_change),
+        pct_left = cum_pct * n()
+        )
+}
+plot_surv_1 = function(x) {
+    x |>
+        ggplot() + 
+        geom_line(aes(x = time, y = surv), alpha = 0.5) + 
+        geom_line(aes(x = time, y = pct_left), color = 'blue', alpha= 0.5)
+}
+plot_surv = function(x) {
+    x |>
+        pivot_longer(
+            cols = c(surv, pct_left),
+            names_to = "surv_type"
+        ) |>
+        ggplot() + 
+        geom_line(aes(x = time, y = value, color = surv_type), alpha = 0.5) + 
+        scale_colour_manual(
+            values = c('surv'="black", 'pct_left'='blue')
+        ) +
+        facet_wrap(~surv_type)
+}
+```
+A linear decay function looks like this: 
+```{r}
+library(tidyverse) |> suppressMessages()
+time = 1:1000
+event = ifelse(time %% 10 == 0 , 1, 0)
+linear_deca = data.frame(
+    time=time,
+    event=event
+) |> as_tibble() |>
+    make_surv()
+
+plot_surv(linear_deca)
+```
+
+
+```{r}
+ random_sampled = data.frame(
+    time=time,
+    event = sample(event, length(time))
+ ) |>
+    mutate(surv = n() - cumsum(event)) |>
+    make_surv()
+
+plot_surv(random_sampled)
+```
+
+Effect of replictions 
+
+
+### Do replicating time Scale Affect How two Curve is Shaped?
+```{r}
+rep_time =data.frame(
+    time=time[1:100]
+) |>
+    slice(rep(seq(n()), 10)) |>
+    mutate(
+        event = sample(event, length(time), replace=T)
+    ) |>
+    arrange(time)
+
+make_surv(rep_time) |>
+    plot_surv()
+```
+
+```{r}
+x =  time
+y = length(time) * 0.99^time
+yd =length(time) * 0.99^time * log(0.99)
+yd[1:3]
+```
+
+```{r}
+ggplot() + 
+    geom_line(aes(x=time, y=y)) + 
+    geom_line(aes(x=time,y=yd),color='blue')
+```
+
+```{r}
+data.frame(
+    time=time,
+    yd=abs(round(yd))
+) %>%
+    slice(rep(seq(nrow(.)),yd * 2)) |>
+    as_tibble() |>
+    group_by(time) |>
+    mutate(
+        event = ifelse( row_number() > n() - yd,1,0)
+    ) |>
+    select(-yd) |>
+    ungroup() |>
+    make_surv() |>
+    plot_surv()
+```

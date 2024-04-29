@@ -1,0 +1,4 @@
+[debug] [worksheet-test] Classpath dependencies List()
+[debug] [worksheet-test] Dependencies from configurations List(worksheet)
+[debug] Bloop wrote the configuration of project 'worksheet-test' to '/Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.bloop/worksheet-test.json'
+[success] Generated .bloop/worksheet-test.json

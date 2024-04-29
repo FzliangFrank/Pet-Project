@@ -1,0 +1,9 @@
+[submodule "01-20 CV"]
+	path = 01-20 CV
+	url = https://github.com/FzliangFrank/cv
+[submodule "02-09 Kaggle Competition/kaggle-2024-credit-risks"]
+	path = 02-09 Kaggle Competition/kaggle-2024-credit-risks
+	url = https://github.com/FzliangFrank/kaggle-2024-credit-risks
+[submodule "03-03 Research England Interview Prep"]
+	path = 03-03 Research England Interview Prep
+	url = https://github.com/FzliangFrank/invest-ai-ukri

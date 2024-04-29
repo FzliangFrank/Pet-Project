@@ -1,0 +1,13 @@
+[error] /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+[error] @main def hello() = println("Hello, World!")
+[error]       ^
+[error] /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+[error] @main def helloInteractive() =
+[error]       ^
+[error] /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+[error]   val name = readLine() // val is immutable var is not mutable
+[error]   ^
+[error] /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+[error]   println("Hello, " + name + "!")
+[error]   ^
+[error] four errors found

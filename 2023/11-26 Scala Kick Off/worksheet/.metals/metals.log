@@ -1,0 +1,1236 @@
+2023.12.15 21:15:49 INFO  Started: Metals version 1.2.0 in folders '/Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet' for client Visual Studio Code 1.84.1.
+2023.12.15 21:15:50 WARN  Build server is not auto-connectable.
+2023.12.15 21:15:56 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/Main.scala
+2023.12.15 21:16:02 INFO  no build target found for /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/Main.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.12.15 21:16:04 INFO  time: code lens generation in 8.14s
+2023.12.15 21:16:09 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.15 21:16:19 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 10s
+2023.12.15 21:16:23 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.15 21:16:24 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.16s
+2023.12.15 21:16:34 INFO  no build target found for /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc. Using presentation compiler with project's scala-library version: 3.3.1
+Dec 15, 2023 9:16:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 9
+Dec 15, 2023 9:16:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 10
+Dec 15, 2023 9:16:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 14
+Dec 15, 2023 9:16:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 15
+Dec 15, 2023 9:16:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 12
+Dec 15, 2023 9:16:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 20
+Dec 15, 2023 9:16:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 17
+Dec 15, 2023 9:16:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 22
+Dec 15, 2023 9:16:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 25
+Dec 15, 2023 9:16:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 26
+2023.12.15 21:16:35 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: src/main/scala/hello.worksheet.sc:1:1: 
+Not found: printLn
+printLn("Hello, world")
+^^^^^^^
+2023.12.15 21:16:37 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.37s
+2023.12.15 21:16:38 INFO  time: code lens generation in 3.45s
+2023.12.15 21:16:38 INFO  time: code lens generation in 3.36s
+2023.12.15 21:16:38 INFO  time: code lens generation in 3.44s
+2023.12.15 21:16:38 INFO  time: code lens generation in 3.48s
+2023.12.15 21:16:38 INFO  time: code lens generation in 2.86s
+2023.12.15 21:16:46 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: src/main/scala/hello.worksheet.sc:1:1: 
+Not found: printLn
+printLn("Hello, world")
+^^^^^^^
+2023.12.15 21:16:46 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.64s
+2023.12.15 21:16:52 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.15 21:16:54 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 2.35s
+2023.12.15 21:18:35 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: src/main/scala/hello.worksheet.sc:5:5: 
+Double definition:
+val x: Int in class MdocApp at line 12 and
+var x: Int in class MdocApp at line 21
+
+var x = 0
+    ^
+2023.12.15 21:18:36 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.12s
+2023.12.15 21:18:45 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.15 21:18:47 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.41s
+2023.12.15 21:38:44 INFO  Shutting down server
+2023.12.15 21:38:44 INFO  shutting down Metals
+2023.12.15 21:38:44 INFO  Exiting server
+2023.12.15 21:48:17 INFO  Started: Metals version 1.2.0 in folders '/Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet' for client Visual Studio Code 1.84.1.
+Dec 15, 2023 9:48:19 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2023.12.15 21:48:19 WARN  Build server is not auto-connectable.
+2023.12.15 21:48:19 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.15 21:48:26 INFO  no build target found for /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc. Using presentation compiler with project's scala-library version: 3.3.1
+2023.12.15 21:48:28 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/Main.scala
+Dec 15, 2023 9:48:28 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3
+Dec 15, 2023 9:48:28 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 4
+2023.12.15 21:48:28 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+Dec 15, 2023 9:48:29 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 8
+Dec 15, 2023 9:48:29 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 18
+Dec 15, 2023 9:48:29 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 24
+Dec 15, 2023 9:48:29 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 27
+Dec 15, 2023 9:48:29 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 28
+Dec 15, 2023 9:48:29 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 29
+2023.12.15 21:48:36 INFO  time: code lens generation in 7.7s
+2023.12.15 21:48:36 INFO  time: code lens generation in 7.76s
+2023.12.15 21:48:36 INFO  time: code lens generation in 7.54s
+2023.12.15 21:48:36 INFO  time: code lens generation in 7.63s
+2023.12.15 21:48:36 INFO  time: code lens generation in 7.59s
+2023.12.15 21:48:36 INFO  time: code lens generation in 7.53s
+2023.12.15 21:48:36 INFO  time: code lens generation in 1.67s
+2023.12.15 21:48:36 INFO  time: code lens generation in 7.44s
+2023.12.15 21:48:36 INFO  time: code lens generation in 4.86s
+2023.12.15 21:48:36 INFO  time: code lens generation in 1.26s
+2023.12.15 21:48:36 INFO  time: code lens generation in 3.45s
+2023.12.15 21:48:41 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 12s
+2023.12.15 21:48:46 INFO  no build target found for /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc. Using presentation compiler with project's scala-library version: 3.3.1
+Dec 15, 2023 9:48:46 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 114
+Dec 15, 2023 9:48:46 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 115
+Dec 15, 2023 9:48:46 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 117
+Dec 15, 2023 9:48:46 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 119
+Dec 15, 2023 9:48:46 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 120
+Dec 15, 2023 9:48:46 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 125
+Dec 15, 2023 9:48:46 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 122
+2023.12.15 21:48:49 INFO  time: code lens generation in 2.92s
+2023.12.15 21:48:49 INFO  time: code lens generation in 3.16s
+2023.12.15 21:48:49 INFO  time: code lens generation in 3.3s
+2023.12.15 21:48:49 INFO  time: code lens generation in 3.25s
+2023.12.15 21:48:54 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.15 21:48:56 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.15 21:48:57 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 2.92s
+2023.12.15 21:48:58 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.74s
+Dec 15, 2023 9:49:30 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 186
+Dec 15, 2023 9:49:33 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 202
+2023.12.15 21:50:03 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.15 21:50:06 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 2.43s
+Dec 16, 2023 6:05:24 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 388
+2023.12.16 06:05:40 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:05:42 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 2.33s
+2023.12.16 06:05:44 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:05:46 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.46s
+2023.12.16 06:17:17 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: src/main/scala/hello.worksheet.sc:18:15: 
+Not found: height
+f"$name%s is $height%2.2f meters tall"
+              ^^^^^^
+2023.12.16 06:17:18 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1s
+2023.12.16 06:17:25 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: src/main/scala/hello.worksheet.sc:19:1: 
+Not found: height
+height = 1.9d
+^^^^^^
+[31merror[39m: src/main/scala/hello.worksheet.sc:20:15: 
+Not found: height
+f"$name%s is $height%2.2f meters tall"
+              ^^^^^^
+2023.12.16 06:17:26 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.67s
+Dec 16, 2023 6:17:27 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 508
+2023.12.16 06:17:33 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:17:35 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 2.47s
+2023.12.16 06:17:41 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:17:42 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.37s
+2023.12.16 06:30:32 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: src/main/scala/hello.worksheet.sc:22:17: 
+Not found: i
+val evenOrOdd = i match
+                ^
+2023.12.16 06:30:32 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.75s
+2023.12.16 06:30:42 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: src/main/scala/hello.worksheet.sc:22:1: 
+Not found: i
+i = 2
+^
+[31merror[39m: src/main/scala/hello.worksheet.sc:23:17: 
+Not found: i
+val evenOrOdd = i match
+                ^
+2023.12.16 06:30:43 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.49s
+2023.12.16 06:30:47 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:30:49 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.47s
+2023.12.16 06:30:59 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:31:01 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.45s
+2023.12.16 06:33:23 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:33:24 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:33:26 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 3.37s
+2023.12.16 06:33:28 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.97s
+2023.12.16 06:36:36 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: src/main/scala/hello.worksheet.sc:35:14: 
+Not found: type Person
+def speak(p: Person) = p match
+             ^^^^^^
+[31merror[39m: src/main/scala/hello.worksheet.sc:36:8: 
+Not found: Person
+  case Person(name) if name == "Fred" => println(s"$name says, Yubba dubba doo")
+       ^^^^^^
+[31merror[39m: src/main/scala/hello.worksheet.sc:37:8: 
+Not found: Person
+  case Person(name) if name == "Bam Bam" => println(s"$name says, Bam bam!")
+       ^^^^^^
+[31merror[39m: src/main/scala/hello.worksheet.sc:40:7: 
+Not found: Person
+speak(Person("Fred"))      // "Fred says, Yubba dubba doo"
+      ^^^^^^
+[31merror[39m: src/main/scala/hello.worksheet.sc:41:7: 
+Not found: Person
+speak(Person("Bam Bam"))   // "Bam Bam says, Bam bam!"
+      ^^^^^^
+2023.12.16 06:36:37 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.17s
+2023.12.16 06:36:44 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:36:47 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 2.71s
+2023.12.16 06:36:49 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:36:51 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 2.09s
+Dec 16, 2023 6:36:56 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 662
+2023.12.16 06:37:29 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:37:30 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.01s
+2023.12.16 06:37:31 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:37:33 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.12s
+2023.12.16 06:37:34 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:37:37 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 3.05s
+2023.12.16 06:37:43 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:37:45 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 2.45s
+2023.12.16 06:37:50 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: src/main/scala/hello.worksheet.sc:44:1: 
+Not found: frank
+frank = Person("Frank")
+^^^^^
+2023.12.16 06:37:50 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.82s
+2023.12.16 06:37:53 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:37:55 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:37:55 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 2.64s
+2023.12.16 06:37:56 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.88s
+2023.12.16 06:38:00 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: 
+hello.worksheet.sc:101 (mdoc generated code) 
+ value frank in class MdocApp does not take parameters
+      frank(name)
+
+
+2023.12.16 06:38:01 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.13s
+2023.12.16 06:38:03 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: 
+hello.worksheet.sc:101 (mdoc generated code) 
+ value frank in class MdocApp does not take parameters
+      frank(name)
+
+
+2023.12.16 06:38:03 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.83s
+2023.12.16 06:38:21 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: 
+hello.worksheet.sc:101 (mdoc generated code) 
+ value frank in class MdocApp does not take parameters
+      frank(name)
+
+
+2023.12.16 06:38:22 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.31s
+2023.12.16 06:38:22 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: 
+hello.worksheet.sc:101 (mdoc generated code) 
+ value frank in class MdocApp does not take parameters
+      frank(name)
+
+
+2023.12.16 06:38:22 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.67s
+2023.12.16 06:38:31 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:38:31 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:38:32 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.13s
+2023.12.16 06:38:32 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.62s
+2023.12.16 06:38:36 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:38:38 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.98s
+2023.12.16 06:38:41 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+[31merror[39m: src/main/scala/hello.worksheet.sc:46:1: 
+Not found: frank$name
+frank$name
+^^^^^^^^^^
+2023.12.16 06:38:41 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.89s
+2023.12.16 06:38:44 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:38:46 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 2.29s
+Dec 16, 2023 6:40:11 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 875
+2023.12.16 06:40:13 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 06:40:14 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.94s
+Dec 16, 2023 7:27:55 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Dec 16, 2023 7:28:03 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 910
+2023.12.16 07:28:24 INFO  Shutting down server
+2023.12.16 07:28:24 INFO  shutting down Metals
+2023.12.16 07:28:24 INFO  Exiting server
+2023.12.16 07:53:34 INFO  Started: Metals version 1.2.0 in folders '/Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet' for client Visual Studio Code 1.84.1.
+2023.12.16 07:53:36 WARN  Build server is not auto-connectable.
+2023.12.16 07:53:36 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/Main.scala
+2023.12.16 07:53:36 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc
+2023.12.16 07:53:43 INFO  no build target found for /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/hello.worksheet.sc. Using presentation compiler with project's scala-library version: 3.3.1
+2023.12.16 07:53:44 INFO  running '/Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home/bin/java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -jar /var/folders/r5/1cdq52mn21zdnqzl0fvp44zw0000gn/T/metals10716618992367600241/sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall'
+2023.12.16 07:53:44 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project/metals.sbt
+2023.12.16 07:53:44 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project/project/metals.sbt
+2023.12.16 07:53:44 INFO  skipping build import with status 'Started'
+2023.12.16 07:53:46 INFO  [info] welcome to sbt 1.9.7 (Oracle Corporation Java 17)
+2023.12.16 07:53:47 INFO  time: code lens generation in 3.35s
+2023.12.16 07:53:47 INFO  time: code lens generation in 3.39s
+2023.12.16 07:53:50 INFO  [info] loading settings for project worksheet-build-build from metals.sbt ...
+2023.12.16 07:53:51 INFO  [info] loading project definition from /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project/project
+2023.12.16 07:53:55 INFO  [info] loading settings for project worksheet-build from metals.sbt ...
+2023.12.16 07:53:55 INFO  [info] loading project definition from /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project
+2023.12.16 07:53:56 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/readcsv.worksheet.sc
+Dec 16, 2023 7:53:56 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 9
+2023.12.16 07:54:00 INFO  [success] Generated .bloop/worksheet-build.json
+2023.12.16 07:54:00 INFO  [success] Total time: 5 s, completed 16 Dec 2023, 07:54:00
+2023.12.16 07:54:04 INFO  time: evaluated worksheet 'readcsv.worksheet.sc' in 7.8s
+2023.12.16 07:54:04 INFO  [info] loading settings for project worksheet from build.sbt ...
+2023.12.16 07:54:04 INFO  [info] set current project to hello-world (in build file:/Users/frankliang/Dropbox/Personal/code/Pet%20Project/11-26%20Scala%20Kick%20Off/worksheet/)
+2023.12.16 07:54:07 INFO  [success] Generated .bloop/worksheet-test.json
+2023.12.16 07:54:07 INFO  [success] Generated .bloop/worksheet.json
+2023.12.16 07:54:07 INFO  [success] Total time: 2 s, completed 16 Dec 2023, 07:54:07
+2023.12.16 07:54:08 INFO  time: ran 'sbt bloopInstall' in 23s
+2023.12.16 07:54:08 INFO  Attempting to connect to the build server...
+2023.12.16 07:54:08 INFO  Bloop uses /Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home defined at /Users/frankliang/.bloop/bloop.json
+2023.12.16 07:54:08 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.16 07:54:10 INFO  Attempting to connect to the build server...
+2023.12.16 07:54:10 INFO  Bloop uses /Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home defined at /Users/frankliang/.bloop/bloop.json
+2023.12.16 07:54:10 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.16 07:54:10 INFO  time: Connected to build server in 2.24s
+2023.12.16 07:54:10 INFO  Connected to Build server: Bloop v1.5.13
+2023.12.16 07:54:10 INFO  time: Imported build in 0.1s
+2023.12.16 07:54:12 INFO  no build target found for /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/src/main/scala/readcsv.worksheet.sc. Using presentation compiler with project's scala-library version: 3.3.1
+2023.12.16 07:54:12 INFO  compiling worksheet (1 scala source)
+Dec 16, 2023 7:54:14 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_07-54-14-560.md
+2023.12.16 07:54:14 INFO  time: code lens generation in 2.18s
+2023.12.16 07:54:16 INFO  time: compiled worksheet in 4.32s
+2023.12.16 07:54:19 INFO  time: indexed workspace in 8.79s
+2023.12.16 07:56:36 INFO  Deduplicating compilation of worksheet from bsp client 'Metals 1.2.0' (since 2m 27.615s)
+Dec 16, 2023 7:57:10 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_07-57-10-278.md
+[31merror[39m: src/main/scala/hello.worksheet.sc:11:1: then expected but else found
+else if x == 0 then
+^^^^
+2023.12.16 07:57:14 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 5.23s
+Dec 16, 2023 7:59:52 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 95
+2023.12.16 08:02:04 INFO  Shutting down server
+2023.12.16 08:02:04 INFO  shutting down Metals
+2023.12.16 08:02:04 INFO  Shut down connection with build server.
+2023.12.16 08:02:04 INFO  Shut down connection with build server.
+2023.12.16 08:02:04 INFO  Exiting server
+2023.12.16 08:02:09 INFO  Started: Metals version 1.2.0 in folders '/Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet' for client Visual Studio Code 1.84.1.
+2023.12.16 08:02:10 INFO  Attempting to connect to the build server...
+2023.12.16 08:02:10 INFO  Bloop uses /Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home defined at /Users/frankliang/.bloop/bloop.json
+2023.12.16 08:02:10 INFO  skipping build import with status 'Installed'
+2023.12.16 08:02:10 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.16 08:02:10 INFO  Attempting to connect to the build server...
+2023.12.16 08:02:10 INFO  Bloop uses /Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home defined at /Users/frankliang/.bloop/bloop.json
+2023.12.16 08:02:10 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.16 08:02:10 INFO  time: Connected to build server in 0.68s
+2023.12.16 08:02:10 INFO  Connected to Build server: Bloop v1.5.13
+2023.12.16 08:02:11 INFO  time: Imported build in 0.11s
+2023.12.16 08:02:18 INFO  time: indexed workspace in 6.91s
+Dec 16, 2023 8:07:13 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 158
+Dec 16, 2023 8:07:13 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 159
+Dec 16, 2023 8:07:42 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-07-42-559.md
+Dec 16, 2023 8:07:44 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-07-44-206.md
+2023.12.16 08:07:44 INFO  time: code lens generation in 2.68s
+Dec 16, 2023 8:07:44 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-07-44-846.md
+[31merror[39m: src/main/scala/hello.worksheet.sc:11:1: then expected but else found
+else if x == 0 then
+^^^^
+Dec 16, 2023 8:07:45 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-07-45-167.md
+2023.12.16 08:07:47 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 6.44s
+[31merror[39m: src/main/scala/hello.worksheet.sc:11:1: then expected but else found
+else if x == 0 then
+^^^^
+2023.12.16 08:07:49 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.44s
+Dec 16, 2023 8:08:04 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-04-921.md
+Dec 16, 2023 8:08:05 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-05-104.md
+Dec 16, 2023 8:08:05 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-05-432.md
+2023.12.16 08:08:05 INFO  time: code lens generation in 1.11s
+Dec 16, 2023 8:08:08 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-08-518.md
+[31merror[39m: src/main/scala/hello.worksheet.sc:11:1: then expected but else found
+else if x == 0 then
+^^^^
+Dec 16, 2023 8:08:09 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-09-160.md
+Dec 16, 2023 8:08:09 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-09-457.md
+2023.12.16 08:08:10 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.42s
+[31merror[39m: src/main/scala/hello.worksheet.sc:11:1: then expected but identifier found
+elseif x == 0 then
+^^^^^^
+Dec 16, 2023 8:08:29 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-29-043.md
+Dec 16, 2023 8:08:29 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-29-391.md
+2023.12.16 08:08:29 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.97s
+[31merror[39m: src/main/scala/hello.worksheet.sc:11:1: then expected but else found
+else if x == 0 then
+^^^^
+Dec 16, 2023 8:08:30 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-30-031.md
+Dec 16, 2023 8:08:30 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-30-178.md
+Dec 16, 2023 8:08:30 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-30-383.md
+2023.12.16 08:08:29 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.78s
+Dec 16, 2023 8:08:30 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-30-794.md
+Dec 16, 2023 8:08:48 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-48-301.md
+Dec 16, 2023 8:08:49 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-08-49-965.md
+Dec 16, 2023 8:09:04 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-04-996.md
+Dec 16, 2023 8:09:10 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-10-369.md
+Dec 16, 2023 8:09:12 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-12-953.md
+Dec 16, 2023 8:09:13 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-13-878.md
+Dec 16, 2023 8:09:15 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-15-706.md
+Dec 16, 2023 8:09:16 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-16-425.md
+Dec 16, 2023 8:09:17 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-17-819.md
+Dec 16, 2023 8:09:18 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-18-267.md
+Dec 16, 2023 8:09:20 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 282
+[31merror[39m: src/main/scala/hello.worksheet.sc:14:26: unclosed character literal
+  println('something else')
+                         ^
+Dec 16, 2023 8:09:21 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-21-183.md
+Dec 16, 2023 8:09:21 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-21-622.md
+Dec 16, 2023 8:09:21 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-21-811.md
+2023.12.16 08:09:21 INFO  time: code lens generation in 1.5s
+Dec 16, 2023 8:09:22 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-22-102.md
+2023.12.16 08:09:22 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 2.37s
+[31merror[39m: src/main/scala/hello.worksheet.sc:11:1: then expected but else found
+else if x == 0 then
+^^^^
+Dec 16, 2023 8:09:24 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-24-226.md
+Dec 16, 2023 8:09:24 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-24-593.md
+Dec 16, 2023 8:09:24 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-24-881.md
+2023.12.16 08:09:24 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.08s
+[31merror[39m: src/main/scala/hello.worksheet.sc:11:1: then expected but else found
+else if x == 0 then
+^^^^
+Dec 16, 2023 8:09:25 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-25-267.md
+Dec 16, 2023 8:09:26 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-26-062.md
+2023.12.16 08:09:26 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.14s
+Dec 16, 2023 8:09:27 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-27-863.md
+Dec 16, 2023 8:09:27 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-27-950.md
+[31merror[39m: src/main/scala/hello.worksheet.sc:11:1: then expected but else found
+else if x == 0 then
+^^^^
+Dec 16, 2023 8:09:28 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-28-116.md
+Dec 16, 2023 8:09:28 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-28-273.md
+Dec 16, 2023 8:09:28 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-28-399.md
+Dec 16, 2023 8:09:28 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-28-540.md
+2023.12.16 08:09:28 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 0.59s
+Dec 16, 2023 8:09:28 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-28-767.md
+Dec 16, 2023 8:09:29 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-29-765.md
+Dec 16, 2023 8:09:31 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-31-739.md
+Dec 16, 2023 8:09:31 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-31-847.md
+[31merror[39m: src/main/scala/hello.worksheet.sc:11:1: then expected but else found
+else if x == 0 then
+^^^^
+Dec 16, 2023 8:09:31 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-31-971.md
+Dec 16, 2023 8:09:32 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/.reports/metals-full/2023-12-16/r_compiler-error_(worksheet)_08-09-32-406.md
+2023.12.16 08:09:33 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.33s
+2023.12.16 08:09:46 INFO  time: code lens generation in 3.33s
+2023.12.16 08:09:47 INFO  skipping build import with status 'Installed'
+2023.12.16 08:10:26 INFO  running '/Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home/bin/java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -jar /var/folders/r5/1cdq52mn21zdnqzl0fvp44zw0000gn/T/metals8344348044974844368/sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall'
+2023.12.16 08:10:28 INFO  [info] welcome to sbt 1.9.7 (Oracle Corporation Java 17)
+2023.12.16 08:10:28 INFO  [info] loading settings for project worksheet-build-build from metals.sbt ...
+2023.12.16 08:10:31 INFO  [info] loading project definition from /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project/project
+2023.12.16 08:10:32 INFO  [info] loading settings for project worksheet-build from metals.sbt ...
+2023.12.16 08:10:32 INFO  [info] loading project definition from /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project
+2023.12.16 08:10:37 INFO  [success] Generated .bloop/worksheet-build.json
+2023.12.16 08:10:37 INFO  [success] Total time: 4 s, completed 16 Dec 2023, 08:10:37
+2023.12.16 08:10:40 INFO  [info] loading settings for project worksheet from build.sbt ...
+2023.12.16 08:10:40 INFO  [info] set current project to hello-world (in build file:/Users/frankliang/Dropbox/Personal/code/Pet%20Project/11-26%20Scala%20Kick%20Off/worksheet/)
+2023.12.16 08:10:43 INFO  [success] Generated .bloop/worksheet-test.json
+2023.12.16 08:10:43 INFO  [success] Generated .bloop/worksheet.json
+2023.12.16 08:10:43 INFO  [success] Total time: 2 s, completed 16 Dec 2023, 08:10:43
+2023.12.16 08:10:43 INFO  time: ran 'sbt bloopInstall' in 16s
+2023.12.16 08:10:43 INFO  Disconnecting from Bloop session...
+2023.12.16 08:10:43 INFO  Shut down connection with build server.
+2023.12.16 08:10:43 INFO  Shut down connection with build server.
+2023.12.16 08:10:43 INFO  Attempting to connect to the build server...
+2023.12.16 08:10:43 INFO  Bloop uses /Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home defined at /Users/frankliang/.bloop/bloop.json
+2023.12.16 08:10:43 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.16 08:10:43 INFO  Attempting to connect to the build server...
+2023.12.16 08:10:43 INFO  Bloop uses /Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home defined at /Users/frankliang/.bloop/bloop.json
+2023.12.16 08:10:43 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.16 08:10:43 INFO  time: Connected to build server in 0.13s
+2023.12.16 08:10:43 INFO  Connected to Build server: Bloop v1.5.13
+2023.12.16 08:10:44 INFO  time: code lens generation in 1.2s
+Dec 16, 2023 8:10:44 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 389
+Dec 16, 2023 8:10:44 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 392
+2023.12.16 08:10:49 INFO  time: indexed workspace in 6.07s
+2023.12.16 08:10:55 INFO  time: code lens generation in 5.08s
+2023.12.16 08:11:07 INFO  compiling worksheet (1 scala source)
+2023.12.16 08:11:08 INFO  running '/Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home/bin/java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -jar /var/folders/r5/1cdq52mn21zdnqzl0fvp44zw0000gn/T/metals5250334969766031875/sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall'
+2023.12.16 08:11:09 INFO  time: compiled worksheet in 2.34s
+2023.12.16 08:11:10 INFO  [info] welcome to sbt 1.9.7 (Oracle Corporation Java 17)
+2023.12.16 08:11:10 INFO  [info] loading settings for project worksheet-build-build from metals.sbt ...
+2023.12.16 08:11:13 INFO  [info] loading project definition from /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project/project
+2023.12.16 08:11:15 INFO  [info] loading settings for project worksheet-build from metals.sbt ...
+2023.12.16 08:11:15 INFO  [info] loading project definition from /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project
+2023.12.16 08:11:19 INFO  [success] Generated .bloop/worksheet-build.json
+2023.12.16 08:11:19 INFO  [success] Total time: 4 s, completed 16 Dec 2023, 08:11:19
+2023.12.16 08:11:23 INFO  [info] loading settings for project worksheet from build.sbt ...
+2023.12.16 08:11:23 INFO  [info] set current project to hello-world (in build file:/Users/frankliang/Dropbox/Personal/code/Pet%20Project/11-26%20Scala%20Kick%20Off/worksheet/)
+2023.12.16 08:11:25 INFO  [success] Generated .bloop/worksheet-test.json
+2023.12.16 08:11:25 INFO  [success] Generated .bloop/worksheet.json
+2023.12.16 08:11:25 INFO  [success] Total time: 2 s, completed 16 Dec 2023, 08:11:25
+2023.12.16 08:11:26 INFO  time: ran 'sbt bloopInstall' in 17s
+2023.12.16 08:11:26 INFO  Disconnecting from Bloop session...
+2023.12.16 08:11:26 INFO  Shut down connection with build server.
+2023.12.16 08:11:26 INFO  Shut down connection with build server.
+2023.12.16 08:11:26 INFO  Attempting to connect to the build server...
+2023.12.16 08:11:26 INFO  Bloop uses /Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home defined at /Users/frankliang/.bloop/bloop.json
+2023.12.16 08:11:26 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.16 08:11:26 INFO  Attempting to connect to the build server...
+2023.12.16 08:11:26 INFO  Bloop uses /Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home defined at /Users/frankliang/.bloop/bloop.json
+2023.12.16 08:11:26 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.16 08:11:26 INFO  time: Connected to build server in 0.15s
+2023.12.16 08:11:26 INFO  Connected to Build server: Bloop v1.5.13
+2023.12.16 08:11:30 INFO  time: indexed workspace in 4.49s
+2023.12.16 08:11:36 INFO  time: code lens generation in 5.31s
+2023.12.16 08:12:40 INFO  compiling worksheet (1 scala source)
+2023.12.16 08:12:41 INFO  time: compiled worksheet in 1s
+2023.12.16 08:12:48 INFO  time: code lens generation in 6.03s
+exception caught when loading trait Deprecated: java.lang.AssertionError: assertion failed: asTerm called on not-a-Term val <none>
+2023.12.16 08:12:53 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 11s
+2023.12.16 08:12:56 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 2.99s
+2023.12.16 08:12:59 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 3.33s
+Dec 16, 2023 8:16:32 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 461
+Dec 16, 2023 8:16:36 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 474
+2023.12.16 08:16:53 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 4.55s
+2023.12.16 08:16:53 INFO  time: code lens generation in 1.08s
+[31merror[39m: src/main/scala/importdata.worksheet.sc:5:8: 
+Not found: spark
+import spark.implicits._
+       ^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:13 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:14 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(6, 0, 6, 63);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:16 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(df, 6, 4, 6, 6);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:17 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:18 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(7, 0, 7, 9);
+
+
+[31merror[39m: src/main/scala/importdata.worksheet.sc:8:1: 
+Reference to print is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+print(df)
+^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:21 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(res1, 7, 0, 7, 9);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:22 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:23 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endSection();
+
+
+2023.12.16 08:16:53 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.74s
+[31merror[39m: src/main/scala/importdata.worksheet.sc:5:8: 
+Not found: spark
+import spark.implicits._
+       ^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:13 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:14 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(6, 0, 6, 63);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:16 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(df, 6, 4, 6, 6);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:17 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:18 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(7, 0, 7, 9);
+
+
+[31merror[39m: src/main/scala/importdata.worksheet.sc:8:1: 
+Reference to print is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+print(df)
+^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:21 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(res1, 7, 0, 7, 9);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:22 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:23 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endSection();
+
+
+2023.12.16 08:16:53 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.55s
+[31merror[39m: src/main/scala/importdata.worksheet.sc:4:8: 
+Not found: spark
+import spark.implicits._
+       ^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:13 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:14 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(5, 0, 5, 63);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:16 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(df, 5, 4, 5, 6);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:17 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:18 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(6, 0, 6, 9);
+
+
+[31merror[39m: src/main/scala/importdata.worksheet.sc:7:1: 
+Reference to print is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+print(df)
+^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:21 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(res1, 6, 0, 6, 9);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:22 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:23 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endSection();
+
+
+2023.12.16 08:17:16 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.73s
+[31merror[39m: src/main/scala/importdata.worksheet.sc:3:8: 
+Not found: spark
+import spark.implicits._
+       ^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:13 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:14 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(4, 0, 4, 63);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:16 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(df, 4, 4, 4, 6);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:17 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:18 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(5, 0, 5, 9);
+
+
+[31merror[39m: src/main/scala/importdata.worksheet.sc:6:1: 
+Reference to print is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+print(df)
+^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:21 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(res1, 5, 0, 5, 9);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:22 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:23 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endSection();
+
+
+2023.12.16 08:17:19 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.31s
+2023.12.16 08:17:25 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 1.83s
+Dec 16, 2023 8:17:26 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 530
+2023.12.16 08:17:29 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 2.68s
+Dec 16, 2023 8:17:31 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 538
+[31merror[39m: src/main/scala/importdata.worksheet.sc:3:8: 
+Not found: spark
+import spark.implicits._
+       ^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:13 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:14 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(4, 0, 4, 63);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:16 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(df, 4, 4, 4, 6);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:17 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:18 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(5, 0, 5, 9);
+
+
+[31merror[39m: src/main/scala/importdata.worksheet.sc:6:1: 
+Reference to print is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+print(df)
+^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:21 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(res1, 5, 0, 5, 9);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:22 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:23 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endSection();
+
+
+2023.12.16 08:17:32 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.55s
+[31merror[39m: src/main/scala/importdata.worksheet.sc:3:8: 
+Not found: spark
+import spark.implicits._
+       ^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:13 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:14 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(4, 0, 4, 63);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:16 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(df, 4, 4, 4, 6);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:17 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:18 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(5, 0, 5, 9);
+
+
+[31merror[39m: src/main/scala/importdata.worksheet.sc:6:1: 
+Reference to print is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+print(df)
+^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:21 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(res1, 5, 0, 5, 9);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:22 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:23 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endSection();
+
+
+2023.12.16 08:17:33 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.32s
+[31merror[39m: src/main/scala/importdata.worksheet.sc:3:8: 
+Not found: spark
+import spark.implicits._
+       ^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:13 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:14 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(4, 0, 4, 63);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:16 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(df, 4, 4, 4, 6);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:17 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:18 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.startStatement(5, 0, 5, 9);
+
+
+[31merror[39m: src/main/scala/importdata.worksheet.sc:6:1: 
+Reference to print is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+print(df)
+^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:21 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.binder(res1, 5, 0, 5, 9);
+
+
+[31merror[39m: 
+importdata.worksheet.sc:22 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:23 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endSection();
+
+
+2023.12.16 08:17:39 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.95s
+[31merror[39m: src/main/scala/importdata.worksheet.sc:5:10: 
+Not found: spark
+val df = spark.read.parquet("main/resources/bank-data.parquet")
+         ^^^^^
+2023.12.16 08:17:56 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.31s
+2023.12.16 08:18:02 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 1.24s
+2023.12.16 08:18:05 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.52s
+[31merror[39m: src/main/scala/importdata.worksheet.sc:3:8: 
+Not found: spark
+import spark.implicits._
+       ^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:13 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:14 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endSection();
+
+
+2023.12.16 08:18:08 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.81s
+2023.12.16 08:18:24 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project/metals.sbt
+2023.12.16 08:18:29 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project/metals.sbt
+[31merror[39m: src/main/scala/importdata.worksheet.sc:3:8: 
+Not found: spark
+import spark.implicits._
+       ^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:13 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:14 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endSection();
+
+
+2023.12.16 08:19:06 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.41s
+2023.12.16 08:20:50 INFO  running '/Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home/bin/java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -jar /var/folders/r5/1cdq52mn21zdnqzl0fvp44zw0000gn/T/metals11367873069007226620/sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall'
+[31merror[39m: src/main/scala/importdata.worksheet.sc:3:8: 
+Not found: spark
+import spark.implicits._
+       ^^^^^
+[31merror[39m: 
+importdata.worksheet.sc:13 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endStatement();
+
+
+[31merror[39m: 
+importdata.worksheet.sc:14 (mdoc generated code) 
+ Reference to $doc is ambiguous.
+It is both defined in object MdocSession
+and imported subsequently by import (<error Not found: spark>#implicits : <error Not found: spark>)._
+    $doc.endSection();
+
+
+2023.12.16 08:20:52 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.44s
+2023.12.16 08:20:52 INFO  [info] welcome to sbt 1.9.7 (Oracle Corporation Java 17)
+2023.12.16 08:20:52 INFO  [info] loading settings for project worksheet-build-build from metals.sbt ...
+2023.12.16 08:20:55 INFO  [info] loading project definition from /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project/project
+2023.12.16 08:20:56 INFO  [info] loading settings for project worksheet-build from metals.sbt ...
+2023.12.16 08:20:56 INFO  [info] loading project definition from /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project
+2023.12.16 08:21:01 INFO  [success] Generated .bloop/worksheet-build.json
+2023.12.16 08:21:01 INFO  [success] Total time: 4 s, completed 16 Dec 2023, 08:21:01
+2023.12.16 08:21:03 INFO  [error] Type error in expression
+2023.12.16 08:21:03 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/build.sbt:32: error: not found: value yourHadoopVersion
+2023.12.16 08:21:03 ERROR   "org.apache.hadoop" % "hadoop-client" % yourHadoopVersion
+2023.12.16 08:21:03 ERROR                                           ^
+2023.12.16 08:21:03 INFO  [warn] Project loading failed: (r)etry, (q)uit, (l)ast, or (i)gnore? (default: r)
+2023.12.16 08:21:03 INFO  time: ran 'sbt bloopInstall' in 13s
+2023.12.16 08:21:03 ERROR sbt command failed: /Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home/bin/java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -jar /var/folders/r5/1cdq52mn21zdnqzl0fvp44zw0000gn/T/metals11367873069007226620/sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall
+2023.12.16 08:21:03 INFO  Disconnecting from Bloop session...
+2023.12.16 08:21:03 INFO  Shut down connection with build server.
+2023.12.16 08:21:03 INFO  Shut down connection with build server.
+2023.12.16 08:21:03 INFO  Attempting to connect to the build server...
+2023.12.16 08:21:03 INFO  Bloop uses /Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home defined at /Users/frankliang/.bloop/bloop.json
+2023.12.16 08:21:03 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.16 08:21:03 INFO  Attempting to connect to the build server...
+2023.12.16 08:21:03 INFO  Bloop uses /Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home defined at /Users/frankliang/.bloop/bloop.json
+2023.12.16 08:21:03 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/worksheet/project/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.16 08:21:03 INFO  time: Connected to build server in 0.18s
+2023.12.16 08:21:03 INFO  Connected to Build server: Bloop v1.5.13
+2023.12.16 08:21:05 INFO  time: evaluated worksheet 'hello.worksheet.sc' in 3.8s
+2023.12.16 08:21:07 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 2.16s
+2023.12.16 08:21:09 INFO  time: indexed workspace in 5s
+Dec 16, 2023 8:21:09 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 668
+Dec 16, 2023 8:21:09 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 670
+2023.12.16 08:21:18 INFO  time: code lens generation in 8.98s
+2023.12.16 08:21:18 INFO  time: code lens generation in 8.92s
+2023.12.16 08:21:18 INFO  time: code lens generation in 8.95s
+[31merror[39m: src/main/scala/importdata.worksheet.sc:8:8: identifier expected but end of file found
+import 
+       ^
+2023.12.16 08:22:16 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 1.49s
+2023.12.16 08:22:20 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.57s
+2023.12.16 08:23:18 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 2.12s
+[31merror[39m: 
+importdata.worksheet.sc:13 (mdoc generated code) 
+ Not found: s
+      s
+
+
+2023.12.16 08:23:18 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.64s
+[31merror[39m: src/main/scala/importdata.worksheet.sc:8:1: 
+Not found: spark
+spark.read.parquet()
+^^^^^
+2023.12.16 08:23:23 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.16s
+2023.12.16 08:23:27 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 0.52s
+2023.12.16 08:23:28 INFO  time: evaluated worksheet 'importdata.worksheet.sc' in 1.47s
+2023.12.16 08:24:20 INFO  Shutting down server
+2023.12.16 08:24:20 INFO  shutting down Metals
+2023.12.16 08:24:20 INFO  Shut down connection with build server.
+2023.12.16 08:24:20 INFO  Shut down connection with build server.
+2023.12.16 08:24:20 INFO  Exiting server

@@ -1,0 +1,251 @@
+---
+title: Network Model
+---
+
+Turns out I am not very good at.
+
+## Spatial Analyis
+
+### Recommendation 
+
+- For visualize large data set use: `rdeck`
+- `sf` is standard for spatial transformation
+- `spatstat::as.ppp()` spatial point data for computation. 
+
+
+```{r}
+library(sfnetworks)
+library(sf)
+library(terra)
+library(stars)
+library(spatstat)
+#remotes::install_github("qfes/rdeck")
+library(rdeck) # lightweight spatial map
+```
+
+
+```{r}
+#install.packages('spatstat')
+#ll= st_as_sf(longleaf)
+```
+```{r}
+#lll |> as.ppp()
+```
+### Observation Window
+```{r}
+n <- 30
+set.seed(13531) # remove this to create another random sequence
+xy <- data.frame(x = runif(n), y = runif(n)) |> 
+    st_as_sf(coords = c("x", "y"))
+w1 <- st_bbox(c(xmin = 0, ymin = 0, xmax = 1, ymax = 1)) |> 
+        st_as_sfc() 
+w2 <- st_sfc(st_point(c(1, 0.5))) |> st_buffer(1.2)
+par(mfrow = c(1, 2), mar = c(2.1, 2.1, 0.1, 0.5), xaxs = "i", yaxs = "i")
+plot(w1, axes = TRUE, col = 'grey')
+plot(xy, add = TRUE)
+plot(w2, axes = TRUE, col = 'grey')
+plot(xy, add = TRUE, cex = .5)
+```
+
+use `as.ppp` function
+```{r}
+(pp1 <- c(w1, st_geometry(xy)) |> as.ppp())
+# Planar point pattern: 30 points
+# window: polygonal boundary
+# enclosing rectangle: [0, 1] x [0, 1] units
+c1 <- st_buffer(st_centroid(w2), 1.2)
+(pp2 <- c(c1, st_geometry(xy)) |> as.ppp())
+# Planar point pattern: 30 points
+# window: polygonal boundary
+# enclosing rectangle: [-0.2, 2.2] x [-0.7, 1.7] units
+par(mfrow = c(1, 2), mar = rep(0, 4))
+q1 <- quadratcount(pp1, nx=3, ny=3)
+q2 <- quadratcount(pp2, nx=3, ny=3)
+plot(q1, main = "")
+plot(xy, add = TRUE)
+plot(q2, main = "")
+plot(xy, add = TRUE)
+```
+
+
+
+```{r}
+den1 <- density(pp1, sigma = bw.diggle)
+den2 <- density(pp2, sigma = bw.diggle)
+par(mfrow = c(1, 2), mar = c(0,0,1.1,2))
+plot(den1, col = colorRampPalette(RColorBrewer::brewer.pal(9,"BuGn"))(100))
+plot(pp1, add=TRUE)
+plot(den2)
+plot(pp1, add=TRUE)
+```
+Here is code to replicate this plot
+Adjust aesthetics to fit my demand. 
+```{r}
+
+xy <- data.frame(x = runif(n), y = runif(n)) |> 
+    st_as_sf(coords = c("x", "y"))
+
+plotPPPdensity = function(xy) {
+  maxRange =xy |> sf::st_coordinates() |> apply(2, max)
+  minRange =xy |> sf::st_coordinates() |> apply(2, min)
+  w1 <- sf::st_bbox(c(xmin = minRange[['X']], 
+                  ymin = minRange[['Y']], 
+                  xmax = maxRange[['X']], 
+                  ymax = maxRange[['Y']])) |> 
+          sf::st_as_sfc()
+  # xy |> st_combine() |> st_centroid()
+  # w1 |> st_centroid()
+  #   st_buffer(0.2)
+  (pp1 <- c(w1, sf::st_geometry(xy)) |> spatstat.geom::as.ppp())
+  den1 <- density.ppp(pp1, sigma = bw.diggle)
+  par(mar =c(0.2, 0.2, 0.2, 0.2))
+  plot(den1, 
+       col = colorRampPalette(RColorBrewer::brewer.pal(9,"BuGn"))(500),
+       main=NULL,
+       legend=F, show.all=F
+       )
+  plot(pp1, add = T)
+}
+xy2 <- data.frame(x = rnorm(50, 1, 0.3), y = rnorm(50, 1, 0.3)) |> 
+    st_as_sf(coords = c("x", "y"))
+plotPPPdensity(xy2)
+```
+
+```{r}
+
+```
+
+
+```{r}
+xy |> class()
+g = igraph::make_tree(30, 5)
+V(g)$geom = xy$geometry
+class(V(g)$geom)
+class(V(g)$geom[[1]])
+V(g)$geom |> st_as_sf() |> plotPPPdensity()
+
+library(shiny)
+ui <- fluidPage(
+  fluidRow(plotOutput("id", brush="plot_brush"), click="plot_click"),
+  fluidRow(verbatimTextOutput("dev"))
+)
+
+server <- function(input, output, session) {
+  output$id <- renderPlot({
+    plotPPPdensity(xy)
+  })
+  observe({
+    
+  })
+  output$dev <- renderPrint({
+    print(input$plot_click)
+    print(input$plot_brush)
+  })
+}
+shinyApp(ui, server)
+```
+
+These are the output by selecting just one point... 
+```
+$xmin
+[1] 0.2553337
+
+$xmax
+[1] 0.5582186
+
+$ymin
+[1] 0.175992
+
+$ymax
+[1] 0.4206298
+```
+I need to figure out if those scales are in absolute or relative value
+
+```{r}
+xy2
+w = st_bbox(c())
+```
+
+```{r}
+library(shiny)
+library(ggplot2)
+# graph definition
+g = make_tree(50, 5)
+V(g)$geom <- xy2$geometry
+    
+ui <- fluidPage(
+  fluidRow(
+    sidebarPanel(
+      div(plotOutput("id", 
+                 brush="plot_brush", 
+                 click="plot_click",
+                 height="300px", width="300px"
+                 ))
+    ),
+    mainPanel(
+      visNetwork::visNetworkOutput("visNet")
+    )
+  ),
+  fluidRow(verbatimTextOutput("dev"))
+)
+
+server <- function(input, output, session) {
+  output$id <- renderPlot({
+    plotPPPdensity({
+      V(g)$geom |> st_as_sf()
+    })
+  })
+  output$visNet <- visNetwork::renderVisNetwork({
+    visNetwork::visIgraph(g) |> 
+      visNetwork::visOptions(highlightNearest = list(
+        enabled=T, degree=0
+      ))
+  })
+  observe({
+    req(cur)
+    cur = input$plot_brush
+    brash_area = st_bbox(c(xmin =cur$xmin, xmax = cur$xmax, ymin=cur$ymin, ymax =cur$ymax)) |> 
+      st_as_sfc()
+    selected_dots =st_intersects(st_as_sf(V(g)$geom), brash_area, sparse=F) |> which()
+    visNetwork::visNetworkProxy("visNet") |> 
+      visNetwork::visSelectNodes(selected_dots)
+  })
+  output$dev <- renderPrint({
+    # print(input$plot_click)
+    # print(input$plot_brush)
+    cur = input$plot_brush
+    req(cur)
+    x = st_bbox(c(xmin =cur$xmin, xmax = cur$xmax, ymin=cur$ymin, ymax =cur$ymax)) |> 
+      st_as_sfc()
+    c =st_intersects(xy2, x, sparse=F)
+    print(c)
+    print(which(c))
+  })
+}
+shinyApp(ui, server)
+```
+
+### Continute 
+Previously: 
+
+1. sf::pointgeometry can be converted to startstat::ppp 
+2. convert this startstat::ppp -> image via method `density`
+3. **it is possible to extract value from image via st_as_stars**
+
+
+```{r}
+xy_density = xy |> as.ppp() |> density() |> st_as_stars()
+xy_density$area = xy_density |> st_area()
+
+with(xy_density, sum(v * area, na.rm=T))
+```
+```{r}
+pt <- st_sfc(st_point(c(0.5, 0.5)))
+st_as_sf(xy_density, as_points = TRUE, na.rm = FALSE) |>
+  st_distance(pt) -> xy_density$dist
+
+(m <- ppm(pp2 ~ dist, data = list(dist = as.im(xy_density["dist"]))))
+
+plot(m)
+```
+

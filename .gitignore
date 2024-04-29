@@ -1,0 +1,13 @@
+**/.Rproj.user
+**/.Rhistory
+**/.RData
+**/.Ruserdata
+/.quarto/
+/_site/
+_freeze/
+**/.quarto/
+**/_site/
+**/*.csv
+**/*.parquet
+
+2023/06-06-ai/

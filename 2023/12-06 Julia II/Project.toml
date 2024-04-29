@@ -1,0 +1,7 @@
+[deps]
+BinaryProvider = "b99e7846-7c00-51b0-8f62-c81ae34c0232"
+DataFramesMeta = "1313f7d8-7da2-5740-9ea0-a2ca25f37964"
+Parquet = "626c502c-15b0-58ad-a749-f091afb673ae"
+Pipe = "b98c9c47-44ae-5843-9183-064241ee97a0"
+Snappy = "59d4ed8c-697a-5b28-a4c7-fe95c22820f9"
+TidierData = "fe2206b3-d496-4ee9-a338-6a095c4ece80"

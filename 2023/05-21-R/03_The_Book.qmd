@@ -1,0 +1,105 @@
+---
+title: "Tidy Model"
+format: html
+date: 2023/06/04
+---
+
+[The Book](https://www.tmwr.org/software-modeling.html)
+
+The author's philosophy on software is software should prevent user from making mistakes. R regards as sorftware.
+
+Model can be:
+
+-   *descriptive*: describe or illustrate characteristics of some data;
+    -   examples: LOESS (restricted smoothsing splines)
+-   *inferential*: produce a decision for research question or to explore specific hypothesis.
+    -   in inferential, you have an idea that is pre-defined.
+    -   typcial produce probabilistic output, such as p-value.
+    -   result highly depends on **assumptions**. \> In our clinical trial example, if statistical (and clinical) significance indicate that the new therapy should be available for patients to use, it still may be years before it is used in the field and enough data are generated for an independent assessment of whether the original statistical analysis led to the appropriate decision.
+    -   examples: ANOVA
+-   *predictive*: there may not be much interests in the *why* question.
+    -   because there are many ways predictive model can bee created so it is important how the model is deeloped.
+    -   *mechanistic model* use *first principles*, that means use assumption
+        -   like inference, this depends on assumptions.
+    -   *empirically driven model* , vague assumption. These fall under machine learning category.
+    -   examples: simple linear regression.
+
+::: callout-note
+Conclusion: depends on what you are doing, for a "model" that all fall under those three domains. When you are doing an inference, assumptions are important. When you are doing predictive model, you should not trap yourself into exploring the mechanics of the model...
+
+Refocus on what is asked, and deliver that.
+:::
+
+-   supervised modes:
+    -   regression predicts a numeric outcome;
+    -   classification predicts an outcome iin an ordered or unordered set of qualitative values.
+
+```{r}
+library(modeldata)
+data(ames)
+dim(ames)
+```
+
+```{r}
+library(tidymodels)
+tidymodels_prefer()
+ggplot(ames, aes(x= Sale_Price)) + 
+    geom_histogram(bins=50, col="white")
+```
+
+> this data is right skelled
+
+```{r}
+ggplot(ames, aes(x= Sale_Price)) + 
+    geom_histogram(bins=50, col="white") + 
+    scale_x_log10()
+```
+
+```{r}
+# library(OpenStreetMap) # failed because of java dependency
+# install.packages("osmdata")
+library(osmdata)
+# thanks to these guy Padgham M & Lovelace R: https://cran.r-project.org/web/packages/osmdata/vignettes/osmdata.html
+ames <- ames %>% mutate(Sale_Price = log10(Sale_Price))
+ames_sf=ames |>
+  sf::st_as_sf(coords=c("Longitude", "Latitude"), crs=sf::st_crs(4326))
+ames_sf |> 
+  select(Neighborhood) |> 
+  plot(axes=T, cex=0.5, pch=2)
+border=ames_sf |> 
+  sf::st_bbox()
+streets=opq(bbox = border) |> 
+  add_osm_feature(key="highway", value=c("residential", "unclassified","primary", "secondary", "tertiary","living_street", "motorway", "trunk", "motorway_link", "trunk_link", "primary_link", "living_street"
+                                         )) |> 
+  osmdata_sf()
+```
+
+```{r}
+#| fig.height: 10
+plot(sf::st_as_sfc(streets$osm_lines, categorical=T) |> 
+       sf::st_intersection(sf::st_buffer(sf::st_as_sfc(border),dist=100)), axes=T, col="grey")
+ames_sf |> 
+  select(Neighborhood) |> 
+  plot(axes=T, cex=1, pch=2, add=T)
+```
+
+![more](https://www.tmwr.org/premade/dot_rr.png) here is actually very successful visualization. 
+I tried my best replicating this. 
+
+Anyway I got distracted... the point here is feature "neighborhood" is not a good
+prediction. For advance spatial staff check out this guy's [twitter Symnbolix](https://twitter.com/symbolixAU?s=20)
+
+```{r}
+streets$osm_lines |> 
+  sf::st_intersection(sf::st_buffer(sf::st_as_sfc(border),dist=100)) |> 
+  tm_shape() +
+  tm_lines(col="grey", alpha=0.6) +
+  tm_shape(ames_sf) + 
+  tm_dots(
+    col = "Neighborhood",
+    size=0.02,
+    legend.show = F,
+    interactive=T
+    )
+```
+

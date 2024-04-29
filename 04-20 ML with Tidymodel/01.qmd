@@ -1,0 +1,785 @@
+---
+title: "ML with Tidymodel"
+categories: [Machine-Learning, R, Basics]
+author: F.L
+date: 2024-04-21
+---
+
+# Introduction
+
+This notebook summaries key point from *Hadley Wickham's Tidy Model with R*. The book only covers basic usage of tidy-model and some other dimension reduction techniques.
+
+Link to the Book: [https://www.tmwr.org/](https://www.tmwr.org/workflows)
+
+## Introduction of Data
+
+```{r}
+#| message: false
+#| code-fold: true
+library(tmap)
+library(osmdata)
+library(tidymodels)
+data("ames")
+
+## refer to tmap: https://r-tmap.github.io/tmap-book/visual-variables.html
+## for osm data: https://cran.r-project.org/web/packages/osmdata/vignettes/osmdata.html
+## for query streets: https://wiki.openstreetmap.org/wiki/Key%3ahighway
+
+ames_sf = sf::st_as_sf(ames,coords = c("Longitude","Latitude"), crs=4326)
+ames_bbox = sf::st_bbox(ames_sf)
+osm_streets = opq(bbox = ames_bbox) |> 
+  add_osm_feature(key="highway",value = c(
+                                          'secondary'
+                                          ,'primary'
+                                          ,'tertiary'
+                                          ,'unclassified'
+                                          ,'residential')) |> 
+  # add_osm_feature(key="highway",value = 'motorway') |> 
+  osmdata_sf()
+
+## view a intersection
+streets_sf = sf::st_intersection(sf::st_as_sfc(ames_bbox), osm_streets$osm_lines)
+
+tm_shape(streets_sf) + 
+  tm_lines(col='grey') +
+tm_shape(ames_sf) + 
+  tm_dots( shape = "Lot_Shape"
+          ,col="Neighborhood"
+          ,style = "cont"
+          ,size=0.05
+          ,border.col=NA
+          ,border.lwd=0.01) + 
+  tm_layout(legend.show=FALSE)
+```
+
+`ames` familar with this data may come handy compare different model output later.
+
+::: columns
+::: {.column width=0.5}
+```{r}
+#| message: false
+#| code-fold: true
+
+library(tidymodels)
+
+ggplot2::theme_set(theme_minimal())
+tidymodels_prefer()
+
+ggplot(ames, aes(x = Sale_Price)) + 
+  geom_histogram(bins = 50, col= "white")
+```
+
+First thing they want to tell you is the data is not normal so require you to normalise somehow.
+:::
+
+::: {.column width=0.5}
+```{r}
+#| code-fold: true
+ggplot(ames, aes(x = Sale_Price)) + 
+  geom_histogram(bins = 50, col= "white") +
+  scale_x_log10()
+```
+:::
+:::
+
+```{r}
+ames <- ames |> mutate(Sale_Price = log10(Sale_Price))
+```
+
+```{r}
+# ames |> 
+#   head(1) |> 
+#   glimpse()
+```
+
+## Spoil Alert
+
+Following code create a linear model.
+Prediction uses these variables: 
+
+```{r}
+ames |> 
+  select(Neighborhood, Gr_Liv_Area, Year_Built, Bldg_Type, Latitude, Longitude) |> 
+  slice_sample(n=1) |> 
+  glimpse()
+```
+Ther are their transformation:
+
+- Neighborhood: convert low frequency one to "other", then make dummy varible
+- Gr_Liv_Area: log10 treatment
+- Year_Built: year
+- Bldg_Type: convert building type into dummy varible
+- Latitude: spine function treatment
+- Longitude: spine function treatment
+
+
+```{.r}
+library(tidymodels)
+data(ames)
+
+## Normalise Prediction
+ames <- mutate(ames, Sale_Price = log10(Sale_Price))
+
+## Split Data Sets
+set.seed(502)
+ames_split <- initial_split(ames, prop = 0.80, strata = Sale_Price)
+ames_train <- training(ames_split)
+ames_test  <-  testing(ames_split)
+
+## Recipy for Preprocessing Data, Build receipy object
+ames_rec <- 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type + 
+           Latitude + Longitude, data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_other(Neighborhood, threshold = 0.01) %>% 
+  step_dummy(all_nominal_predictors()) %>% 
+  step_interact( ~ Gr_Liv_Area:starts_with("Bldg_Type_") ) %>% 
+  step_ns(Latitude, Longitude, deg_free = 20)
+  
+## Linear Model
+lm_model <- linear_reg() %>% set_engine("lm")
+
+## Finaly Evaluate Lazy Object
+lm_wflow <- 
+  workflow() %>% 
+  add_model(lm_model) %>% 
+  add_recipe(ames_rec)
+
+## Fit a Model
+lm_fit <- fit(lm_wflow, ames_train)
+```
+
+
+# The basics
+
+## Splitting/Feature Selection/Create a "Data Budget"
+
+```{r}
+
+library(tidymodels)
+```
+
+### Simple 80-20 split
+
+The basics is the same, split train test. For this purpose you are splitting the data by 80-20.
+
+```{r}
+
+ames_split <- rsample::initial_split(ames, prop = 0.80)
+ames_split
+```
+
+Regards to spliting portion here is the advice from the Book:
+
+> A test set should be avoided only when the data are pathologically small.
+
+```{r}
+ames_train <- training(ames_split)
+ames_test  <-  testing(ames_split)
+dim(ames_train)
+```
+
+### Validation Split 60-20-20
+
+```{r}
+set.seed(52)
+# To put 60% into training, 20% in validation, and 20% in testing:
+ames_val_split <- rsample::initial_validation_split(ames, prop = c(0.6, 0.2))
+ames_val_split
+```
+
+```{r}
+ames_train <- training(ames_val_split)
+ames_test <- testing(ames_val_split)
+ames_val <- validation(ames_val_split)
+```
+
+### Concepts
+
+-   *independent experimental unit*: (knowing database basic this is just matter of object uid versus alternate uid) for example, measuring one patient
+-   *multi-level-data/multiple rows per experimental unit*:
+
+> Data splitting should occur at the independent experimental unit level of the data!!!
+
+> Simple resampling across rows would lead to some data within an experimental unit being in the training set and others in the test set.
+
+### Pracrtical Implication
+
+-   the book admit the practice of train and split at first for a validation of the model but follow up using all the data point possible for a better estimation of data.
+
+## Fitting Model with Parsnip
+
+-   `linear_reg`
+-   `rand_forest`
+
+### Linear Regression Family
+
+-   `lm`
+-   `glmnet`: fits generalised linear and model via penalized maximum likelihood.
+-   `stan`
+
+```{r}
+# switch computational backend for different model
+linear_reg() |> 
+  set_engine("lm") |> 
+  translate()
+#  regularized regression is the glmnet model 
+linear_reg(penalty=1) |> 
+  set_engine("glmnet") |> 
+  translate()
+
+# To estimate with regularization, the second case, a Bayesian model can be fit using the rstanarm package:
+linear_reg() |> 
+  set_engine("stan") |> 
+  translate()
+```
+
+```{r}
+lm_model = linear_reg() |> 
+  set_engine("lm") |> 
+  translate()
+
+lm_model |> 
+  fit(Sale_Price ~ Longitude + Latitude, data = ames_train)
+```
+
+```{r}
+lm_xy_fit <- 
+  lm_model %>% 
+  fit_xy(
+    x = ames_train %>% select(Longitude, Latitude),
+    y = ames_train %>% pull(Sale_Price)
+  )
+
+lm_xy_fit
+```
+
+### Tree Model
+
+```{r}
+rand_forest(trees = 1000, min_n = 5) %>% 
+  set_engine("ranger") %>% 
+  set_mode("regression") %>% 
+  translate()
+```
+
+## Capture Model Results
+
+### Raw original way (useful to check og documentation)
+
+```{r}
+lm_form_fit <- 
+  lm_model %>% 
+  # Recall that Sale_Price has been pre-logged
+  fit(Sale_Price ~ Longitude + Latitude, data = ames_train)
+
+lm_form_fit %>% extract_fit_engine() %>% vcov()
+```
+
+```{r}
+model_res <- 
+  lm_form_fit %>% 
+  extract_fit_engine() %>% 
+  summary()
+
+# The model coefficient table is accessible via the `coef` method.
+param_est <- coef(model_res)
+class(param_est)
+```
+
+```{r}
+param_est
+```
+
+### The `Tidy` ecosystem for model result
+
+What's good about tidy is so you can reuse model.
+
+```{r}
+tidy(lm_form_fit)
+```
+
+# Model Workflow
+
+Chapter Link: [workflows](https://www.tmwr.org/workflows)
+
+Similar in Python or Spark this is called "pipeline"
+
+1.  Initiate a workflow use `workflow()`
+2.  Add whatever model
+
+```{r}
+library(tidymodels)
+data(ames)
+ames <- mutate(ames, Sale_Price = log10(Sale_Price))
+
+set.seed(502)
+ames_split <- initial_split(ames, prop = 0.80, strata = Sale_Price)
+ames_train <- training(ames_split)
+ames_test  <-  testing(ames_split)
+
+lm_model <- linear_reg() %>% set_engine("lm")
+```
+
+```{r}
+## set up parsnip linear model
+lm_model <- 
+  linear_reg() %>% 
+  set_engine("lm")
+
+## add this model to workflow (pipline)
+lm_wflow <- 
+  workflow() %>% 
+  add_model(lm_model)
+
+lm_wflow
+```
+
+R formula is now used as a "pre-processor"
+
+```{r}
+lm_wflow <- 
+  lm_wflow %>% 
+  add_formula(Sale_Price ~ Longitude + Latitude)
+
+lm_wflow
+```
+
+### Update Fomula
+
+It is possible to update the formula to this:
+
+```{r}
+#| eval: false
+lm_fit %>% update_formula(Sale_Price ~ Longitude)
+```
+
+```{r}
+#| eval: false
+lm_wflow <- 
+  lm_wflow %>% 
+  remove_formula() %>% 
+  add_variables(outcome = Sale_Price, predictors = c(Longitude, Latitude))
+lm_wflow
+```
+
+### The Role of Formula:
+
+-   inline transformations (e.g., `log(x)`);
+-   creating dummy variable columns;
+-   creating interactions or other column expansions
+
+### Formula is Package Depend:
+
+You have to go through each model one by one to see what type pre-processing are required for each different model.
+
+> -   Most packages for **tree-based models** use the formula interface but **do not encode the categorical predictors** as dummy variables.
+> -   Packages can use **special inline functions** that tell the model function how to treat the predictor in the analysis. *For example*, in survival analysis models, a formula term such as *`strata(site)`* would indicate that the column site is a stratification variable. This means it should not be treated as a regular predictor and does not have a corresponding location parameter estimate in the model.
+> -   A few R packages have extended the formula in ways that base R functions cannot parse or execute. In multilevel models (e.g., mixed models or hierarchical Bayesian models), a model term such as (week \| subject) indicates that the column week is a random effect that has different slope parameter estimates for each value of the subject column.
+>
+> A workflow is a general purpose interface. When `add_formula()` is used, how should the workflow preprocess the data? Since the pre-processing is model dependent, **workflows** attempts to emulate what the underlying model would do whenever possible. If it is not possible, the formula processing should not do anything to the columns used in the formula. Let’s look at this in more detail.
+
+### Special Formula/In-line Function
+
+Because standard R methods cannot properly process this formula this will result in error.
+
+```{r}
+#| message: false
+
+library(lme4)
+library(nlme)
+```
+
+```{r}
+
+data("Orthodont")
+lmer(distance ~ Sex + (age | Subject), data = Orthodont)
+
+model.matrix(distance ~ Sex + (age | Subject), data = Orthodont)
+```
+
+However, use `add_model` or `add_variables` solve this problem
+
+```{r}
+library(multilevelmod)
+
+multilevel_spec <- linear_reg() %>% set_engine("lmer")
+
+multilevel_workflow <- 
+  workflow() %>% 
+  # Pass the data along as-is: 
+  add_variables(outcome = distance, predictors = c(Sex, age, Subject)) %>% 
+  add_model(multilevel_spec, 
+            # This formula is given to the model
+            formula = distance ~ Sex + (age | Subject))
+
+multilevel_fit <- fit(multilevel_workflow, data = Orthodont)
+multilevel_fit
+```
+
+### Use Multiple Model at Once
+
+```{r}
+
+location <- list(
+  longitude = Sale_Price ~ Longitude,
+  latitude = Sale_Price ~ Latitude,
+  coords = Sale_Price ~ Longitude + Latitude,
+  neighborhood = Sale_Price ~ Neighborhood)
+  
+  
+library(workflowsets)
+
+location_models <- workflow_set(preproc = location, models = list(lm = lm_model))
+location_models
+```
+
+If you ever want to fit these model you have to use \`purrr::map\` which is actually intuitive for R user.
+
+Right now these data.frames are all empty.
+
+```{r}
+location_models <-
+   location_models %>%
+   mutate(fit = map(info, ~ fit(.x$workflow[[1]], ames_train)))
+location_models
+```
+
+## Evaluate Test Set use \`last_fit()\` method
+
+```{r}
+final_lm_res <- last_fit(lm_wflow, ames_split)
+final_lm_res
+```
+
+> ...the modeling process encompasses more than just estimating the parameters of an algorithm that connects predictors to an outcome. This process also includes pre-processing steps and operations taken after a model is fit. We introduced a concept called a model workflow that can capture the important components of the modeling process. Multiple workflows can also be created inside of a workflow set. The `last_fit()` function is convenient for fitting a final model to the training set and evaluating with the test set.
+>
+> For the Ames data, the related code that we’ll see used again is:
+
+```{r}
+#| eval: false
+
+library(tidymodels)
+data(ames)
+
+## normalise y
+ames <- mutate(ames, Sale_Price = log10(Sale_Price))
+
+## split data
+set.seed(502)
+ames_split <- initial_split(ames, prop = 0.80, strata = Sale_Price)
+ames_train <- training(ames_split)
+ames_test  <-  testing(ames_split)
+
+## linear models
+lm_model <- linear_reg() %>% set_engine("lm")
+
+## validating result
+lm_wflow <- 
+  workflow() %>% 
+  add_model(lm_model) %>% 
+  add_variables(outcome = Sale_Price, predictors = c(Longitude, Latitude))
+
+lm_fit <- fit(lm_wflow, ames_train)
+```
+
+
+# Feature Engineering with Receipy
+
+
+::: {.callout-tip title="Syntax to use with `recipe`"}
+
+USAGE:
+
+- Start with `recipe()` function call 
+- begin with a series of `step_*`
+
+```.r
+## create a receipy object
+simple_ames <- 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type,
+         data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_dummy(all_nominal_predictors())
+
+## add a receipy
+lm_wflow %>% 
+  add_recipe(simple_ames)
+```
+
+::: 
+
+
+### Compare Receipy with Standard Linear Model with formula
+
+> When this function is executed, the data are converted from a data frame to 
+**a numeric design matrix** (also called a model matrix) and then the least squares
+method is used to estimate parameters. 
+
+A Standard Linear Model:
+```{r}
+#| eval: false
+lm(Sale_Price ~ Neighborhood + log10(Gr_Liv_Area) + Year_Built + Bldg_Type, data = ames)
+```
+
+Use Receipy:
+```{r}
+#| eval: true
+library(tidymodels) # Includes the recipes package
+tidymodels_prefer()
+
+simple_ames <- 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type,
+         data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_dummy(all_nominal_predictors())
+simple_ames
+#> 
+#> ── Recipe ───────────────────────────────────────────────────────────────────────────
+#> 
+#> ── Inputs
+#> Number of variables by role
+#> outcome:   1
+#> predictor: 4
+#> 
+#> ── Operations
+#> • Log transformation on: Gr_Liv_Area
+#> • Dummy variables from: all_nominal_predictors()
+```
+
+
+**Receipy is more verbal but more flexible use of formula**:
+
+Okay why not use formula? 
+
+> 
+- These computations can be recycled across models since they are not tightly coupled to the modeling function.
+- A recipe enables a **broader set of data processing choices** than formulas can offer.
+- The syntax can be very compact. For example, `all_nominal_predictors()` can be used to capture many variables for specific types of processing while a formula would require each to be explicitly listed.
+- All data processing can be captured **in a single R object** instead of in scripts that are repeated, or even spread across different files.
+
+
+**Note on removing existing pre-processor before adding receipy**
+
+```{r}
+#| error: true
+lm_wflow %>% 
+  add_recipe(simple_ames)
+```
+
+You will have to remove existing preprocessor before adding recipe
+
+```{r}
+#| error: true
+lm_wflow <- 
+  lm_wflow %>% 
+  remove_variables() %>% 
+  add_recipe(simple_ames)
+lm_wflow
+```
+
+### Typical Pre-Processing in Statiscs
+
+::: {.callout-note}
+
+This section include two typical treatment
+
+- For nominal value, you may consider drop **low-frequency** terms `step_other`.
+- The second is for **interaction terms**. Combined effect is higher than addictive
+specify by using `step_interact
+- spine function (non-linear relationship), typically used for coordinate `step_ns`
+  - I like to think of spine function as a stretching sheet.
+- PCA feature extraction technique (use `step_normalise`)
+
+:::
+
+#### Consider Encode Normial Values
+
+```{r}
+d = ames_train |> 
+  count(Neighborhood) |> 
+  mutate(freqency = n / sum(n))
+
+
+highest_n_at_0.01 = d |> 
+  filter(freqency <= 0.01) |> 
+  filter(n == max(n)) |> 
+  pull(n)
+  
+d |> 
+  ggplot(aes(y=Neighborhood,x=n)) + 
+  geom_col() +
+  gghighlight::gghighlight(n <= highest_n_at_0.01) + 
+  ggtitle("These low frequency variables can be problematic")
+```
+
+- Norminal Values: Consider chunk low frequency category into others
+this step you would use `step_other`;
+- `step_dummy(all_nominal_predictors)`;
+
+```{r}
+simple_ames <- 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type,
+         data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_other(Neighborhood, threshold = 0.01) %>% 
+  step_dummy(all_nominal_predictors())
+```
+
+#### Consider Interation Terms: Variable Can Interact with One and Other
+
+>  Interactions are defined in terms of their effect on the outcome and can be **combinations of different types of data** (e.g., numeric, categorical, etc). [Chapter 7 of M. Kuhn and Johnson (2020)](https://bookdown.org/max/FES/detecting-interaction-effects.html) discusses interactions and how to detect them in greater detail.
+
+>  ... two or more predictors are said to interact if their combined effect is different (less or greater) than what we would expect if we were to add the impact of each of their effects when considered alone.
+
+::: {.callout-tips}
+
+Consider Interaction as `group_by` recalculate regression in 
+
+:::
+
+```{r}
+ggplot(ames_train, aes(x = Gr_Liv_Area, y = 10^Sale_Price)) + 
+  geom_point(alpha = .2) + 
+  facet_wrap(~ Bldg_Type) + 
+  geom_smooth(method = lm, formula = y ~ x, se = FALSE, color = "lightblue") + 
+  scale_x_log10() + 
+  scale_y_log10() + 
+  labs(x = "Gross Living Area", y = "Sale Price (USD)")
+```
+
+```{r}
+simple_ames <- 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type,
+         data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_other(Neighborhood, threshold = 0.01) %>% 
+  step_dummy(all_nominal_predictors()) %>% 
+  # Gr_Liv_Area is on the log scale from a previous step
+  step_interact( ~ Gr_Liv_Area:starts_with("Bldg_Type_") )
+```
+
+#### Spine Function (Non-Linear Relationship)
+
+```{r}
+library(patchwork)
+library(ggplot2)
+library(splines)
+
+plot_smoother <- function(deg_free) {
+  ggplot(ames_train, aes(x = Latitude, y = 10^Sale_Price)) + 
+    geom_point(alpha = .2) + 
+    scale_y_log10() +
+    geom_smooth(
+      method = lm,
+      formula = y ~ ns(x, df = deg_free),
+      color = "lightblue",
+      se = FALSE
+    ) +
+    labs(title = paste(deg_free, "Spline Terms"),
+         y = "Sale Price (USD)") +
+    theme_minimal()
+}
+
+# plot_smoother(2) 
+( plot_smoother(2) + plot_smoother(5) ) / ( plot_smoother(20) + plot_smoother(100) )
+```
+
+The example use case here is for coordinates, which is for 
+
+```{r}
+recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type + Latitude,
+         data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_other(Neighborhood, threshold = 0.01) %>% 
+  step_dummy(all_nominal_predictors()) %>% 
+  step_interact( ~ Gr_Liv_Area:starts_with("Bldg_Type_") ) %>% 
+  step_ns(Latitude, deg_free = 20)
+```
+
+
+#### Feature Extraction (Dimension Reduction Techniques)
+
+The typical one you will see is PCA, But there exists more dimension reduction 
+technique for example:
+
+- ICA Independent Component Analysis
+- NNMF Non-Negative Matrix Factorization
+- Multidimensional Scaling (MDS)
+- Uniform Manifold Approximation and Projection(UMAP)
+
+#### Row Sampling Steps
+
+This is a technique said to improve distribution but not performance.
+
+#### Natual Language Sampling
+
+# Model Effectiveness Measurement
+
+::: {.callout-note title="Chapter Extract"}
+ 
+The typical statistical analysis workflow is analyzing different performance matrix 
+given data.But in sum, you should think of measurement as these: 
+
+- Accuracy Measurement (rmse)
+- Effectiveness Measurement (rsquare)
+- Implication Measuremnt (rsq)
+
+Classical Measure for Normalized value are these three: 
+
+- `rmse`
+- `rsq`
+- `mae`
+
+For **Binary Data** there are: 
+
+- `conf_mat` confusion matrix
+- `accuracy`
+- `mcc` Matthews correlation coefficient
+- `f_meas` F1 metric
+
+When you use predicted probabilities as input rather than hard class predictor,
+the one matrix is `ROC` (ding ding ding!)
+
+- `roc_curve`
+
+There is a use-full function `autoplot` let you do this.
+
+:::
+
+Ultimately this gives you the power to compare different performance matrix easily
+
+## Yardstick Basic Usage
+
+Yardstick is tool that produce performance matrix with consistent interface.
+
+```.r
+## Create a prediction frame
+ames_test_res <- predict(lm_fit, new_data = ames_test %>% select(-Sale_Price))
+ames_test_res
+#> # A tibble: 588 × 1
+#>   .pred
+#>   <dbl>
+#> 1  5.07
+#> 2  5.31
+
+
+## Bind prediction with Actual value
+ames_test_res <- bind_cols(ames_test_res, ames_test %>% select(Sale_Price))
+ames_test_res
+#> # A tibble: 588 × 2
+#>   .pred Sale_Price
+#>   <dbl>      <dbl>
+#> 1  5.07       5.02
+#> 2  5.31       5.39
+
+## YARDSTICK!! given a dataframe just do these two
+rmse(ames_test_res, truth = Sale_Price, estimate = .pred)
+
+
+## compare multiple matrix
+ames_metrics <- metric_set(rmse, rsq, mae)
+ames_metrics(ames_test_res, truth = Sale_Price, estimate = .pred)
+```
+
+

@@ -1,0 +1,28 @@
+project:
+  type: website
+  render: 
+    - "*.qmd"
+    - "*.ipynb"
+    - "!2023/"
+  output-dir: docs
+
+execute:
+  freeze: auto
+  error: false
+
+website:
+  title: "Frank's Goldfish Projects"
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/
+      - icon: twitter
+        href: https://twitter.com
+format:
+  html:
+    theme: zephyr
+    css: styles.css
+    toc: true
+
+

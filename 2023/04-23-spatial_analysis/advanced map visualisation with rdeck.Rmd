@@ -1,0 +1,38 @@
+
+
+# 
+
+```{r}
+# install.packages("gstat")
+library(tidyverse) |> suppressPackageStartupMessages()
+no2 <- read_csv(system.file("external/no2.csv", 
+    package = "gstat"), show_col_types = FALSE)
+# step 1 convert this to sf object
+crs <- st_crs("EPSG:32632") # Define Target crs 
+no2.sf = st_as_sf(
+  no2, crs="OGC:CRS84", # source srs 
+  coords = c("station_longitude_deg", "station_latitude_deg")
+) |> 
+  st_transform(crs)
+```
+
+
+# Explore Map with {rdeck}
+```{r}
+
+# install.packages("rworldmap")
+# library(rworldmap) # this package is not in the correct format
+# install.packages("spData")s
+library(spData)
+world |> names()
+# xy=st_set_crs(xy, st_crs(4326))
+# xy
+rdeck() |> 
+  add_polygon_layer(data=world, get_polygon=geom) |> 
+  add_scatterplot_layer(data=st_transform(no2.sf, st_crs(4326)), get_position = geometry, 
+                        get_fill_color = "#bf5700",
+                        radius_min_pixels = 2,
+                        pickable = TRUE,
+                        opacity = 0.3)
+```
+

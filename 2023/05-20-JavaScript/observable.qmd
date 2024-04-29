@@ -1,0 +1,64 @@
+---
+title: "Observable"
+format: 
+  html:
+    df-print: paged
+execute:
+    eval: false
+---
+```{r}
+library(dplyr)
+data(iris)
+ojs_define(iris = iris)
+iris |> mutate(Species = as.character(Species))
+```
+if you dont transpose data looks like this 
+```{ojs}
+iris
+```
+
+transposed data looks like
+```{ojs}
+transpose(iris)
+```
+
+```{ojs}
+Plot.plot({
+  inset: 8,
+  grid: true,
+  color: {
+    legend: true,
+  },
+  marks: [
+    Plot.dot(transpose(iris),
+      {x: "Petal.Length", y: "Petal.Width"},  
+      {stroke: "Species"}
+      )
+  ]
+})
+```
+
+```{ojs}
+Plot
+  .dot(transpose(iris),
+      {x: "Petal.Length", y: "Petal.Width"},  
+      {stroke: {
+        value: "Species", scale: "color"
+        }
+      })
+  .plot({
+    color: {legend: true}
+  })
+```
+
+
+```{r}
+library(r2d3)
+r2d3(iris,
+     script = r"(
+ 
+     )"
+)
+```
+
+

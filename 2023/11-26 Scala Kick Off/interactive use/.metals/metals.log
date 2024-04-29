@@ -1,0 +1,1899 @@
+2023.12.15 20:57:23 INFO  Started: Metals version 1.2.0 in folders '/Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use' for client Visual Studio Code 1.84.1.
+2023.12.15 20:57:24 WARN  Build server is not auto-connectable.
+2023.12.15 20:57:24 WARN  no build tool detected in workspace '/Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Dec 15, 2023 8:57:30 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+WARNING: Notification threw an exception: {
+  "jsonrpc": "2.0",
+  "method": "metals/didFocusTextDocument",
+  "params": [
+    "untitled:Untitled-1"
+  ]
+}
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:67)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:152)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:220)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:187)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:65)
+	... 11 more
+Caused by: java.nio.file.FileSystemNotFoundException: Provider "untitled" not installed
+	at java.base/java.nio.file.Path.of(Path.java:212)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:131)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:187)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:684)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:681)
+	at scala.meta.internal.metals.WorkspaceLspService.didFocus(WorkspaceLspService.scala:627)
+	at scala.meta.metals.lsp.DelegatingScalaService.didFocus(DelegatingScalaService.scala:43)
+	... 16 more
+
+Dec 15, 2023 8:57:30 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+WARNING: Notification threw an exception: {
+  "jsonrpc": "2.0",
+  "method": "metals/didFocusTextDocument",
+  "params": [
+    "untitled:Untitled-1"
+  ]
+}
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:67)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:152)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:220)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:187)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:65)
+	... 11 more
+Caused by: java.nio.file.FileSystemNotFoundException: Provider "untitled" not installed
+	at java.base/java.nio.file.Path.of(Path.java:212)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:131)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:187)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:684)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:681)
+	at scala.meta.internal.metals.WorkspaceLspService.didFocus(WorkspaceLspService.scala:627)
+	at scala.meta.metals.lsp.DelegatingScalaService.didFocus(DelegatingScalaService.scala:43)
+	... 16 more
+
+Dec 15, 2023 8:57:32 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+WARNING: Notification threw an exception: {
+  "jsonrpc": "2.0",
+  "method": "metals/didFocusTextDocument",
+  "params": [
+    "untitled:Untitled-1"
+  ]
+}
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:67)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:152)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:220)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:187)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:65)
+	... 11 more
+Caused by: java.nio.file.FileSystemNotFoundException: Provider "untitled" not installed
+	at java.base/java.nio.file.Path.of(Path.java:212)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:131)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:187)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:684)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:681)
+	at scala.meta.internal.metals.WorkspaceLspService.didFocus(WorkspaceLspService.scala:627)
+	at scala.meta.metals.lsp.DelegatingScalaService.didFocus(DelegatingScalaService.scala:43)
+	... 16 more
+
+Dec 15, 2023 8:57:32 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+WARNING: Notification threw an exception: {
+  "jsonrpc": "2.0",
+  "method": "metals/didFocusTextDocument",
+  "params": [
+    "untitled:Untitled-1"
+  ]
+}
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:67)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:152)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:220)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:187)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:65)
+	... 11 more
+Caused by: java.nio.file.FileSystemNotFoundException: Provider "untitled" not installed
+	at java.base/java.nio.file.Path.of(Path.java:212)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:131)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:187)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:684)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:681)
+	at scala.meta.internal.metals.WorkspaceLspService.didFocus(WorkspaceLspService.scala:627)
+	at scala.meta.metals.lsp.DelegatingScalaService.didFocus(DelegatingScalaService.scala:43)
+	... 16 more
+
+2023.12.15 20:58:05 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+2023.12.15 20:58:12 INFO  no build target found for /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.12.15 20:58:12 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+Dec 15, 2023 8:58:12 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 6
+Dec 15, 2023 8:58:12 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 8
+2023.12.15 20:58:13 INFO  time: code lens generation in 7.79s
+2023.12.15 20:58:13 INFO  time: code lens generation in 7.03s
+2023.12.15 20:58:13 INFO  time: code lens generation in 1.21s
+2023.12.15 20:58:15 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+2023.12.15 20:58:15 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+2023.12.15 20:58:17 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+2023.12.15 21:02:34 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+2023.12.15 21:02:37 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+2023.12.15 21:05:31 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+2023.12.15 21:05:49 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+2023.12.15 21:05:55 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+2023.12.15 21:05:58 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+2023.12.15 21:08:37 INFO  time: code lens generation in 1.25s
+2023.12.15 21:08:40 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+2023.12.15 21:08:55 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+2023.12.15 21:15:39 INFO  
+2023.12.15 21:15:39 INFO  Template applied in /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/./worksheet
+2023.12.15 21:15:39 INFO  
+2023.12.15 21:15:39 INFO  time: ran 'giter8.Giter8' in 6.26s
+2023.12.15 21:43:47 INFO  Detected new build tool in /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/.bsp/sbt.json
+2023.12.15 21:43:47 INFO  Attempting to connect to the build server...
+2023.12.15 21:43:47 INFO  Detected new build tool in /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/.bsp/sbt.json
+2023.12.15 21:43:47 INFO  Attempting to connect to the build server...
+2023.12.15 21:43:47 INFO  Running BSP server List(/Users/frankliang/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.21%252B9/OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.21_9.tar.gz/jdk-11.0.21+9/Contents/Home/bin/java, -Xms100m, -Xmx100m, -classpath, /Users/frankliang/Library/Caches/Coursier/arc/https/github.com/sbt/sbt/releases/download/v1.9.8/sbt-1.9.8.zip/sbt/bin/sbt-launch.jar, -Dsbt.script=/Users/frankliang/Library/Caches/Coursier/arc/https/github.com/sbt/sbt/releases/download/v1.9.8/sbt-1.9.8.zip/sbt/bin/sbt, xsbt.boot.Boot, -bsp)
+2023.12.15 21:43:47 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.15 21:43:48 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/project/metals.sbt
+2023.12.15 21:43:48 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/project/project/metals.sbt
+2023.12.15 21:43:47 INFO  Processing workspace/reload
+2023.12.15 21:43:50 INFO  Updating 
+2023.12.15 21:43:50 INFO  Resolved  dependencies
+2023.12.15 21:43:50 INFO  Fetching artifacts of 
+2023.12.15 21:43:50 INFO  Fetched artifacts of 
+2023.12.15 21:43:50 INFO  compiling interactive-use-build-build
+2023.12.15 21:43:51 INFO  Updating 
+2023.12.15 21:43:51 INFO  Resolved  dependencies
+2023.12.15 21:43:51 INFO  Fetching artifacts of 
+2023.12.15 21:43:51 INFO  Fetched artifacts of 
+2023.12.15 21:43:51 INFO  compiling interactive-use-build
+2023.12.15 21:43:52 INFO  time: Connected to build server in 4.9s
+2023.12.15 21:43:52 INFO  Connected to Build server: sbt v1.9.8
+2023.12.15 21:43:52 INFO  Processing workspace/buildTargets
+2023.12.15 21:43:52 INFO  Processing buildTarget/scalacOptions
+2023.12.15 21:43:52 INFO  Processing buildTarget/sources
+2023.12.15 21:43:52 INFO  Processing buildTarget/dependencySources
+2023.12.15 21:43:52 INFO  Fetching artifacts of 
+2023.12.15 21:43:55 INFO  running /Users/frankliang/.jabba/jdk/openjdk@1.17.0/Contents/Home/bin/java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -Dsbt.version=1.9.7 -jar /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/sbt-launch.jar --client shutdown
+2023.12.15 21:43:56 INFO  [info] entering *experimental* thin client - BEEP WHIRR
+2023.12.15 21:43:56 INFO  Fetched artifacts of 
+2023.12.15 21:43:56 INFO  time: Imported build in 4.43s
+2023.12.15 21:43:56 INFO  [info] terminate the server with `shutdown`
+2023.12.15 21:43:56 INFO  > shutdown
+Dec 15, 2023 9:43:57 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+WARNING: Unsupported notification method: shutdown
+2023.12.15 21:43:56 INFO  [info] disconnected
+2023.12.15 21:43:56 INFO  time: ran 'Shutting down sbt server' in 2.2s
+2023.12.15 21:43:57 INFO  Running BSP server List(/Users/frankliang/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.21%252B9/OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.21_9.tar.gz/jdk-11.0.21+9/Contents/Home/bin/java, -Xms100m, -Xmx100m, -classpath, /Users/frankliang/Library/Caches/Coursier/arc/https/github.com/sbt/sbt/releases/download/v1.9.8/sbt-1.9.8.zip/sbt/bin/sbt-launch.jar, -Dsbt.script=/Users/frankliang/Library/Caches/Coursier/arc/https/github.com/sbt/sbt/releases/download/v1.9.8/sbt-1.9.8.zip/sbt/bin/sbt, xsbt.boot.Boot, -bsp)
+2023.12.15 21:43:57 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.15 21:43:58 INFO  Running BSP server List(/Users/frankliang/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.21%252B9/OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.21_9.tar.gz/jdk-11.0.21+9/Contents/Home/bin/java, -Xms100m, -Xmx100m, -classpath, /Users/frankliang/Library/Caches/Coursier/arc/https/github.com/sbt/sbt/releases/download/v1.9.8/sbt-1.9.8.zip/sbt/bin/sbt-launch.jar, -Dsbt.script=/Users/frankliang/Library/Caches/Coursier/arc/https/github.com/sbt/sbt/releases/download/v1.9.8/sbt-1.9.8.zip/sbt/bin/sbt, xsbt.boot.Boot, -bsp)
+2023.12.15 21:43:58 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.15 21:43:58 INFO  BSP server: [info] server was not detected. starting an instance
+2023.12.15 21:43:58 INFO  BSP server: [info] server was not detected. starting an instance
+2023.12.15 21:43:58 INFO  BSP server: copying runtime jar...
+2023.12.15 21:43:58 INFO  BSP server: copying runtime jar...
+2023.12.15 21:44:05 INFO  time: indexed workspace in 8.1s
+2023.12.15 21:44:05 INFO  BSP server: [info] waiting for lock on /Users/frankliang/.sbt/boot/sbt.boot.lock to be available...
+2023.12.15 21:44:06 INFO  BSP server: sbt.internal.ServerAlreadyBootingException: java.io.IOException: org.scalasbt.ipcsocket.NativeErrorException: [48] Address already in use
+2023.12.15 21:44:06 INFO  BSP server: 	at sbt.internal.BootServerSocket.newSocket(BootServerSocket.java:357)
+2023.12.15 21:44:06 INFO  BSP server: 	at sbt.internal.BootServerSocket.<init>(BootServerSocket.java:296)
+2023.12.15 21:44:06 INFO  BSP server: 	at sbt.xMain$.getSocketOrExit(Main.scala:152)
+2023.12.15 21:44:06 INFO  BSP server: 	at sbt.xMain$.bootServerSocket$lzycompute$1(Main.scala:78)
+2023.12.15 21:44:06 INFO  BSP server: 	at sbt.xMain$.bootServerSocket$1(Main.scala:78)
+2023.12.15 21:44:06 INFO  BSP server: 	at sbt.xMain$.withStreams$1(Main.scala:86)
+2023.12.15 21:44:06 INFO  BSP server: 	at sbt.xMain$.run(Main.scala:123)
+2023.12.15 21:44:06 INFO  BSP server: 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2023.12.15 21:44:06 INFO  BSP server: 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+2023.12.15 21:44:06 INFO  BSP server: 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+2023.12.15 21:44:06 INFO  BSP server: 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+2023.12.15 21:44:06 INFO  BSP server: 	at sbt.internal.XMainConfiguration.run(XMainConfiguration.java:59)
+2023.12.15 21:44:06 INFO  BSP server: 	at sbt.xMain.run(Main.scala:47)
+2023.12.15 21:44:06 INFO  BSP server: 	at xsbt.boot.Launch$.$anonfun$run$1(Launch.scala:149)
+2023.12.15 21:44:06 INFO  BSP server: 	at xsbt.boot.Launch$.withContextLoader(Launch.scala:176)
+2023.12.15 21:44:06 INFO  BSP server: 	at xsbt.boot.Launch$.run(Launch.scala:149)
+2023.12.15 21:44:06 INFO  BSP server: 	at xsbt.boot.Launch$.$anonfun$apply$1(Launch.scala:44)
+2023.12.15 21:44:06 INFO  BSP server: 	at xsbt.boot.Launch$.launch(Launch.scala:159)
+2023.12.15 21:44:06 INFO  BSP server: 	at xsbt.boot.Launch$.apply(Launch.scala:44)
+2023.12.15 21:44:06 INFO  BSP server: 	at xsbt.boot.Launch$.apply(Launch.scala:21)
+2023.12.15 21:44:06 INFO  BSP server: 	at xsbt.boot.Boot$.runImpl(Boot.scala:78)
+2023.12.15 21:44:06 INFO  BSP server: 	at xsbt.boot.Boot$.run(Boot.scala:73)
+2023.12.15 21:44:06 INFO  BSP server: 	at xsbt.boot.Boot$.main(Boot.scala:21)
+2023.12.15 21:44:06 INFO  BSP server: 	at xsbt.boot.Boot.main(Boot.scala)
+2023.12.15 21:44:06 INFO  BSP server: Caused by: java.io.IOException: org.scalasbt.ipcsocket.NativeErrorException: [48] Address already in use
+2023.12.15 21:44:06 INFO  BSP server: 	at org.scalasbt.ipcsocket.UnixDomainServerSocket.bind(UnixDomainServerSocket.java:140)
+2023.12.15 21:44:06 INFO  BSP server: 	at org.scalasbt.ipcsocket.UnixDomainServerSocket.<init>(UnixDomainServerSocket.java:114)
+2023.12.15 21:44:06 INFO  BSP server: 	at org.scalasbt.ipcsocket.UnixDomainServerSocket.<init>(UnixDomainServerSocket.java:93)
+2023.12.15 21:44:06 INFO  BSP server: 	at sbt.internal.BootServerSocket.newSocket(BootServerSocket.java:351)
+2023.12.15 21:44:06 INFO  BSP server: 	... 23 more
+2023.12.15 21:44:06 INFO  BSP server: Caused by: org.scalasbt.ipcsocket.NativeErrorException: [48] Address already in use
+2023.12.15 21:44:06 INFO  BSP server: 	at org.scalasbt.ipcsocket.JNAUnixDomainSocketLibraryProvider.bind(UnixDomainSocketLibrary.java:178)
+2023.12.15 21:44:06 INFO  BSP server: 	at org.scalasbt.ipcsocket.UnixDomainServerSocket.bind(UnixDomainServerSocket.java:136)
+2023.12.15 21:44:06 INFO  BSP server: 	... 26 more
+2023.12.15 21:44:06 INFO  BSP server: [info] Updated file /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/project/build.properties: set sbt.version to 1.9.8
+2023.12.15 21:44:07 INFO  BSP server: [info] Updated file /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/project/build.properties: set sbt.version to 1.9.8
+2023.12.15 21:44:07 INFO  BSP server: [info] welcome to sbt 1.9.8 (Oracle Corporation Java 17)
+2023.12.15 21:44:07 INFO  BSP server: [info] welcome to sbt 1.9.8 (Oracle Corporation Java 17)
+2023.12.15 21:44:07 INFO  BSP server: [info] loading settings for project interactive-use-build-build from metals.sbt ...
+2023.12.15 21:44:08 INFO  BSP server: [info] loading settings for project interactive-use-build-build from metals.sbt ...
+2023.12.15 21:44:09 INFO  time: Connected to build server in 21s
+2023.12.15 21:44:09 INFO  Connected to Build server: sbt v1.9.8
+2023.12.15 21:44:09 INFO  Connected to Build server: sbt v1.9.8
+2023.12.15 21:44:09 INFO  Processing workspace/buildTargets
+2023.12.15 21:44:09 INFO  Processing workspace/buildTargets
+2023.12.15 21:44:09 INFO  Processing buildTarget/compile
+2023.12.15 21:44:09 INFO  compiling interactive-use
+2023.12.15 21:44:09 INFO  compiling interactive-use
+2023.12.15 21:44:09 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:09 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:09 INFO  Non-compiled module 'compiler-bridge_2.12' for Scala 2.12.18. Compiling...
+2023.12.15 21:44:09 INFO  Non-compiled module 'compiler-bridge_2.12' for Scala 2.12.18. Compiling...
+2023.12.15 21:44:15 INFO    Compilation completed in 5.25s.
+2023.12.15 21:44:15 INFO    Compilation completed in 5.25s.
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:15 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:15 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:15 ERROR @main def helloInteractive() =
+2023.12.15 21:44:15 ERROR @main def helloInteractive() =
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:15 ERROR   val name = readLine() // 
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:15 ERROR   val name = readLine() // 
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:15 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:15 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR four errors found
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR four errors found
+2023.12.15 21:44:15 INFO  time: compiled interactive-use in 6.39s
+2023.12.15 21:44:15 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:15 INFO  compiling interactive-use
+2023.12.15 21:44:15 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:15 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:15 ERROR @main def helloInteractive() =
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:15 ERROR   val name = readLine() // 
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:15 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR four errors found
+2023.12.15 21:44:15 INFO  time: compiled interactive-use in 43ms
+2023.12.15 21:44:15 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:15 INFO  Processing buildTarget/jvmRunEnvironment
+2023.12.15 21:44:15 INFO  compiling interactive-use
+2023.12.15 21:44:15 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:15 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:15 ERROR @main def helloInteractive() =
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:15 ERROR   val name = readLine() // 
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:15 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR four errors found
+2023.12.15 21:44:15 INFO  time: compiled interactive-use in 22ms
+2023.12.15 21:44:16 INFO  Cancelling compilation on sbt server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:44:15 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:15 INFO  compiling interactive-use
+2023.12.15 21:44:15 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:15 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:15 ERROR @main def helloInteractive() =
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:15 ERROR   val name = readLine() // 
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:15 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR four errors found
+2023.12.15 21:44:15 INFO  time: compiled interactive-use in 41ms
+2023.12.15 21:44:15 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:15 INFO  Processing buildTarget/scalaTestClasses
+2023.12.15 21:44:16 INFO  sbt should support `buildTarget/jvmRunEnvironment`, but it fails.
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:44:15 INFO  compiling interactive-use
+2023.12.15 21:44:15 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:15 INFO  time: compiled interactive-use in 3ms
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:15 INFO  compiling interactive-use
+2023.12.15 21:44:15 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:15 ERROR @main def helloInteractive() =
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:15 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:15 ERROR   val name = readLine() // 
+2023.12.15 21:44:15 ERROR @main def helloInteractive() =
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:15 ERROR   val name = readLine() // 
+2023.12.15 21:44:15 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR four errors found
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:15 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR four errors found
+2023.12.15 21:44:15 INFO  time: compiled interactive-use in 42ms
+2023.12.15 21:44:15 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:15 INFO  Processing buildTarget/scalacOptions
+2023.12.15 21:44:15 INFO  Processing buildTarget/scalaMainClasses
+2023.12.15 21:44:15 INFO  compiling interactive-use
+2023.12.15 21:44:15 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:15 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:15 ERROR @main def helloInteractive() =
+2023.12.15 21:44:15 ERROR       ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:15 ERROR   val name = readLine() // 
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:15 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:15 ERROR   ^
+2023.12.15 21:44:15 ERROR four errors found
+2023.12.15 21:44:15 INFO  Processing buildTarget/sources
+2023.12.15 21:44:15 INFO  Processing buildTarget/dependencySources
+2023.12.15 21:44:15 INFO  time: compiled interactive-use in 48ms
+2023.12.15 21:44:15 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:15 INFO  Processing buildTarget/scalacOptions
+2023.12.15 21:44:16 INFO  Scala main classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:44:16 INFO  time: Imported build in 6.92s
+2023.12.15 21:44:15 INFO  Processing buildTarget/sources
+2023.12.15 21:44:15 INFO  Processing buildTarget/scalaMainClasses
+2023.12.15 21:44:15 INFO  compiling interactive-use
+2023.12.15 21:44:15 INFO  compiling interactive-use
+2023.12.15 21:44:15 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:15 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:16 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:16 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:16 ERROR       ^
+2023.12.15 21:44:16 ERROR       ^
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:16 ERROR @main def helloInteractive() =
+2023.12.15 21:44:16 ERROR       ^
+2023.12.15 21:44:16 ERROR @main def helloInteractive() =
+2023.12.15 21:44:16 ERROR       ^
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:16 ERROR   val name = readLine() // 
+2023.12.15 21:44:16 ERROR   val name = readLine() // 
+2023.12.15 21:44:16 ERROR   ^
+2023.12.15 21:44:16 ERROR   ^
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:16 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:16 ERROR   ^
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:16 ERROR four errors found
+2023.12.15 21:44:16 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:16 ERROR   ^
+2023.12.15 21:44:16 ERROR four errors found
+2023.12.15 21:44:16 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:16 INFO  Processing buildTarget/scalaTestClasses
+2023.12.15 21:44:16 INFO  Scala main classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:44:16 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:16 INFO  compiling interactive-use
+2023.12.15 21:44:16 INFO  compiling interactive-use
+2023.12.15 21:44:16 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:16 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:16 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:16 ERROR       ^
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:16 ERROR @main def helloInteractive() =
+2023.12.15 21:44:16 ERROR       ^
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:16 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:16 ERROR       ^
+2023.12.15 21:44:16 ERROR   val name = readLine() // 
+2023.12.15 21:44:16 ERROR   ^
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:16 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:16 ERROR   ^
+2023.12.15 21:44:16 ERROR four errors found
+2023.12.15 21:44:16 ERROR @main def helloInteractive() =
+2023.12.15 21:44:16 ERROR       ^
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:16 ERROR   val name = readLine() // 
+2023.12.15 21:44:16 ERROR   ^
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:16 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:16 ERROR   ^
+2023.12.15 21:44:16 ERROR four errors found
+2023.12.15 21:44:16 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:16 INFO  compiling interactive-use
+2023.12.15 21:44:16 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:16 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:16 INFO  Processing buildTarget/jvmRunEnvironment
+2023.12.15 21:44:16 INFO  Scala test classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:44:16 INFO  compiling interactive-use
+2023.12.15 21:44:16 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:16 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:16 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:16 ERROR       ^
+2023.12.15 21:44:16 ERROR       ^
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:16 ERROR @main def helloInteractive() =
+2023.12.15 21:44:16 ERROR @main def helloInteractive() =
+2023.12.15 21:44:16 ERROR       ^
+2023.12.15 21:44:16 ERROR       ^
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:16 ERROR   val name = readLine() // 
+2023.12.15 21:44:16 ERROR   val name = readLine() // 
+2023.12.15 21:44:16 ERROR   ^
+2023.12.15 21:44:16 ERROR   ^
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:16 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:16 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:16 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:16 ERROR   ^
+2023.12.15 21:44:16 ERROR   ^
+2023.12.15 21:44:16 ERROR four errors found
+2023.12.15 21:44:16 ERROR four errors found
+2023.12.15 21:44:16 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:16 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:16 INFO  Processing buildTarget/dependencySources
+2023.12.15 21:44:17 INFO  sbt should support `buildTarget/jvmRunEnvironment`, but it fails.
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:44:17 INFO  time: Imported build in 7.83s
+2023.12.15 21:44:19 INFO  compiling interactive-use
+2023.12.15 21:44:19 INFO  compiling interactive-use
+2023.12.15 21:44:19 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:19 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:19 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:19 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:19 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:19 ERROR       ^
+2023.12.15 21:44:19 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:19 ERROR       ^
+2023.12.15 21:44:19 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:19 ERROR @main def helloInteractive() =
+2023.12.15 21:44:19 ERROR       ^
+2023.12.15 21:44:19 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:19 ERROR @main def helloInteractive() =
+2023.12.15 21:44:19 ERROR       ^
+2023.12.15 21:44:19 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:19 ERROR   val name = readLine() // 
+2023.12.15 21:44:19 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:19 ERROR   ^
+2023.12.15 21:44:19 ERROR   val name = readLine() // 
+2023.12.15 21:44:19 ERROR   ^
+2023.12.15 21:44:19 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:19 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:19 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:19 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:19 ERROR   ^
+2023.12.15 21:44:19 ERROR   ^
+2023.12.15 21:44:19 ERROR four errors found
+2023.12.15 21:44:19 ERROR four errors found
+2023.12.15 21:44:19 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:19 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:21 INFO  time: indexed workspace in 4.61s
+2023.12.15 21:44:21 WARN  sbt does not support `buildTarget/inverseSources`, unable to fetch targets owning source.
+2023.12.15 21:44:21 WARN  sbt does not support `buildTarget/inverseSources`, unable to fetch targets owning source.
+2023.12.15 21:44:21 WARN  sbt does not support `buildTarget/inverseSources`, unable to fetch targets owning source.
+2023.12.15 21:44:21 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala
+2023.12.15 21:44:21 WARN  no build target for: /private/var/folders/r5/1cdq52mn21zdnqzl0fvp44zw0000gn/T/metals14229786535018658159Main7142307107601208116.scala
+2023.12.15 21:44:21 WARN  no build target for: /private/var/folders/r5/1cdq52mn21zdnqzl0fvp44zw0000gn/T/metals14229786535018658159Main7142307107601208116.scala
+2023.12.15 21:44:21 WARN  sbt does not support `buildTarget/inverseSources`, unable to fetch targets owning source.
+2023.12.15 21:44:21 WARN  no build target for: /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/.metals/.tmp/Main7142307107601208116.scala
+2023.12.15 21:44:21 INFO  no build target found for /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.12.15 21:44:21 INFO  time: code lens generation in 5.37s
+2023.12.15 21:44:26 INFO  time: indexed workspace in 4.63s
+2023.12.15 21:44:26 INFO  Processing buildTarget/scalaTestClasses
+2023.12.15 21:44:26 INFO  no build target found for /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:26 INFO  time: compiled interactive-use in 0.22s
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 INFO  Processing buildTarget/jvmRunEnvironment
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:26 INFO  time: compiled interactive-use in 72ms
+2023.12.15 21:44:26 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:26 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:26 INFO  Processing buildTarget/scalaMainClasses
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:27 INFO  sbt should support `buildTarget/jvmRunEnvironment`, but it fails.
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:44:26 INFO  time: compiled interactive-use in 11ms
+2023.12.15 21:44:27 INFO  Scala main classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:44:26 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:26 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:26 INFO  Processing buildTarget/compile
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:26 INFO  time: compiled interactive-use in 22ms
+2023.12.15 21:44:26 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:26 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:26 INFO  Cancelling compilation on sbt server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:44:26 INFO  Processing buildTarget/scalaTestClasses
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:26 INFO  time: compiled interactive-use in 38ms
+2023.12.15 21:44:26 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 INFO  time: compiled interactive-use in 7ms
+2023.12.15 21:44:26 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:27 INFO  Scala test classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 INFO  Processing buildTarget/jvmRunEnvironment
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:26 INFO  time: compiled interactive-use in 0.1s
+2023.12.15 21:44:26 INFO  sbt should support `buildTarget/jvmRunEnvironment`, but it fails.
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:44:26 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:26 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:26 INFO  Processing buildTarget/scalaMainClasses
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 INFO  compiling interactive-use
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR @main def helloInteractive() =
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR       ^
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   val name = readLine() // 
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR   ^
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:26 ERROR four errors found
+2023.12.15 21:44:26 INFO  time: compiled interactive-use in 33ms
+2023.12.15 21:44:26 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:26 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:44:27 INFO  Scala main classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:44:28 INFO  time: code lens generation in 10s
+2023.12.15 21:44:28 INFO  time: code lens generation in 7.04s
+2023.12.15 21:45:01 INFO  compiling interactive-use
+2023.12.15 21:45:01 INFO  Processing buildTarget/compile
+2023.12.15 21:45:01 INFO  compiling interactive-use
+2023.12.15 21:45:01 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:01 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:01 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:01 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:01 ERROR @main def helloInteractive() =
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:01 ERROR @main def helloInteractive() =
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:01 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:01 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:01 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:01 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR four errors found
+2023.12.15 21:45:01 ERROR four errors found
+2023.12.15 21:45:01 INFO  time: compiled interactive-use in 38ms
+2023.12.15 21:45:01 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:45:01 INFO  Cancelling compilation on sbt server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:01 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:45:01 INFO  Processing buildTarget/scalaTestClasses
+2023.12.15 21:45:01 INFO  compiling interactive-use
+2023.12.15 21:45:01 INFO  compiling interactive-use
+2023.12.15 21:45:01 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:01 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:01 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:01 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:01 ERROR @main def helloInteractive() =
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR @main def helloInteractive() =
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:01 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:01 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:01 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR four errors found
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:01 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR four errors found
+2023.12.15 21:45:01 INFO  time: compiled interactive-use in 43ms
+2023.12.15 21:45:01 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:45:01 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:45:01 INFO  Scala test classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:01 INFO  Processing buildTarget/scalaMainClasses
+2023.12.15 21:45:01 INFO  compiling interactive-use
+2023.12.15 21:45:01 INFO  compiling interactive-use
+2023.12.15 21:45:01 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:01 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:01 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:01 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:01 ERROR @main def helloInteractive() =
+2023.12.15 21:45:01 ERROR @main def helloInteractive() =
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:01 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:01 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:01 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR four errors found
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:01 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR four errors found
+2023.12.15 21:45:01 INFO  time: compiled interactive-use in 50ms
+2023.12.15 21:45:01 INFO  Scala main classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:01 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:45:01 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:45:01 INFO  Processing buildTarget/jvmRunEnvironment
+2023.12.15 21:45:01 INFO  compiling interactive-use
+2023.12.15 21:45:01 INFO  compiling interactive-use
+2023.12.15 21:45:01 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:01 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:01 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:01 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:01 ERROR @main def helloInteractive() =
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:01 ERROR @main def helloInteractive() =
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR       ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:01 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:01 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR four errors found
+2023.12.15 21:45:01 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:01 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:01 ERROR   ^
+2023.12.15 21:45:01 ERROR four errors found
+2023.12.15 21:45:01 INFO  time: compiled interactive-use in 72ms
+2023.12.15 21:45:01 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:45:01 ERROR (Compile / [31mcompileIncremental[0m) Compilation failed
+2023.12.15 21:45:01 INFO  sbt should support `buildTarget/jvmRunEnvironment`, but it fails.
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / [31mcompileIncremental[0m) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+Dec 15, 2023 9:45:03 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+WARNING: Unsupported notification method: shutdown
+Dec 15, 2023 9:45:03 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+WARNING: Unsupported notification method: shutdown
+2023.12.15 21:45:04 INFO  Running BSP server List(/Users/frankliang/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.21%252B9/OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.21_9.tar.gz/jdk-11.0.21+9/Contents/Home/bin/java, -Xms100m, -Xmx100m, -classpath, /Users/frankliang/Library/Caches/Coursier/arc/https/github.com/sbt/sbt/releases/download/v1.9.8/sbt-1.9.8.zip/sbt/bin/sbt-launch.jar, -Dsbt.script=/Users/frankliang/Library/Caches/Coursier/arc/https/github.com/sbt/sbt/releases/download/v1.9.8/sbt-1.9.8.zip/sbt/bin/sbt, xsbt.boot.Boot, -bsp)
+2023.12.15 21:45:04 INFO  Running BSP server List(/Users/frankliang/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.21%252B9/OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.21_9.tar.gz/jdk-11.0.21+9/Contents/Home/bin/java, -Xms100m, -Xmx100m, -classpath, /Users/frankliang/Library/Caches/Coursier/arc/https/github.com/sbt/sbt/releases/download/v1.9.8/sbt-1.9.8.zip/sbt/bin/sbt-launch.jar, -Dsbt.script=/Users/frankliang/Library/Caches/Coursier/arc/https/github.com/sbt/sbt/releases/download/v1.9.8/sbt-1.9.8.zip/sbt/bin/sbt, xsbt.boot.Boot, -bsp)
+2023.12.15 21:45:04 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.15 21:45:04 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/.metals/bsp.trace.json or /Users/frankliang/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.12.15 21:45:04 INFO  BSP server: [info] waiting for lock on /Users/frankliang/.sbt/boot/sbt.boot.lock to be available...
+2023.12.15 21:45:04 INFO  BSP server: [info] server was not detected. starting an instance
+2023.12.15 21:45:04 INFO  BSP server: [info] server was not detected. starting an instance
+2023.12.15 21:45:05 INFO  BSP server: [info] waiting for lock on /Users/frankliang/.sbt/boot/sbt.boot.lock to be available...
+2023.12.15 21:45:07 INFO  BSP server: sbt.internal.ServerAlreadyBootingException: java.io.IOException: org.scalasbt.ipcsocket.NativeErrorException: [48] Address already in use
+2023.12.15 21:45:07 INFO  BSP server: 	at sbt.internal.BootServerSocket.newSocket(BootServerSocket.java:357)
+2023.12.15 21:45:07 INFO  BSP server: 	at sbt.internal.BootServerSocket.<init>(BootServerSocket.java:296)
+2023.12.15 21:45:07 INFO  BSP server: 	at sbt.xMain$.getSocketOrExit(Main.scala:152)
+2023.12.15 21:45:07 INFO  BSP server: 	at sbt.xMain$.bootServerSocket$lzycompute$1(Main.scala:78)
+2023.12.15 21:45:07 INFO  BSP server: 	at sbt.xMain$.bootServerSocket$1(Main.scala:78)
+2023.12.15 21:45:07 INFO  BSP server: 	at sbt.xMain$.withStreams$1(Main.scala:86)
+2023.12.15 21:45:07 INFO  BSP server: 	at sbt.xMain$.run(Main.scala:123)
+2023.12.15 21:45:07 INFO  BSP server: 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2023.12.15 21:45:07 INFO  BSP server: 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+2023.12.15 21:45:07 INFO  BSP server: 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+2023.12.15 21:45:07 INFO  BSP server: 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+2023.12.15 21:45:07 INFO  BSP server: 	at sbt.internal.XMainConfiguration.run(XMainConfiguration.java:59)
+2023.12.15 21:45:07 INFO  BSP server: 	at sbt.xMain.run(Main.scala:47)
+2023.12.15 21:45:07 INFO  BSP server: 	at xsbt.boot.Launch$.$anonfun$run$1(Launch.scala:149)
+2023.12.15 21:45:07 INFO  BSP server: 	at xsbt.boot.Launch$.withContextLoader(Launch.scala:176)
+2023.12.15 21:45:07 INFO  BSP server: 	at xsbt.boot.Launch$.run(Launch.scala:149)
+2023.12.15 21:45:07 INFO  BSP server: 	at xsbt.boot.Launch$.$anonfun$apply$1(Launch.scala:44)
+2023.12.15 21:45:07 INFO  BSP server: 	at xsbt.boot.Launch$.launch(Launch.scala:159)
+2023.12.15 21:45:07 INFO  BSP server: 	at xsbt.boot.Launch$.apply(Launch.scala:44)
+2023.12.15 21:45:07 INFO  BSP server: 	at xsbt.boot.Launch$.apply(Launch.scala:21)
+2023.12.15 21:45:07 INFO  BSP server: 	at xsbt.boot.Boot$.runImpl(Boot.scala:78)
+2023.12.15 21:45:07 INFO  BSP server: 	at xsbt.boot.Boot$.run(Boot.scala:73)
+2023.12.15 21:45:07 INFO  BSP server: 	at xsbt.boot.Boot$.main(Boot.scala:21)
+2023.12.15 21:45:07 INFO  BSP server: 	at xsbt.boot.Boot.main(Boot.scala)
+2023.12.15 21:45:07 INFO  BSP server: Caused by: java.io.IOException: org.scalasbt.ipcsocket.NativeErrorException: [48] Address already in use
+2023.12.15 21:45:07 INFO  BSP server: 	at org.scalasbt.ipcsocket.UnixDomainServerSocket.bind(UnixDomainServerSocket.java:140)
+2023.12.15 21:45:07 INFO  BSP server: 	at org.scalasbt.ipcsocket.UnixDomainServerSocket.<init>(UnixDomainServerSocket.java:114)
+2023.12.15 21:45:07 INFO  BSP server: 	at org.scalasbt.ipcsocket.UnixDomainServerSocket.<init>(UnixDomainServerSocket.java:93)
+2023.12.15 21:45:07 INFO  BSP server: 	at sbt.internal.BootServerSocket.newSocket(BootServerSocket.java:351)
+2023.12.15 21:45:07 INFO  BSP server: 	... 23 more
+2023.12.15 21:45:07 INFO  BSP server: Caused by: org.scalasbt.ipcsocket.NativeErrorException: [48] Address already in use
+2023.12.15 21:45:07 INFO  BSP server: 	at org.scalasbt.ipcsocket.JNAUnixDomainSocketLibraryProvider.bind(UnixDomainSocketLibrary.java:178)
+2023.12.15 21:45:07 INFO  BSP server: 	at org.scalasbt.ipcsocket.UnixDomainServerSocket.bind(UnixDomainServerSocket.java:136)
+2023.12.15 21:45:07 INFO  BSP server: 	... 26 more
+2023.12.15 21:45:07 INFO  BSP server: [info] welcome to sbt 1.9.8 (Oracle Corporation Java 17)
+2023.12.15 21:45:07 INFO  BSP server: [info] welcome to sbt 1.9.8 (Oracle Corporation Java 17)
+2023.12.15 21:45:07 INFO  BSP server: [info] loading settings for project interactive-use-build-build from metals.sbt ...
+2023.12.15 21:45:08 INFO  BSP server: [info] loading settings for project interactive-use-build-build from metals.sbt ...
+2023.12.15 21:45:10 INFO  BSP server: [info] loading project definition from /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/project/project
+2023.12.15 21:45:10 INFO  BSP server: [info] loading project definition from /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/project/project
+2023.12.15 21:45:12 INFO  BSP server: [info] loading settings for project interactive-use-build from metals.sbt ...
+2023.12.15 21:45:12 INFO  BSP server: [info] loading settings for project interactive-use-build from metals.sbt ...
+2023.12.15 21:45:12 INFO  BSP server: [info] loading project definition from /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/project
+2023.12.15 21:45:12 INFO  BSP server: [info] loading project definition from /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/project
+2023.12.15 21:45:13 INFO  BSP server: [info] set current project to interactive-use (in build file:/Users/frankliang/Dropbox/Personal/code/Pet%20Project/11-26%20Scala%20Kick%20Off/interactive%20use/)
+2023.12.15 21:45:13 INFO  BSP server: [info] set current project to interactive-use (in build file:/Users/frankliang/Dropbox/Personal/code/Pet%20Project/11-26%20Scala%20Kick%20Off/interactive%20use/)
+2023.12.15 21:45:13 INFO  BSP server: [info] sbt server started at local:///Users/frankliang/.sbt/1.0/server/28e126a83c1a270fb600/sock
+2023.12.15 21:45:13 INFO  BSP server: [info] sbt server started at local:///Users/frankliang/.sbt/1.0/server/28e126a83c1a270fb600/sock
+2023.12.15 21:45:13 INFO  BSP server: [info] started sbt server
+2023.12.15 21:45:13 INFO  BSP server: [info] started sbt server
+2023.12.15 21:45:14 INFO  Connected to Build server: sbt v1.9.8
+2023.12.15 21:45:14 INFO  Connected to Build server: sbt v1.9.8
+2023.12.15 21:45:14 INFO  Processing workspace/buildTargets
+2023.12.15 21:45:14 INFO  Processing workspace/buildTargets
+2023.12.15 21:45:14 INFO  Processing buildTarget/scalacOptions
+2023.12.15 21:45:14 INFO  Processing buildTarget/scalacOptions
+2023.12.15 21:45:14 INFO  Processing buildTarget/sources
+2023.12.15 21:45:14 INFO  Processing buildTarget/sources
+2023.12.15 21:45:14 INFO  Processing buildTarget/dependencySources
+2023.12.15 21:45:15 INFO  time: Imported build in 1.23s
+2023.12.15 21:45:14 INFO  Processing buildTarget/dependencySources
+2023.12.15 21:45:15 INFO  time: Imported build in 1.32s
+2023.12.15 21:45:19 INFO  time: indexed workspace in 4.34s
+2023.12.15 21:45:19 INFO  Processing buildTarget/scalaMainClasses
+2023.12.15 21:45:19 INFO  compiling interactive-use
+2023.12.15 21:45:19 INFO  compiling interactive-use
+2023.12.15 21:45:19 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:19 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:19 INFO  time: indexed workspace in 4.59s
+2023.12.15 21:45:19 INFO  Non-compiled module 'compiler-bridge_2.12' for Scala 2.12.18. Compiling...
+2023.12.15 21:45:19 INFO  Non-compiled module 'compiler-bridge_2.12' for Scala 2.12.18. Compiling...
+2023.12.15 21:45:44 INFO    Compilation completed in 23.996s.
+2023.12.15 21:45:44 INFO    Compilation completed in 23.996s.
+2023.12.15 21:45:44 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:44 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:44 ERROR       ^
+2023.12.15 21:45:44 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:44 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:44 ERROR       ^
+2023.12.15 21:45:44 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:44 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:44 ERROR @main def helloInteractive() =
+2023.12.15 21:45:44 ERROR @main def helloInteractive() =
+2023.12.15 21:45:44 ERROR       ^
+2023.12.15 21:45:44 ERROR       ^
+2023.12.15 21:45:44 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:44 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:44 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:44 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:44 ERROR   ^
+2023.12.15 21:45:44 ERROR   ^
+2023.12.15 21:45:44 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:44 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:44 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:44 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:44 ERROR   ^
+2023.12.15 21:45:44 ERROR   ^
+2023.12.15 21:45:44 ERROR four errors found
+2023.12.15 21:45:44 ERROR four errors found
+2023.12.15 21:45:44 INFO  time: compiled interactive-use in 25s
+2023.12.15 21:45:44 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:45 INFO  Scala main classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / compileIncremental) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:44 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:45 INFO  Processing buildTarget/scalaTestClasses
+2023.12.15 21:45:45 INFO  compiling interactive-use
+2023.12.15 21:45:45 INFO  compiling interactive-use
+2023.12.15 21:45:45 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:45 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:45 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:45 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:45 ERROR       ^
+2023.12.15 21:45:45 ERROR       ^
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:45 ERROR @main def helloInteractive() =
+2023.12.15 21:45:45 ERROR @main def helloInteractive() =
+2023.12.15 21:45:45 ERROR       ^
+2023.12.15 21:45:45 ERROR       ^
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:45 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:45 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:45 ERROR   ^
+2023.12.15 21:45:45 ERROR   ^
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:45 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:45 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:45 ERROR   ^
+2023.12.15 21:45:45 ERROR   ^
+2023.12.15 21:45:45 ERROR four errors found
+2023.12.15 21:45:45 ERROR four errors found
+2023.12.15 21:45:45 INFO  time: compiled interactive-use in 0.24s
+2023.12.15 21:45:45 INFO  Processing buildTarget/jvmRunEnvironment
+2023.12.15 21:45:45 INFO  compiling interactive-use
+2023.12.15 21:45:45 INFO  compiling interactive-use
+2023.12.15 21:45:45 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:45 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:45 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:45 ERROR       ^
+2023.12.15 21:45:45 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:45 ERROR       ^
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:45 ERROR @main def helloInteractive() =
+2023.12.15 21:45:45 ERROR @main def helloInteractive() =
+2023.12.15 21:45:45 ERROR       ^
+2023.12.15 21:45:45 ERROR       ^
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:45 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:45 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:45 ERROR   ^
+2023.12.15 21:45:45 ERROR   ^
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:45 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:45 ERROR   ^
+2023.12.15 21:45:45 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:45 ERROR   ^
+2023.12.15 21:45:45 ERROR four errors found
+2023.12.15 21:45:45 ERROR four errors found
+2023.12.15 21:45:45 INFO  time: compiled interactive-use in 0.1s
+2023.12.15 21:45:46 INFO  sbt should support `buildTarget/jvmRunEnvironment`, but it fails.
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / compileIncremental) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:45 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:45 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:45 INFO  Processing buildTarget/compile
+2023.12.15 21:45:45 INFO  compiling interactive-use
+2023.12.15 21:45:45 INFO  compiling interactive-use
+2023.12.15 21:45:45 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:45 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:45 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:46 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:45 ERROR       ^
+2023.12.15 21:45:46 ERROR       ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:46 ERROR @main def helloInteractive() =
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:46 ERROR       ^
+2023.12.15 21:45:45 ERROR @main def helloInteractive() =
+2023.12.15 21:45:45 ERROR       ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:46 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:45 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:46 ERROR   ^
+2023.12.15 21:45:45 ERROR   ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:45 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:46 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:45 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:46 ERROR   ^
+2023.12.15 21:45:45 ERROR   ^
+2023.12.15 21:45:46 ERROR four errors found
+2023.12.15 21:45:45 ERROR four errors found
+2023.12.15 21:45:45 INFO  time: compiled interactive-use in 0.19s
+2023.12.15 21:45:46 INFO  Cancelling compilation on sbt server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / compileIncremental) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:46 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:45 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:46 INFO  Processing buildTarget/scalaMainClasses
+2023.12.15 21:45:46 INFO  compiling interactive-use
+2023.12.15 21:45:46 INFO  compiling interactive-use
+2023.12.15 21:45:46 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:46 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:46 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:46 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:46 ERROR       ^
+2023.12.15 21:45:46 ERROR       ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:46 ERROR @main def helloInteractive() =
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:46 ERROR       ^
+2023.12.15 21:45:46 ERROR @main def helloInteractive() =
+2023.12.15 21:45:46 ERROR       ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:46 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:46 ERROR   ^
+2023.12.15 21:45:46 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:46 ERROR   ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:46 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:46 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:46 ERROR   ^
+2023.12.15 21:45:46 ERROR   ^
+2023.12.15 21:45:46 ERROR four errors found
+2023.12.15 21:45:46 ERROR four errors found
+2023.12.15 21:45:46 INFO  time: compiled interactive-use in 0.16s
+2023.12.15 21:45:46 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:46 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:47 INFO  Scala main classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / compileIncremental) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:46 INFO  Processing buildTarget/scalaTestClasses
+2023.12.15 21:45:46 INFO  compiling interactive-use
+2023.12.15 21:45:46 INFO  compiling interactive-use
+2023.12.15 21:45:46 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:46 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:46 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:46 ERROR       ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:46 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:46 ERROR       ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:46 ERROR @main def helloInteractive() =
+2023.12.15 21:45:46 ERROR @main def helloInteractive() =
+2023.12.15 21:45:46 ERROR       ^
+2023.12.15 21:45:46 ERROR       ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:46 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:46 ERROR   ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:46 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:46 ERROR   ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:46 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:46 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:46 ERROR   ^
+2023.12.15 21:45:46 ERROR   ^
+2023.12.15 21:45:46 ERROR four errors found
+2023.12.15 21:45:46 ERROR four errors found
+2023.12.15 21:45:46 INFO  time: compiled interactive-use in 0.11s
+2023.12.15 21:45:46 INFO  Processing buildTarget/jvmRunEnvironment
+2023.12.15 21:45:46 INFO  compiling interactive-use
+2023.12.15 21:45:46 INFO  compiling interactive-use
+2023.12.15 21:45:46 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:46 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:46 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:46 ERROR       ^
+2023.12.15 21:45:47 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:46 ERROR @main def helloInteractive() =
+2023.12.15 21:45:46 ERROR       ^
+2023.12.15 21:45:47 ERROR @main def helloInteractive() =
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:46 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:47 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:46 ERROR   ^
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:46 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:46 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:47 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:46 ERROR   ^
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:46 ERROR four errors found
+2023.12.15 21:45:47 ERROR four errors found
+2023.12.15 21:45:47 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:47 INFO  sbt should support `buildTarget/jvmRunEnvironment`, but it fails.
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / compileIncremental) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:46 INFO  time: compiled interactive-use in 0.21s
+2023.12.15 21:45:46 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:47 INFO  Processing buildTarget/compile
+2023.12.15 21:45:47 INFO  compiling interactive-use
+2023.12.15 21:45:47 INFO  compiling interactive-use
+2023.12.15 21:45:47 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:47 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:47 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:47 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:47 ERROR @main def helloInteractive() =
+2023.12.15 21:45:47 ERROR @main def helloInteractive() =
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:47 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:47 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR four errors found
+2023.12.15 21:45:47 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR four errors found
+2023.12.15 21:45:47 INFO  time: compiled interactive-use in 0.18s
+2023.12.15 21:45:47 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:47 INFO  Cancelling compilation on sbt server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / compileIncremental) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:47 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:47 INFO  Processing buildTarget/jvmRunEnvironment
+2023.12.15 21:45:47 INFO  compiling interactive-use
+2023.12.15 21:45:47 INFO  compiling interactive-use
+2023.12.15 21:45:47 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:47 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:47 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:47 ERROR @main def helloInteractive() =
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR @main def helloInteractive() =
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:47 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:47 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:47 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:47 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR four errors found
+2023.12.15 21:45:47 ERROR four errors found
+2023.12.15 21:45:47 INFO  time: compiled interactive-use in 74ms
+2023.12.15 21:45:47 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:47 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:47 INFO  sbt should support `buildTarget/jvmRunEnvironment`, but it fails.
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / compileIncremental) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:47 INFO  Processing buildTarget/scalaMainClasses
+2023.12.15 21:45:47 INFO  compiling interactive-use
+2023.12.15 21:45:47 INFO  compiling interactive-use
+2023.12.15 21:45:47 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:47 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:47 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:47 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:47 ERROR @main def helloInteractive() =
+2023.12.15 21:45:47 ERROR @main def helloInteractive() =
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:47 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:47 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR four errors found
+2023.12.15 21:45:47 ERROR four errors found
+2023.12.15 21:45:47 INFO  time: compiled interactive-use in 62ms
+2023.12.15 21:45:47 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:47 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:48 INFO  Scala main classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / compileIncremental) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:47 INFO  Processing buildTarget/scalaTestClasses
+2023.12.15 21:45:47 INFO  compiling interactive-use
+2023.12.15 21:45:47 INFO  compiling interactive-use
+2023.12.15 21:45:47 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:47 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:47 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:47 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:47 ERROR @main def helloInteractive() =
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:47 ERROR @main def helloInteractive() =
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:47 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:47 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:47 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:47 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:47 ERROR four errors found
+2023.12.15 21:45:47 ERROR four errors found
+2023.12.15 21:45:47 INFO  time: compiled interactive-use in 62ms
+2023.12.15 21:45:47 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:47 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:48 INFO  Scala test classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / compileIncremental) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:47 INFO  Processing buildTarget/scalaMainClasses
+2023.12.15 21:45:47 INFO  compiling interactive-use
+2023.12.15 21:45:47 INFO  compiling interactive-use
+2023.12.15 21:45:47 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:47 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:48 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:47 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:48 ERROR       ^
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:48 ERROR @main def helloInteractive() =
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:48 ERROR       ^
+2023.12.15 21:45:47 ERROR @main def helloInteractive() =
+2023.12.15 21:45:47 ERROR       ^
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:47 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:48 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:48 ERROR   ^
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:47 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:47 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:48 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:48 ERROR   ^
+2023.12.15 21:45:47 ERROR   ^
+2023.12.15 21:45:48 ERROR four errors found
+2023.12.15 21:45:47 ERROR four errors found
+2023.12.15 21:45:47 INFO  time: compiled interactive-use in 0.12s
+2023.12.15 21:45:47 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:48 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:48 INFO  Scala main classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / compileIncremental) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:48 INFO  Processing buildTarget/jvmRunEnvironment
+2023.12.15 21:45:47 INFO  compiling interactive-use
+2023.12.15 21:45:48 INFO  compiling interactive-use
+2023.12.15 21:45:48 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:48 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:48 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:48 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:48 ERROR       ^
+2023.12.15 21:45:48 ERROR       ^
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:48 ERROR @main def helloInteractive() =
+2023.12.15 21:45:48 ERROR @main def helloInteractive() =
+2023.12.15 21:45:48 ERROR       ^
+2023.12.15 21:45:48 ERROR       ^
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:48 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:48 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:48 ERROR   ^
+2023.12.15 21:45:48 ERROR   ^
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:48 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:48 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:48 ERROR   ^
+2023.12.15 21:45:48 ERROR   ^
+2023.12.15 21:45:48 ERROR four errors found
+2023.12.15 21:45:48 ERROR four errors found
+2023.12.15 21:45:48 INFO  time: compiled interactive-use in 0.18s
+2023.12.15 21:45:49 INFO  sbt should support `buildTarget/jvmRunEnvironment`, but it fails.
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / compileIncremental) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:45:48 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:48 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:48 INFO  Processing buildTarget/scalaTestClasses
+2023.12.15 21:45:48 INFO  compiling interactive-use
+2023.12.15 21:45:48 INFO  compiling interactive-use
+2023.12.15 21:45:48 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:48 INFO  compiling 1 Scala source to /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/target/scala-2.12/classes ...
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:1:7: expected start of definition
+2023.12.15 21:45:48 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:48 ERROR @main def hello() = println("Hello, World!")
+2023.12.15 21:45:48 ERROR       ^
+2023.12.15 21:45:48 ERROR       ^
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:48 ERROR @main def helloInteractive() =
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:7:7: expected start of definition
+2023.12.15 21:45:48 ERROR       ^
+2023.12.15 21:45:48 ERROR @main def helloInteractive() =
+2023.12.15 21:45:48 ERROR       ^
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:48 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:9:3: expected class or object definition
+2023.12.15 21:45:48 ERROR   ^
+2023.12.15 21:45:48 ERROR   val name = readLine() // val is immutable var is not mutable
+2023.12.15 21:45:48 ERROR   ^
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:48 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:48 ERROR /Users/frankliang/Dropbox/Personal/code/Pet Project/11-26 Scala Kick Off/interactive use/hello.scala:11:3: expected class or object definition
+2023.12.15 21:45:48 ERROR   ^
+2023.12.15 21:45:48 ERROR   println("Hello, " + name + "!")
+2023.12.15 21:45:48 ERROR   ^
+2023.12.15 21:45:48 ERROR four errors found
+2023.12.15 21:45:48 ERROR four errors found
+2023.12.15 21:45:48 INFO  time: compiled interactive-use in 0.13s
+2023.12.15 21:45:48 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:48 ERROR (Compile / compileIncremental) Compilation failed
+2023.12.15 21:45:49 INFO  Scala test classes not supported by server
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: (Compile / compileIncremental) Compilation failed
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at scala.meta.internal.metals.RequestMonitorImpl$$anon$1.consume(ServerLivenessMonitor.scala:39)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+
+2023.12.15 21:46:14 INFO  Processing workspace/buildTargets
+2023.12.15 21:46:14 INFO  Processing workspace/buildTargets
+2023.12.15 21:47:14 INFO  Processing workspace/buildTargets
+2023.12.15 21:47:14 INFO  Processing workspace/buildTargets
+2023.12.15 21:48:12 INFO  Shutting down server
+2023.12.15 21:48:12 INFO  shutting down Metals
+2023.12.15 21:48:12 INFO  Shut down connection with build server.
+2023.12.15 21:48:12 INFO  Running BSP server List(/Users/frankliang/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.21%252B9/OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.21_9.tar.gz/jdk-11.0.21+9/Contents/Home/bin/java, -Xms100m, -Xmx100m, -classpath, /Users/frankliang/Library/Caches/Coursier/arc/https/github.com/sbt/sbt/releases/download/v1.9.8/sbt-1.9.8.zip/sbt/bin/sbt-launch.jar, -Dsbt.script=/Users/frankliang/Library/Caches/Coursier/arc/https/github.com/sbt/sbt/releases/download/v1.9.8/sbt-1.9.8.zip/sbt/bin/sbt, xsbt.boot.Boot, -bsp)
+2023.12.15 21:48:12 INFO  Exiting server
