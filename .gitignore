@@ -7,8 +7,11 @@
 _freeze/
 **/.quarto/
 **/_site/
+
 **/*.csv
 **/*.parquet
 
 2023/06-06-ai/
 2023/11-23 3d Window Scene/
+01-20 CV/
+
