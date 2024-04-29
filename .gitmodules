@@ -7,3 +7,6 @@
 [submodule "03-03 Research England Interview Prep"]
 	path = 03-03 Research England Interview Prep
 	url = https://github.com/FzliangFrank/invest-ai-ukri
+[submodule "2023/08-11 Wave Function Collapse"]
+	path = 2023/08-11 Wave Function Collapse
+	url = https://github.com/FzliangFrank/wave-function-collapse
