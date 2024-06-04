@@ -2,7 +2,11 @@
   {
     "listing": "/index.html",
     "items": [
+      "/04-20 ML with Tidymodel/03.html",
       "/about.html",
+      "/05-19 Factor Analysis/lda.html",
+      "/05-19 Factor Analysis/pca.html",
+      "/04-20 ML with Tidymodel/02.html",
       "/04-20 ML with Tidymodel/01.html",
       "/03-15-Time-Series/Learn -Time Series.html",
       "/03-15-Time-Series/r-book.html",
