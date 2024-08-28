@@ -349,19 +349,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="spoil-alert">Spoil Alert</h2>
 <p>Following code create a linear model. Prediction uses these variables:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ames <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Neighborhood, Gr_Liv_Area, Year_Built, Bldg_Type, Latitude, Longitude) <span class="sc">|&gt;</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## preview columns in ames data</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ames <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Neighborhood, Gr_Liv_Area, Year_Built, Bldg_Type, Latitude, Longitude) <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1
 Columns: 6
 $ Neighborhood &lt;fct&gt; Sawyer
-$ Gr_Liv_Area  &lt;int&gt; 1059
-$ Year_Built   &lt;int&gt; 1966
-$ Bldg_Type    &lt;fct&gt; OneFam
-$ Latitude     &lt;dbl&gt; 42.03136
-$ Longitude    &lt;dbl&gt; -93.67561</code></pre>
+$ Gr_Liv_Area  &lt;int&gt; 1258
+$ Year_Built   &lt;int&gt; 1969
+$ Bldg_Type    &lt;fct&gt; Duplex
+$ Latitude     &lt;dbl&gt; 42.03443
+$ Longitude    &lt;dbl&gt; -93.66695</code></pre>
 </div>
 </div>
 <p>Ther are their transformation:</p>
