@@ -1,115 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/05-19 Factor Analysis/pca.html</loc>
-    <lastmod>2024-06-01T22:33:04.500Z</lastmod>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/10-22 Mars Js/blog/01.html</loc>
+    <lastmod>2025-03-11T22:46:04.167Z</lastmod>
   </url>
   <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/03-15-Time-Series/statlab - Normality of Data.html</loc>
-    <lastmod>2024-04-29T21:29:12.136Z</lastmod>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/05-19 Factor Analysis/lda.html</loc>
+    <lastmod>2024-06-04T14:19:58.156Z</lastmod>
   </url>
   <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/03-15-Time-Series/Learn -Time Series.html</loc>
-    <lastmod>2024-04-29T21:29:12.123Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/02-09 Kaggle Competition/kaggle-2024-credit-risks/fl-02-08.html</loc>
-    <lastmod>2024-02-11T22:17:38.008Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/01-06 GUI Graphic Interface/Game of Life/Untitled.html</loc>
-    <lastmod>2024-04-29T21:29:09.917Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/01-01 Setup Delta Lake/02.html</loc>
-    <lastmod>2024-04-29T21:35:02.897Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/01-01 Deep Learning Py/01-13.html</loc>
-    <lastmod>2024-04-29T21:29:09.861Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/index.html</loc>
-    <lastmod>2024-08-28T21:58:13.333Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/09-06 Sandy-Status/sandy-status/vignettes/stochestic_status_flow.html</loc>
-    <lastmod>2024-09-15T14:40:20.192Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/06-08 UFO Map/01.html</loc>
-    <lastmod>2024-08-03T18:35:00.139Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/04-20 ML with Tidymodel/02.html</loc>
-    <lastmod>2024-05-19T14:21:49.483Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/03-03 Research England Interview Prep/the_presentation.html</loc>
-    <lastmod>2024-03-14T14:20:01.769Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/03-03 Research England Interview Prep/05.html</loc>
-    <lastmod>2024-03-11T01:03:22.194Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/03-03 Research England Interview Prep/03.html</loc>
-    <lastmod>2024-03-10T23:29:47.217Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/03-03 Research England Interview Prep/01.html</loc>
-    <lastmod>2024-03-10T23:39:10.742Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/03-03 Research England Interview Prep/02.html</loc>
-    <lastmod>2024-03-10T23:29:47.217Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/03-03 Research England Interview Prep/04.html</loc>
-    <lastmod>2024-04-22T00:49:53.028Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/03-03 Research England Interview Prep/10.html</loc>
-    <lastmod>2024-04-22T00:50:06.855Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/04-20 ML with Tidymodel/01.html</loc>
-    <lastmod>2024-07-27T18:13:23.486Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/08-07 Noise Art and Distribution/01.html</loc>
-    <lastmod>2024-08-30T19:55:00.982Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/08-25 Rethink Statistic/01.html</loc>
-    <lastmod>2024-09-01T13:44:45.944Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/01-01 Deep Learning Py/01-12.html</loc>
-    <lastmod>2024-04-29T21:29:09.857Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/01-01 Deep Learning Py/index.html</loc>
-    <lastmod>2024-04-29T21:29:09.898Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/01-01 Setup Delta Lake/01.html</loc>
-    <lastmod>2024-06-04T14:55:53.551Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/01-28 Geopandas and Altair Vega/vega-altair.html</loc>
-    <lastmod>2024-04-29T21:29:12.094Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/02-09 Kaggle Competition/kaggle-2024-credit-risks/fl-02-10.html</loc>
-    <lastmod>2024-02-11T22:22:10.428Z</lastmod>
-  </url>
-  <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/03-15-Time-Series/r-book.html</loc>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/03-15-Time-Series/r-book.html</loc>
     <lastmod>2024-04-29T21:29:12.128Z</lastmod>
   </url>
   <url>
-    <loc>https://FzliangFrank.github.io/Pet-Project/05-19 Factor Analysis/lda.html</loc>
-    <lastmod>2024-06-04T14:19:58.156Z</lastmod>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/02-09 Kaggle Competition/kaggle-2024-credit-risks/fl-02-10.html</loc>
+    <lastmod>2024-02-11T22:22:10.428Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/01-28 Geopandas and Altair Vega/vega-altair.html</loc>
+    <lastmod>2024-04-29T21:29:12.094Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/01-01 Setup Delta Lake/01.html</loc>
+    <lastmod>2024-06-04T14:55:53.551Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/01-01 Deep Learning Py/index.html</loc>
+    <lastmod>2024-04-29T21:29:09.898Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/01-01 Deep Learning Py/01-12.html</loc>
+    <lastmod>2024-04-29T21:29:09.857Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/08-25 Rethink Statistic/01.html</loc>
+    <lastmod>2024-09-01T13:44:45.944Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/08-07 Noise Art and Distribution/01.html</loc>
+    <lastmod>2024-08-30T19:55:00.982Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/04-20 ML with Tidymodel/01.html</loc>
+    <lastmod>2024-07-27T18:13:23.486Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/04-20 ML with Tidymodel/02.html</loc>
+    <lastmod>2024-05-19T14:21:49.483Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/06-08 UFO Map/01.html</loc>
+    <lastmod>2024-08-03T18:35:00.139Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/09-06 Sandy-Status/sandy-status/vignettes/stochestic_status_flow.html</loc>
+    <lastmod>2025-02-15T22:14:22.575Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/index.html</loc>
+    <lastmod>2025-03-11T23:08:25.815Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/01-01 Deep Learning Py/01-13.html</loc>
+    <lastmod>2024-04-29T21:29:09.861Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/01-01 Setup Delta Lake/02.html</loc>
+    <lastmod>2024-04-29T21:35:02.897Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/01-06 GUI Graphic Interface/Game of Life/01 Note.html</loc>
+    <lastmod>2025-02-15T22:44:36.982Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/02-09 Kaggle Competition/kaggle-2024-credit-risks/fl-02-08.html</loc>
+    <lastmod>2024-02-11T22:17:38.008Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/03-15-Time-Series/Learn -Time Series.html</loc>
+    <lastmod>2024-04-29T21:29:12.123Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/03-15-Time-Series/statlab - Normality of Data.html</loc>
+    <lastmod>2024-04-29T21:29:12.136Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/05-19 Factor Analysis/pca.html</loc>
+    <lastmod>2024-06-01T22:33:04.500Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/10-13 D3/notebook.html</loc>
+    <lastmod>2025-02-22T13:53:40.502Z</lastmod>
+  </url>
+  <url>
+    <loc>https://FzliangFrank.github.io/Pet-Project/2024/10-22 Mars Js/blog/02.html</loc>
+    <lastmod>2025-03-11T22:51:45.601Z</lastmod>
   </url>
 </urlset>
