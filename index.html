@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Frank’s Goldfish Projects - Goldfish Blog</title>
+<title>Frank’s Goldfish Projects - Gold Fish Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -37,10 +37,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-all-posts .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
@@ -79,12 +81,13 @@ ul.task-list li input[type="checkbox"] {
 
     const options = {
       valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
+      page: 5,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
       searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-all-posts'] = new List('listing-all-posts', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -97,6 +100,13 @@ ul.task-list li input[type="checkbox"] {
     }
   })
   </script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(img/cover-bluefish-saturated.jpeg);
+background-size: cover;
+      }
+</style>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -157,18 +167,19 @@ window.Quarto = {
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/FzliangFrank"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/frank-liang/"> <i class="bi bi-linkedin" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -177,7 +188,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
-      <h1 class="title">Goldfish Blog</h1>
+      <h1 class="title">Gold Fish Blog</h1>
                       </div>
   </div>
     
@@ -198,11 +209,12 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#favourite" id="toc-favourite" class="nav-link active" data-scroll-target="#favourite">Favourite</a></li>
-  <li><a href="#content-listing" id="toc-content-listing" class="nav-link" data-scroll-target="#content-listing">Content Listing</a></li>
+  <li><a href="#highlight-projects" id="toc-highlight-projects" class="nav-link active" data-scroll-target="#highlight-projects">Highlight Projects</a></li>
+  <li><a href="#all-projects-blog" id="toc-all-projects-blog" class="nav-link" data-scroll-target="#all-projects-blog">All Projects &amp; Blog</a></li>
+  <li><a href="#reference-quarto-blog-styling" id="toc-reference-quarto-blog-styling" class="nav-link" data-scroll-target="#reference-quarto-blog-styling">Reference (Quarto Blog Styling)</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(23)</span></div><div class="category" data-category="Art">Art <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Backend-Demo">Backend-Demo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Basics">Basics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Books">Books <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Code-Snippet">Code-Snippet <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Data-Analysis">Data-Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Deep-Learning">Deep-Learning <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Delta">Delta <span class="quarto-category-count">(2)</span></div><div class="category" data-category="DuckDB">DuckDB <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ESRI">ESRI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Experiment">Experiment <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Geo-Spatial">Geo-Spatial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JavaScript">JavaScript <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Kaggle">Kaggle <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Machine-Learning">Machine-Learning <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Math">Math <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Note">Note <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(9)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Statistic">Statistic <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Visualisation">Visualisation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Visualization">Visualization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="basic">basic <span class="quarto-category-count">(2)</span></div><div class="category" data-category="from-scratch">from-scratch <span class="quarto-category-count">(2)</span></div><div class="category" data-category="javascripts">javascripts <span class="quarto-category-count">(2)</span></div><div class="category" data-category="r-package">r-package <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(24)</span></div><div class="category" data-category="Apache-Iceberg">Apache-Iceberg <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Art">Art <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Backend-Demo">Backend-Demo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Basics">Basics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Books">Books <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Code-Snippet">Code-Snippet <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Data-Analysis">Data-Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Deep-Learning">Deep-Learning <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Delta">Delta <span class="quarto-category-count">(2)</span></div><div class="category" data-category="DuckDB">DuckDB <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ESRI">ESRI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Experiment">Experiment <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Geo-Spatial">Geo-Spatial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JavaScript">JavaScript <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Kaggle">Kaggle <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Machine-Learning">Machine-Learning <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Math">Math <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Note">Note <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(9)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Statistic">Statistic <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Visualisation">Visualisation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Visualization">Visualization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="basic">basic <span class="quarto-category-count">(2)</span></div><div class="category" data-category="from-scratch">from-scratch <span class="quarto-category-count">(2)</span></div><div class="category" data-category="javascripts">javascripts <span class="quarto-category-count">(2)</span></div><div class="category" data-category="r-package">r-package <span class="quarto-category-count">(1)</span></div><div class="category" data-category="spark">spark <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -254,8 +266,9 @@ window.Quarto = {
   transition: background-color 0.3s ease;
 }
 
+
 .carousel-item:hover .carousel-caption-custom {
-  background: rgba(210, 73, 4, 0.8);
+  background:rgba(88, 88, 88, 0.63);
 }
 
 .carousel-caption-custom h5 {
@@ -276,8 +289,8 @@ window.Quarto = {
   text-decoration: underline;
 }
 </style>
-<section id="favourite" class="level2">
-<h2 class="anchored" data-anchor-id="favourite">Favourite</h2>
+<section id="highlight-projects" class="level2">
+<h2 class="anchored" data-anchor-id="highlight-projects">Highlight Projects</h2>
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item">
@@ -324,17 +337,73 @@ window.Quarto = {
   </button>
 </div>
 </section>
-<section id="content-listing" class="level2">
-<h2 class="anchored" data-anchor-id="content-listing">Content Listing</h2>
+<section id="all-projects-blog" class="level2">
+<h2 class="anchored" data-anchor-id="all-projects-blog">All Projects &amp; Blog</h2>
 <p>I wrote about random topic. Try out a new “{R} or {Python}” package.</p>
-
-
-
-</section>
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div id="listing-all-posts" class="quarto-listing quarto-listing-container-default">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-all-posts-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-all-posts'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+         <option value="listing-author" data-direction="asc">
+          Author
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="javascripts,ESRI" data-listing-date-sort="1729724400000" data-listing-file-modified-sort="1741733505601" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2198">
+<div class="quarto-post image-right" data-index="0" data-categories="Apache-Iceberg,spark" data-listing-date-sort="1742947200000" data-listing-file-modified-sort="1743720091168" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1005">
+<div class="thumbnail">
+<p><a href="./2025/03-26 Try Apache Iceberg/notebooks/01.html" class="no-external"></a></p><a href="./2025/03-26 Try Apache Iceberg/notebooks/01.html" class="no-external">
+<p><img src="./2025/03-26 Try Apache Iceberg/notebooks/img/apache-iceberg-logo.png" class="thumbnail-image"></p>
+</a><p><a href="./2025/03-26 Try Apache Iceberg/notebooks/01.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./2025/03-26 Try Apache Iceberg/notebooks/01.html" class="no-external">Frank Vs Iceberg</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./2025/03-26 Try Apache Iceberg/notebooks/01.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Apache-Iceberg'); return false;">
+Apache-Iceberg
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('spark'); return false;">
+spark
+</div>
+</div>
+<div class="listing-description">
+<a href="./2025/03-26 Try Apache Iceberg/notebooks/01.html" class="no-external">Just another Frank trying x database stuff;</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./2025/03-26 Try Apache Iceberg/notebooks/01.html" class="no-external">
+<div class="listing-date">
+Mar 26, 2025
+</div>
+<div class="listing-author">
+F. L
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="javascripts,ESRI" data-listing-date-sort="1729724400000" data-listing-file-modified-sort="1741733505601" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2198">
 <div class="thumbnail">
 <p><a href="./2024/10-22 Mars Js/blog/02.html" class="no-external"></a></p><a href="./2024/10-22 Mars Js/blog/02.html" class="no-external">
 <p class="card-img-top"><img src="2024/10-22 Mars Js/blog/attach/building-on-mars-esri.png"  class="thumbnail-image card-img"/></p>
@@ -370,7 +439,7 @@ F. L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="javascripts" data-listing-date-sort="1729551600000" data-listing-file-modified-sort="1741733164167" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1502">
+<div class="quarto-post image-right" data-index="2" data-categories="javascripts" data-listing-date-sort="1729551600000" data-listing-file-modified-sort="1741733164167" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1502">
 <div class="thumbnail">
 <p><a href="./2024/10-22 Mars Js/blog/01.html" class="no-external"></a></p><a href="./2024/10-22 Mars Js/blog/01.html" class="no-external">
 <p class="card-img-top"><img src="2024/10-22 Mars Js/blog/attach/3D City Map.gif"  class="thumbnail-image card-img"/></p>
@@ -403,7 +472,7 @@ F.L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Python,JavaScript,Visualization" data-listing-date-sort="1728860400000" data-listing-file-modified-sort="1740232420502" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="355">
+<div class="quarto-post image-right" data-index="3" data-categories="Python,JavaScript,Visualization" data-listing-date-sort="1728860400000" data-listing-file-modified-sort="1740232420502" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="355">
 <div class="thumbnail">
 <p><a href="./2024/10-13 D3/notebook.html" class="no-external"></a></p><a href="./2024/10-13 D3/notebook.html" class="no-external">
 <p class="card-img-top"><img src="img/d3force.gif"  class="thumbnail-image card-img"/></p>
@@ -442,7 +511,7 @@ F. L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Statistics,Experiment,r-package" data-listing-date-sort="1725750000000" data-listing-file-modified-sort="1739657662575" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3848">
+<div class="quarto-post image-right" data-index="4" data-categories="Statistics,Experiment,r-package" data-listing-date-sort="1725750000000" data-listing-file-modified-sort="1739657662575" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3848">
 <div class="thumbnail">
 <p><a href="./2024/09-06 Sandy-Status/sandy-status/vignettes/stochestic_status_flow.html" class="no-external"></a></p><a href="./2024/09-06 Sandy-Status/sandy-status/vignettes/stochestic_status_flow.html" class="no-external">
 <p class="card-img-top"><img src="2024/09-06 Sandy-Status/sandy-status/man/figures/vgn1-status-flow-chunk-21-1.png"  class="thumbnail-image card-img"/></p>
@@ -481,10 +550,10 @@ Fanzhou Liang
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Art,Math" data-listing-date-sort="1724799600000" data-listing-file-modified-sort="1725047700982" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1061">
+<div class="quarto-post image-right" data-index="5" data-categories="Art,Math" data-listing-date-sort="1724799600000" data-listing-file-modified-sort="1725047700982" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1061">
 <div class="thumbnail">
 <p><a href="./2024/08-07 Noise Art and Distribution/01.html" class="no-external"></a></p><a href="./2024/08-07 Noise Art and Distribution/01.html" class="no-external">
-<p class="card-img-top"><img src="2024/08-07 Noise Art and Distribution/01_files/figure-html/unnamed-chunk-2-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/08-07 Noise Art and Distribution/01_files/figure-html/unnamed-chunk-2-1.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/08-07 Noise Art and Distribution/01.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -517,10 +586,10 @@ F.L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="Books,Note" data-listing-date-sort="1724540400000" data-listing-file-modified-sort="1725198285944" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1407">
+<div class="quarto-post image-right" data-index="6" data-categories="Books,Note" data-listing-date-sort="1724540400000" data-listing-file-modified-sort="1725198285944" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1407">
 <div class="thumbnail">
 <p><a href="./2024/08-25 Rethink Statistic/01.html" class="no-external"></a></p><a href="./2024/08-25 Rethink Statistic/01.html" class="no-external">
-<p class="card-img-top"><img src="2024/08-25 Rethink Statistic/01_files/figure-html/unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/08-25 Rethink Statistic/01_files/figure-html/unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/08-25 Rethink Statistic/01.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -550,10 +619,10 @@ Aug 25, 2024
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="Experiment,Geo-Spatial,Data-Analysis" data-listing-date-sort="1717801200000" data-listing-file-modified-sort="1722710100139" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3528">
+<div class="quarto-post image-right" data-index="7" data-categories="Experiment,Geo-Spatial,Data-Analysis" data-listing-date-sort="1717801200000" data-listing-file-modified-sort="1722710100139" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3528">
 <div class="thumbnail">
 <p><a href="./2024/06-08 UFO Map/01.html" class="no-external"></a></p><a href="./2024/06-08 UFO Map/01.html" class="no-external">
-<p class="card-img-top"><img src="2024/06-08 UFO Map/asset/cover.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/06-08 UFO Map/asset/cover.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/06-08 UFO Map/01.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -589,10 +658,10 @@ F.L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="Statistics,from-scratch" data-listing-date-sort="1716073200000" data-listing-file-modified-sort="1717510798156" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="454">
+<div class="quarto-post image-right" data-index="8" data-categories="Statistics,from-scratch" data-listing-date-sort="1716073200000" data-listing-file-modified-sort="1717510798156" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="454">
 <div class="thumbnail">
 <p><a href="./2024/05-19 Factor Analysis/lda.html" class="no-external"></a></p><a href="./2024/05-19 Factor Analysis/lda.html" class="no-external">
-<p class="card-img-top"><img src="2024/05-19 Factor Analysis/lda_files/figure-html/cell-2-output-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/05-19 Factor Analysis/lda_files/figure-html/cell-2-output-1.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/05-19 Factor Analysis/lda.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -625,10 +694,10 @@ F.L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="Statistics,from-scratch" data-listing-date-sort="1716073200000" data-listing-file-modified-sort="1717281184500" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="401">
+<div class="quarto-post image-right" data-index="9" data-categories="Statistics,from-scratch" data-listing-date-sort="1716073200000" data-listing-file-modified-sort="1717281184500" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="401">
 <div class="thumbnail">
 <p><a href="./2024/05-19 Factor Analysis/pca.html" class="no-external"></a></p><a href="./2024/05-19 Factor Analysis/pca.html" class="no-external">
-<p class="card-img-top"><img src="2024/05-19 Factor Analysis/pca_files/figure-html/cell-6-output-2.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/05-19 Factor Analysis/pca_files/figure-html/cell-6-output-2.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/05-19 Factor Analysis/pca.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -661,10 +730,10 @@ F.L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-listing-date-sort="1715295600000" data-listing-file-modified-sort="1716128509483" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="956">
+<div class="quarto-post image-right" data-index="10" data-listing-date-sort="1715295600000" data-listing-file-modified-sort="1716128509483" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="956">
 <div class="thumbnail">
 <p><a href="./2024/04-20 ML with Tidymodel/02.html" class="no-external"></a></p><a href="./2024/04-20 ML with Tidymodel/02.html" class="no-external">
-<p class="card-img-top"><img src="2024/04-20 ML with Tidymodel/02_files/figure-html/unnamed-chunk-2-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/04-20 ML with Tidymodel/02_files/figure-html/unnamed-chunk-2-1.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/04-20 ML with Tidymodel/02.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -686,10 +755,10 @@ May 10, 2024
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="Machine-Learning,R,Basics" data-listing-date-sort="1713654000000" data-listing-file-modified-sort="1722104003486" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2982">
+<div class="quarto-post image-right" data-index="11" data-categories="Machine-Learning,R,Basics" data-listing-date-sort="1713654000000" data-listing-file-modified-sort="1722104003486" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2982">
 <div class="thumbnail">
 <p><a href="./2024/04-20 ML with Tidymodel/01.html" class="no-external"></a></p><a href="./2024/04-20 ML with Tidymodel/01.html" class="no-external">
-<p class="card-img-top"><img src="2024/04-20 ML with Tidymodel/01_files/figure-html/unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/04-20 ML with Tidymodel/01_files/figure-html/unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/04-20 ML with Tidymodel/01.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -725,10 +794,10 @@ F.L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="Machine-Learning" data-listing-date-sort="1713567600000" data-listing-file-modified-sort="1714426152123" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1278">
+<div class="quarto-post image-right" data-index="12" data-categories="Machine-Learning" data-listing-date-sort="1713567600000" data-listing-file-modified-sort="1714426152123" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1278">
 <div class="thumbnail">
 <p><a href="./2024/03-15-Time-Series/Learn -Time Series.html" class="no-external"></a></p><a href="./2024/03-15-Time-Series/Learn -Time Series.html" class="no-external">
-<p class="card-img-top"><img src="2024/03-15-Time-Series/Learn -Time Series_files/figure-html/cell-6-output-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/03-15-Time-Series/Learn -Time Series_files/figure-html/cell-6-output-1.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/03-15-Time-Series/Learn -Time Series.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -758,7 +827,7 @@ Young Frank
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="Machine-Learning" data-listing-date-sort="1713567600000" data-listing-file-modified-sort="1714426152128" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
+<div class="quarto-post image-right" data-index="13" data-categories="Machine-Learning" data-listing-date-sort="1713567600000" data-listing-file-modified-sort="1714426152128" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
 <div class="thumbnail">
 <p><a href="./2024/03-15-Time-Series/r-book.html" class="no-external"></a></p><a href="./2024/03-15-Time-Series/r-book.html" class="no-external">
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -791,10 +860,10 @@ Young Frank
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="Machine-Learning,Python,Statistic,Experiment" data-listing-date-sort="1713567600000" data-listing-file-modified-sort="1714426152136" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="255">
+<div class="quarto-post image-right" data-index="14" data-categories="Machine-Learning,Python,Statistic,Experiment" data-listing-date-sort="1713567600000" data-listing-file-modified-sort="1714426152136" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="255">
 <div class="thumbnail">
 <p><a href="./2024/03-15-Time-Series/statlab - Normality of Data.html" class="no-external"></a></p><a href="./2024/03-15-Time-Series/statlab - Normality of Data.html" class="no-external">
-<p class="card-img-top"><img src="2024/03-15-Time-Series/statlab - Normality of Data_files/figure-html/cell-9-output-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/03-15-Time-Series/statlab - Normality of Data_files/figure-html/cell-9-output-1.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/03-15-Time-Series/statlab - Normality of Data.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -833,7 +902,7 @@ Young Frank
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="Kaggle,Python" data-listing-date-sort="1707436800000" data-listing-file-modified-sort="1707689858008" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="29">
+<div class="quarto-post image-right" data-index="15" data-categories="Kaggle,Python" data-listing-date-sort="1707436800000" data-listing-file-modified-sort="1707689858008" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="29">
 <div class="thumbnail">
 <p><a href="./2024/02-09 Kaggle Competition/kaggle-2024-credit-risks/fl-02-08.html" class="no-external"></a></p><a href="./2024/02-09 Kaggle Competition/kaggle-2024-credit-risks/fl-02-08.html" class="no-external">
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -869,7 +938,7 @@ F.L and Team
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-categories="Kaggle,Python" data-listing-date-sort="1707436800000" data-listing-file-modified-sort="1707690130428" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21">
+<div class="quarto-post image-right" data-index="16" data-categories="Kaggle,Python" data-listing-date-sort="1707436800000" data-listing-file-modified-sort="1707690130428" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21">
 <div class="thumbnail">
 <p><a href="./2024/02-09 Kaggle Competition/kaggle-2024-credit-risks/fl-02-10.html" class="no-external"></a></p><a href="./2024/02-09 Kaggle Competition/kaggle-2024-credit-risks/fl-02-10.html" class="no-external">
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -905,10 +974,10 @@ F.L and Team
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="16" data-categories="Python,Visualisation" data-listing-date-sort="1706400000000" data-listing-file-modified-sort="1714426152094" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="quarto-post image-right" data-index="17" data-categories="Python,Visualisation" data-listing-date-sort="1706400000000" data-listing-file-modified-sort="1714426152094" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
 <div class="thumbnail">
 <p><a href="./2024/01-28 Geopandas and Altair Vega/vega-altair.html" class="no-external"></a></p><a href="./2024/01-28 Geopandas and Altair Vega/vega-altair.html" class="no-external">
-<p class="card-img-top"><img src="2024/01-28 Geopandas and Altair Vega/vega-altair_files/figure-html/cell-6-output-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/01-28 Geopandas and Altair Vega/vega-altair_files/figure-html/cell-6-output-1.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/01-28 Geopandas and Altair Vega/vega-altair.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -946,10 +1015,10 @@ F.L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="17" data-categories="Backend-Demo,Python" data-listing-date-sort="1704499200000" data-listing-file-modified-sort="1739659476982" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="365">
+<div class="quarto-post image-right" data-index="18" data-categories="Backend-Demo,Python" data-listing-date-sort="1704499200000" data-listing-file-modified-sort="1739659476982" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="365">
 <div class="thumbnail">
 <p><a href="./2024/01-06 GUI Graphic Interface/Game of Life/01 Note.html" class="no-external"></a></p><a href="./2024/01-06 GUI Graphic Interface/Game of Life/01 Note.html" class="no-external">
-<p><img src="./2024/01-06 GUI Graphic Interface/Game of Life/img/Screenshot 2025-02-15 at 22.30.44.png" class="thumbnail-image"></p>
+<p><img data-src="./2024/01-06 GUI Graphic Interface/Game of Life/img/Screenshot 2025-02-15 at 22.30.44.png" class="thumbnail-image"></p>
 </a><p><a href="./2024/01-06 GUI Graphic Interface/Game of Life/01 Note.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -982,10 +1051,10 @@ F.L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="18" data-categories="Python,Machine-Learning,Deep-Learning" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1714426149857" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="55">
+<div class="quarto-post image-right" data-index="19" data-categories="Python,Machine-Learning,Deep-Learning" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1714426149857" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="55">
 <div class="thumbnail">
 <p><a href="./2024/01-01 Deep Learning Py/01-12.html" class="no-external"></a></p><a href="./2024/01-01 Deep Learning Py/01-12.html" class="no-external">
-<p class="card-img-top"><img src="2024/01-01 Deep Learning Py/01-12_files/figure-html/cell-5-output-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/01-01 Deep Learning Py/01-12_files/figure-html/cell-5-output-1.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/01-01 Deep Learning Py/01-12.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -1021,10 +1090,10 @@ F. L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="19" data-categories="Python,Machine-Learning,Deep-Learning" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1714426149861" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="326">
+<div class="quarto-post image-right" data-index="20" data-categories="Python,Machine-Learning,Deep-Learning" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1714426149861" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="326">
 <div class="thumbnail">
 <p><a href="./2024/01-01 Deep Learning Py/01-13.html" class="no-external"></a></p><a href="./2024/01-01 Deep Learning Py/01-13.html" class="no-external">
-<p class="card-img-top"><img src="2024/01-01 Deep Learning Py/01-13_files/figure-html/cell-10-output-2.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/01-01 Deep Learning Py/01-13_files/figure-html/cell-10-output-2.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/01-01 Deep Learning Py/01-13.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -1060,7 +1129,7 @@ F. L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="20" data-categories="Python,Machine-Learning,Deep-Learning" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1714426149898" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="34">
+<div class="quarto-post image-right" data-index="21" data-categories="Python,Machine-Learning,Deep-Learning" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1714426149898" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="34">
 <div class="thumbnail">
 <p><a href="./2024/01-01 Deep Learning Py/index.html" class="no-external"></a></p><a href="./2024/01-01 Deep Learning Py/index.html" class="no-external">
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -1099,10 +1168,10 @@ F. L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="21" data-categories="basic,Delta,DuckDB,Code-Snippet" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1717512953551" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
+<div class="quarto-post image-right" data-index="22" data-categories="basic,Delta,DuckDB,Code-Snippet" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1717512953551" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4">
 <div class="thumbnail">
 <p><a href="./2024/01-01 Setup Delta Lake/01.html" class="no-external"></a></p><a href="./2024/01-01 Setup Delta Lake/01.html" class="no-external">
-<p class="card-img-top"><img src="2024/01-01 Setup Delta Lake/DEXrN.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/01-01 Setup Delta Lake/DEXrN.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/01-01 Setup Delta Lake/01.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -1149,10 +1218,10 @@ F.L
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="22" data-categories="basic,Delta,DuckDB,Code-Snippet" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1714426502897" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="106">
+<div class="quarto-post image-right" data-index="23" data-categories="basic,Delta,DuckDB,Code-Snippet" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1714426502897" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="106">
 <div class="thumbnail">
 <p><a href="./2024/01-01 Setup Delta Lake/02.html" class="no-external"></a></p><a href="./2024/01-01 Setup Delta Lake/02.html" class="no-external">
-<p class="card-img-top"><img src="2024/01-01 Setup Delta Lake/02_files/figure-html/cell-16-output-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2024/01-01 Setup Delta Lake/02_files/figure-html/cell-16-output-1.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="./2024/01-01 Setup Delta Lake/02.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -1195,7 +1264,30 @@ F.L
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div></main> <!-- /main -->
+<nav id="all-posts-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
+</div>
+</section>
+<section id="reference-quarto-blog-styling" class="level2">
+<h2 class="anchored" data-anchor-id="reference-quarto-blog-styling">Reference (Quarto Blog Styling)</h2>
+<p>This blog is build using Quarto! Here are some useful links for customizing the blog.</p>
+<ul>
+<li><a href="https://quarto.org/docs/authoring/title-blocks.html#custom-title-pages">Create a cover image for your blog</a></li>
+<li>Quarto expose custom SASS variables for you to use (with dark theme bonus) <a href="https://quarto.org/docs/output-formats/html-themes.html">Quarto HTML Theme</a></li>
+<li>Very useful to use SASS to customize the blog: <a href="https://sass-lang.com/guide/">SASS Basics</a></li>
+<li>Booststrap GIT Example SASS: <a href="https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss#L387">bootstrap/scss/_variables.scss</a></li>
+<li>Modify scrolbar style: <a href="https://stackoverflow.com/questions/42115110/how-can-i-change-the-scrollbar-style-in-bootstrap">StackOverflow: How can I change the scrollbar style in Bootstrap?</a></li>
+<li><a href="https://getbootstrap.com/docs/5.3/components/carousel/">Bootstrap Carousel</a></li>
+<li>For coloring the blog (suggested by ChatGPT): <a href="https://colorhunt.co/">Color Hunt</a></li>
+<li>Lightbox for images: <a href="https://quarto.org/docs/output-formats/html-lightbox-figures.html">Quarto Lightbox</a></li>
+</ul>
+
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1216,6 +1308,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
