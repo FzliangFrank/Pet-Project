@@ -209,7 +209,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#highlight-projects" id="toc-highlight-projects" class="nav-link active" data-scroll-target="#highlight-projects">Highlight Projects</a></li>
+  <li><a href="#spotlight-projects" id="toc-spotlight-projects" class="nav-link active" data-scroll-target="#spotlight-projects">Spotlight Projects</a></li>
   <li><a href="#all-projects-blog" id="toc-all-projects-blog" class="nav-link" data-scroll-target="#all-projects-blog">All Projects &amp; Blog</a></li>
   <li><a href="#reference-quarto-blog-styling" id="toc-reference-quarto-blog-styling" class="nav-link" data-scroll-target="#reference-quarto-blog-styling">Reference (Quarto Blog Styling)</a></li>
   </ul>
@@ -222,6 +222,8 @@ window.Quarto = {
 
 
 
+<section id="spotlight-projects" class="level2">
+<h2 class="anchored" data-anchor-id="spotlight-projects">Spotlight Projects</h2>
 <style>
 .carousel {
   width: 100%;
@@ -238,6 +240,17 @@ window.Quarto = {
   width: 100%;
   height: 100%;
   position: relative;
+  transition: transform 0.3s ease 0.1s, 
+              box-shadow 0.3s ease 0.1s,
+              border-radius 0.3s ease 0.1s;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.carousel-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
 }
 
 .carousel-item img {
@@ -245,13 +258,15 @@ window.Quarto = {
   height: 100%;
   object-fit: cover;  /* This will crop/scale the image to fill the container */
   object-position: center;  /* Centers the image */
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 0.3s ease 0.2s, 
+              filter 0.3s ease 0.2s,
+              object-position 0.3s ease 0.2s;
 }
 
 .carousel-item:hover img {
-  filter: brightness(1.03);
+  filter: brightness(1.007) contrast(1.005);
   transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  object-position: center 20%;
 }
 
 .carousel-caption-custom {
@@ -259,29 +274,38 @@ window.Quarto = {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(29, 35, 67, 0.29);
-  color: white;
   padding: 15px;
   text-align: center;
-  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease 0.3s,
+              opacity 0.3s ease 0.3s,
+              padding 0.3s ease 0.3s,
+              color 0.3s ease;
+  transform: translateY(100%);
+  opacity: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
-
 .carousel-item:hover .carousel-caption-custom {
-  background:rgba(88, 88, 88, 0.63);
+  transform: translateY(0);
+  opacity: 1;
+  padding: 20px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .carousel-caption-custom h5 {
   margin: 0;
   font-size: 1.2rem;
+  transition: transform 0.3s ease 0.4s;
 }
 
-/* Make sure the caption links inherit the white color */
-.carousel-caption-custom h5:hover {
-  text-decoration: underline;
+.carousel-item:hover .carousel-caption-custom h5 {
+  transform: scale(1.05);
 }
+
 .carousel-caption-custom a {
-  color: white;
+  color: inherit;
   text-decoration: none;
 }
 
@@ -289,8 +313,8 @@ window.Quarto = {
   text-decoration: underline;
 }
 </style>
-<section id="highlight-projects" class="level2">
-<h2 class="anchored" data-anchor-id="highlight-projects">Highlight Projects</h2>
+<script src="js/carousel.js"></script>
+
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item">
