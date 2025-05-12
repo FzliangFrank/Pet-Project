@@ -16,7 +16,7 @@ ul li {
 
 p {
     margin-top: 1px;
-    margin-bottom: 1px;
+    margin-bottom: 17px;
 }
 
 div.info {
@@ -25,4 +25,17 @@ div.info {
 
 div.skill {
     column-count: 3
+}
+
+
+div.edu_years {
+    width: 20%
+}
+
+div.edu_uni, .column {
+    width: 40%
+}
+
+div.edu_award, .column {
+    width: 40%
 }
