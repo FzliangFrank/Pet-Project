@@ -223,7 +223,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="how-other-opensource-package-integreting-javascript-with-python">How other opensource package integreting javascript with Python?</h2>
 <section id="vega-altair" class="level3">
 <h3 class="anchored" data-anchor-id="vega-altair">Vega-Altair</h3>
-<pre class="mermaid"><code>graph TD
+<div id="fig-mermaid" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mermaid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre class="mermaid">graph TD
     %% Python Side
     Python[Python Layer] --&gt; |1. Chart Spec| Altair[Altair Python API]
     Altair --&gt; |2. Vega-Lite Spec| Jupyter[Jupyter Frontend]
@@ -239,7 +242,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     
     %% Bidirectional Communication
     VegaRuntime --&gt; |8. Selection Events| Model
-    Model --&gt; |9. Python Callbacks| Python</code></pre>
+    Model --&gt; |9. Python Callbacks| Python
+</pre>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mermaid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Python to Javascript Communication Flow implemented by package <code>Vega-Altair</code>
+</figcaption>
+</figure>
+</div>
 <p>Here’s the detailed explanation of each step:</p>
 <ol type="1">
 <li><p>Python to JavaScript (Initial Setup):</p>
@@ -290,24 +303,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="a-heck-around-with-ipycomm">A Heck around with IpyComm</h3>
 <p>There are python side and javascript side:</p>
 <div id="cell-4" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>js <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">var comm_manager=Jupyter.notebook.kernel.comm_manager</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">var handle_msg=function(msg){</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">    console.log('got msg'); </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">    console.log(msg)</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">comm_manager.register_target('myTarget', function(comm,msg){</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">    console.log('opened comm');</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">    console.log(msg);</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">    // register callback</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">    comm.on_msg(handle_msg)</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">})</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> comm <span class="im">import</span> create_comm </span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span>create_comm(target_name<span class="op">=</span><span class="st">'myTarget'</span>,data<span class="op">=</span>{})</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>c.send(<span class="st">'hello'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>js <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">var comm_manager=Jupyter.notebook.kernel.comm_manager</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">var handle_msg=function(msg){</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">    console.log('got msg'); </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">    console.log(msg)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">comm_manager.register_target('myTarget', function(comm,msg){</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">    console.log('opened comm');</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">    console.log(msg);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">    // register callback</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">    comm.on_msg(handle_msg)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="st">})</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> comm <span class="im">import</span> create_comm </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span>create_comm(target_name<span class="op">=</span><span class="st">'myTarget'</span>,data<span class="op">=</span>{})</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>c.send(<span class="st">'hello'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="experiment-with-jinja2" class="level3">
@@ -316,11 +329,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>Jinja</code> let you create HTML template and use <em>control flow</em> and <em>loops</em> as discribed by realpython: https://realpython.com/primer-on-jinja-templating/</p>
 <p>A basic jinja2 example:</p>
 <div id="cell-7" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jinja2</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jinja2</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>environment <span class="op">=</span> jinja2.Environment()</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>template <span class="op">=</span> environment.from_string(<span class="st">"Hello, </span><span class="sc">{{</span><span class="st"> name </span><span class="sc">}}</span><span class="st">!"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>template.render(name<span class="op">=</span><span class="st">"World"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jinja2</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jinja2</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>environment <span class="op">=</span> jinja2.Environment()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>template <span class="op">=</span> environment.from_string(<span class="st">"Hello, </span><span class="sc">{{</span><span class="st"> name </span><span class="sc">}}</span><span class="st">!"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>template.render(name<span class="op">=</span><span class="st">"World"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>'Hello, World!'</code></pre>
 </div>
@@ -328,54 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The sample in vega2:</p>
 <ul>
 <li>The developer has setup three jinja template and able to determine which template to use using <code>spec_to_html</code></li>
-<li></li>
 </ul>
-<div id="cell-9" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># copyed vega's template into a local model book;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plaything.jinjaplay <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># in local module they use three different template and </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>ModuleNotFoundError: No module named 'altair'</code></pre>
-</div>
-</div>
-<div id="cell-10" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pip install ipysigma</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Collecting ipysigma
-  Using cached ipysigma-0.24.5-py3-none-any.whl.metadata (56 kB)
-Collecting ipywidgets&lt;9,&gt;=7 (from ipysigma)
-  Downloading ipywidgets-8.1.6-py3-none-any.whl.metadata (2.4 kB)
-Requirement already satisfied: comm&gt;=0.1.3 in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (0.2.2)
-Requirement already satisfied: ipython&gt;=6.1.0 in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (8.28.0)
-Requirement already satisfied: traitlets&gt;=4.3.1 in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (5.14.3)
-Collecting widgetsnbextension~=4.0.14 (from ipywidgets&lt;9,&gt;=7-&gt;ipysigma)
-  Downloading widgetsnbextension-4.0.14-py3-none-any.whl.metadata (1.6 kB)
-Collecting jupyterlab_widgets~=3.0.14 (from ipywidgets&lt;9,&gt;=7-&gt;ipysigma)
-  Downloading jupyterlab_widgets-3.0.14-py3-none-any.whl.metadata (4.1 kB)
-Requirement already satisfied: decorator in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (5.1.1)
-Requirement already satisfied: jedi&gt;=0.16 in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (0.19.1)
-Requirement already satisfied: matplotlib-inline in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (0.1.7)
-Requirement already satisfied: prompt-toolkit&lt;3.1.0,&gt;=3.0.41 in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (3.0.48)
-Requirement already satisfied: pygments&gt;=2.4.0 in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (2.18.0)
-Requirement already satisfied: stack-data in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (0.6.2)
-Requirement already satisfied: pexpect&gt;4.3 in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (4.9.0)
-Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.3 in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from jedi&gt;=0.16-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (0.8.4)
-Requirement already satisfied: ptyprocess&gt;=0.5 in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from pexpect&gt;4.3-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (0.7.0)
-Requirement already satisfied: wcwidth in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from prompt-toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (0.2.13)
-Requirement already satisfied: executing&gt;=1.2.0 in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from stack-data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (2.1.0)
-Requirement already satisfied: asttokens&gt;=2.1.0 in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from stack-data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (2.4.1)
-Requirement already satisfied: pure-eval in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from stack-data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (0.2.3)
-Requirement already satisfied: six&gt;=1.12.0 in /Users/frankliang/miniconda3/lib/python3.12/site-packages (from asttokens&gt;=2.1.0-&gt;stack-data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&lt;9,&gt;=7-&gt;ipysigma) (1.16.0)
-Using cached ipysigma-0.24.5-py3-none-any.whl (2.7 MB)
-Downloading ipywidgets-8.1.6-py3-none-any.whl (139 kB)
-Downloading jupyterlab_widgets-3.0.14-py3-none-any.whl (213 kB)
-Downloading widgetsnbextension-4.0.14-py3-none-any.whl (2.2 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 21.2 MB/s eta 0:00:00
-Installing collected packages: widgetsnbextension, jupyterlab_widgets, ipywidgets, ipysigma
-Successfully installed ipysigma-0.24.5 ipywidgets-8.1.6 jupyterlab_widgets-3.0.14 widgetsnbextension-4.0.14
-Note: you may need to restart the kernel to use updated packages.</code></pre>
-</div>
-</div>
 
 
 </section>

@@ -160,7 +160,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Developing FzTools</h1>
-                      </div>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Dev-Journey</div>
+                <div class="quarto-category">Parallel</div>
+                <div class="quarto-category">Python</div>
+                <div class="quarto-category">fztools</div>
+              </div>
+                  </div>
   </div>
     
   
@@ -192,21 +198,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#playing-with-multi" id="toc-playing-with-multi" class="nav-link active" data-scroll-target="#playing-with-multi">Playing with Multi</a></li>
+  <li><a href="#playing-with-multiprocessing" id="toc-playing-with-multiprocessing" class="nav-link active" data-scroll-target="#playing-with-multiprocessing">Playing with <code>multiprocessing</code></a>
+  <ul class="collapse">
   <li><a href="#first-case-map-across-multiple-element" id="toc-first-case-map-across-multiple-element" class="nav-link" data-scroll-target="#first-case-map-across-multiple-element">First Case Map Across Multiple Element</a></li>
   <li><a href="#second-case-set-a-computation-aside" id="toc-second-case-set-a-computation-aside" class="nav-link" data-scroll-target="#second-case-set-a-computation-aside">Second Case Set a Computation Aside</a></li>
   <li><a href="#the-manager" id="toc-the-manager" class="nav-link" data-scroll-target="#the-manager">The Manager</a></li>
   <li><a href="#que-is-a-communication-object" id="toc-que-is-a-communication-object" class="nav-link" data-scroll-target="#que-is-a-communication-object">“Que” is a <em>communication</em> object</a></li>
   <li><a href="#the-pipe-to-share-between-two-process" id="toc-the-pipe-to-share-between-two-process" class="nav-link" data-scroll-target="#the-pipe-to-share-between-two-process">The Pipe to share between two process</a></li>
-  <li><a href="#lock-a-process" id="toc-lock-a-process" class="nav-link" data-scroll-target="#lock-a-process">Lock a Process</a>
-  <ul class="collapse">
-  <li><a href="#asynsio-io" id="toc-asynsio-io" class="nav-link" data-scroll-target="#asynsio-io">Asynsio IO</a></li>
-  <li><a href="#come-back-using-async-io-to-achieve-paralleled-computing" id="toc-come-back-using-async-io-to-achieve-paralleled-computing" class="nav-link" data-scroll-target="#come-back-using-async-io-to-achieve-paralleled-computing">Come Back Using Async IO to achieve Paralleled Computing</a></li>
+  <li><a href="#lock-a-process" id="toc-lock-a-process" class="nav-link" data-scroll-target="#lock-a-process">Lock a Process</a></li>
   </ul></li>
-  <li><a href="#apply-this-to-stagemanager" id="toc-apply-this-to-stagemanager" class="nav-link" data-scroll-target="#apply-this-to-stagemanager">Apply this to Stagemanager</a>
+  <li><a href="#explore-asynsio-io" id="toc-explore-asynsio-io" class="nav-link" data-scroll-target="#explore-asynsio-io">Explore Asynsio IO</a>
   <ul class="collapse">
-  <li><a href="#async-cache-task-result-within-one-loop" id="toc-async-cache-task-result-within-one-loop" class="nav-link" data-scroll-target="#async-cache-task-result-within-one-loop">Async Cache Task Result within one Loop!</a></li>
+  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage">Basic usage</a></li>
   <li><a href="#aysnc-task-group" id="toc-aysnc-task-group" class="nav-link" data-scroll-target="#aysnc-task-group">Aysnc task Group</a></li>
+  <li><a href="#passive-perk-auto-caching-within-same-loop" id="toc-passive-perk-auto-caching-within-same-loop" class="nav-link" data-scroll-target="#passive-perk-auto-caching-within-same-loop">Passive Perk: Auto Caching within same loop</a></li>
+  </ul></li>
+  <li><a href="#apply-this-to-my-stagemanager" id="toc-apply-this-to-my-stagemanager" class="nav-link" data-scroll-target="#apply-this-to-my-stagemanager">Apply this to my <code>Stagemanager</code></a>
+  <ul class="collapse">
+  <li><a href="#use-edge-table-for-parsing" id="toc-use-edge-table-for-parsing" class="nav-link" data-scroll-target="#use-edge-table-for-parsing">Use Edge Table For Parsing</a></li>
+  <li><a href="#the-one-i-need" id="toc-the-one-i-need" class="nav-link" data-scroll-target="#the-one-i-need">The One I Need!</a></li>
   </ul></li>
   <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
   </ul>
@@ -219,8 +229,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="playing-with-multi" class="level3">
-<h3 class="anchored" data-anchor-id="playing-with-multi">Playing with Multi</h3>
+<section id="playing-with-multiprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="playing-with-multiprocessing">Playing with <code>multiprocessing</code></h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+in jupyternotebook
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>multi-processing will throw error in jupyter notebook; the work around is define your function and then load it back to jupyter as a module;</p>
+</div>
+</div>
 <p><strong>Use Case</strong></p>
 <ol type="1">
 <li>Wait for a computation to complete before trigger automatically the next step</li>
@@ -234,7 +257,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> colorama <span class="im">import</span> Fore, Style</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
 <section id="first-case-map-across-multiple-element" class="level3">
 <h3 class="anchored" data-anchor-id="first-case-map-across-multiple-element">First Case Map Across Multiple Element</h3>
 <div id="cell-4" class="cell" data-execution_count="3">
@@ -421,26 +443,36 @@ Score: 8
 </section>
 <section id="que-is-a-communication-object" class="level3">
 <h3 class="anchored" data-anchor-id="que-is-a-communication-object">“Que” is a <em>communication</em> object</h3>
-<p>A process can put object by using “que.put”, then then another process can get it “que.get”, but unlike a “dict.get”, “que.get” remove the object from the list;</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div id="figure-quer">
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/multiprocessing-python-5.png" class="img-fluid" width="300"></p>
+<p>Concept illustartion by <a href="https://www.geeksforgeeks.org/multiprocessing-python-set-2/">geekforgeeks</a></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Use <code>multiprocessing.Queue</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>A process can put object by using “que.put”, then then another process can get it “que.get”, but unlike a “dict.get”, “que.get” remove the object from the list;</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating multiprocessing Queue </span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> multiprocessing.Queue() </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># access que</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>q.put()</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>q.get()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># within function</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> foo():</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    q.put()</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bar():</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    q.get()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
+<p><strong>Example</strong></p>
+<p>This example, one function will put stuff in for computation, the other will try access it;</p>
+<p>Define following function:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> square_list(mylist, q): </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" </span></span>
@@ -490,12 +522,22 @@ Queue is now empty!</code></pre>
 </div>
 </div>
 </section>
-<section id="the-pipe-to-share-between-two-process" class="level2">
-<h2 class="anchored" data-anchor-id="the-pipe-to-share-between-two-process">The Pipe to share between two process</h2>
+<section id="the-pipe-to-share-between-two-process" class="level3">
+<h3 class="anchored" data-anchor-id="the-pipe-to-share-between-two-process">The Pipe to share between two process</h3>
 <p>If the communication is two way it is said to prefer the “Pipe” object instead of a normal pipe</p>
-<p>::: Syntax {.callout-tip}</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <pre><code>parent_conn, child_conn = multiprocessing.Pipe()</code></pre>
-<p>:::</p>
+</div>
+</div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sender(conn, msgs): </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" </span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">    function to send messages to other end of pipe </span></span>
@@ -542,9 +584,19 @@ Received the message: hru?</code></pre>
 </div>
 </div>
 </section>
-<section id="lock-a-process" class="level2">
-<h2 class="anchored" data-anchor-id="lock-a-process">Lock a Process</h2>
-<p>::: Syntax {.callout-tip}</p>
+<section id="lock-a-process" class="level3">
+<h3 class="anchored" data-anchor-id="lock-a-process">Lock a Process</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>multiprocessing.Lock()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This object is used again as outside; you acquire or release it within certain transaction;</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define in function</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Lock <span class="op">=</span> multiprocessing.Lock()</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -552,217 +604,217 @@ Received the message: hru?</code></pre>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>lock.acquire()</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt; do stuff uninterupted</span></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>locl.release()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
-<section id="asynsio-io" class="level3">
-<h3 class="anchored" data-anchor-id="asynsio-io">Asynsio IO</h3>
-<div id="cell-23" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> main():</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> asyncio.sleep(<span class="dv">2</span>)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'hello (taken 2 seconds)'</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> main2():</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> asyncio.sleep(<span class="dv">1</span>)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'hello2 (taken 1 second)'</span>)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> main()</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> main2()</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="explore-asynsio-io" class="level2">
+<h2 class="anchored" data-anchor-id="explore-asynsio-io">Explore Asynsio IO</h2>
+<p>Since javascript have similar process I think this is important API to learn;</p>
+<section id="basic-usage" class="level3">
+<h3 class="anchored" data-anchor-id="basic-usage">Basic usage</h3>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+use <code>asyncio.sleep()</code> for development
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you just use the standard <code>time.sleep()</code> the whole process will sleep and there will be no parallel;</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+use <code>nest_asyncio</code> for within jupyter notebook for development
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Standard pip install. Add this to your jupyter, await will work;</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nest_asyncio</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>nest_asyncio.<span class="bu">apply</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p><strong>A example that don’t quite work;</strong></p>
+<p>Simply await an async function in the same process will be as if they are just what they are;</p>
+<div id="cell-25" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> main():</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> asyncio.sleep(<span class="dv">2</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'hello (taken 2 seconds)'</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> main2():</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> asyncio.sleep(<span class="dv">1</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'hello2 (taken 1 second)'</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.time()</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> main()</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> main2()</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> time.time()</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The process took </span><span class="sc">{_:.2f}</span><span class="st"> s"</span>.<span class="bu">format</span>(_<span class="op">=</span>t2 <span class="op">-</span> t1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>hello (taken 2 seconds)
-hello2 (taken 1 second)</code></pre>
+hello2 (taken 1 second)
+The process took 3.00 s</code></pre>
 </div>
 </div>
-<div id="cell-24" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nest_asyncio</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>nest_asyncio.<span class="bu">apply</span>()</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>loop <span class="op">=</span> asyncio.new_event_loop()</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>tasks <span class="op">=</span> [</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    loop.create_task(main()),</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    loop.create_task(main2())</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>loop.run_until_complete(asyncio.gather(<span class="op">*</span>tasks))</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>loop.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Now let’s try make this work</strong></p>
+<div id="cell-27" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nest_asyncio</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>nest_asyncio.<span class="bu">apply</span>()</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>loop <span class="op">=</span> asyncio.new_event_loop()</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>tasks <span class="op">=</span> [</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    loop.create_task(main()),</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    loop.create_task(main2())</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.time()</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>loop.run_until_complete(asyncio.gather(<span class="op">*</span>tasks))</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>loop.close()</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> time.time()</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"took </span><span class="sc">{:.2f}</span><span class="st"> s"</span>.<span class="bu">format</span>(t2<span class="op">-</span>t1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>hello2 (taken 1 second)
-hello (taken 2 seconds)</code></pre>
+hello (taken 2 seconds)
+took 2.00 s</code></pre>
 </div>
 </div>
-<p>Trying with multiprocessing to test understanding?</p>
-<div id="cell-26" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> importlib <span class="im">import</span> <span class="bu">reload</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> defs</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">reload</span>(defs)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    p1 <span class="op">=</span> multiprocessing.Process(target<span class="op">=</span>defs.long_process1)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    p2 <span class="op">=</span> multiprocessing.Process(target<span class="op">=</span>defs.long_process2)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    p1.start()</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    p2.start()</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    p1.join()</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    p2.join()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>In multi-processing</strong>, this would be:</p>
+<div id="cell-29" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> importlib <span class="im">import</span> <span class="bu">reload</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> multiprocessing</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> defs</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="bu">reload</span>(defs)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    p1 <span class="op">=</span> multiprocessing.Process(target<span class="op">=</span>defs.long_process1)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    p2 <span class="op">=</span> multiprocessing.Process(target<span class="op">=</span>defs.long_process2)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    t1 <span class="op">=</span> time.time()</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    p1.start()</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    p2.start()</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    p1.join()</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    p2.join()</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    t2 <span class="op">=</span> time.time()</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"took </span><span class="sc">{:.2f}</span><span class="st"> s"</span>.<span class="bu">format</span>(t2<span class="op">-</span>t1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>long_process2 done (taken 1 second)
-long_process1 done (taken 3 seconds)</code></pre>
+long_process1 done (taken 3 seconds)
+took 3.10 s</code></pre>
+</div>
+</div>
+<p>The <code>asynsio</code> routine are:</p>
+<ol type="1">
+<li>loop <code>.new_event_loop()</code>: create a loop object</li>
+<li>task <code>loop.create_task()</code>: create a task from asyncfunction</li>
+<li>gather <code>.gather([Task*])</code>: gather all the tasks</li>
+<li>run_until_complete <code>loop.run_until_complete</code>: run tasks</li>
+<li>close <code>loop.close()</code>: finally close this loop</li>
+</ol>
+<p>You can already thinking maybe with a context manager you can take out step1 and step3. But unfortunately <strong>there are no context manager</strong> for loop object (although there are alternative…hint).</p>
+<p>Fortunately a stack user has created one</p>
+<div id="cell-31" class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OpenLoop:</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">    A context manager for open and close loops;</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> close(<span class="va">self</span>,<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._loop.stop()</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _close_wrapper(<span class="va">self</span>):</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._close <span class="op">=</span> <span class="va">self</span>._loop.close  <span class="co"># close</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._loop.close <span class="op">=</span> <span class="va">self</span>.close</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__enter__</span>(<span class="va">self</span>):</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._loop <span class="op">=</span> asyncio.new_event_loop()</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._close_wrapper()</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._loop</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__exit__</span>(<span class="va">self</span>,<span class="op">*</span>exc_info):</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>        asyncio.run(<span class="va">self</span>._loop.shutdown_asyncgens())</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>        asyncio.run(<span class="va">self</span>._loop.shutdown_default_executor())</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>        <span class="co">#close other services</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There is a third way in <code>asyncio</code></p>
+</section>
+<section id="aysnc-task-group" class="level3">
+<h3 class="anchored" data-anchor-id="aysnc-task-group">Aysnc task Group</h3>
+<p>Turn out you don’t create your task loop object, instead you use the default Taskgroup to create tasks that needs to be completed at the same time;</p>
+<div id="cell-33" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nest_asyncio <span class="im">import</span> <span class="bu">apply</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">apply</span>()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="cf">with</span> asyncio.TaskGroup() <span class="im">as</span> tg:</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    taskA <span class="op">=</span> tg.create_task(main())</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    taskB <span class="op">=</span> tg.create_task(main2())</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    t0 <span class="op">=</span> time.time()</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> <span class="cf">await</span> taskA</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="cf">await</span> taskB</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    t1 <span class="op">=</span> time.time()</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Time taken: </span><span class="sc">{</span>t1<span class="op">-</span>t0<span class="sc">:.2f}</span><span class="ss"> seconds'</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>hello2 (taken 1 second)
+hello (taken 2 seconds)
+--------------------------------------------------
+Time taken: 2.00 seconds
+--------------------------------------------------</code></pre>
 </div>
 </div>
 </section>
-<section id="come-back-using-async-io-to-achieve-paralleled-computing" class="level3">
-<h3 class="anchored" data-anchor-id="come-back-using-async-io-to-achieve-paralleled-computing">Come Back Using Async IO to achieve Paralleled Computing</h3>
-<p>Async IO don’t support context manager out of the box so here is the solution from Stack to DIY one of your own:</p>
-<div id="cell-29" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> make_A():</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame({<span class="st">'A'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]})</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> make_B():</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame({<span class="st">'B'</span>: [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]})</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OpenLoop:</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> close(<span class="va">self</span>,<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._loop.stop()</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _close_wrapper(<span class="va">self</span>):</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._close <span class="op">=</span> <span class="va">self</span>._loop.close  <span class="co"># close</span></span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._loop.close <span class="op">=</span> <span class="va">self</span>.close</span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__enter__</span>(<span class="va">self</span>):</span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._loop <span class="op">=</span> asyncio.new_event_loop()</span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._close_wrapper()</span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._loop</span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__exit__</span>(<span class="va">self</span>,<span class="op">*</span>exc_info):</span>
-<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>        asyncio.run(<span class="va">self</span>._loop.shutdown_asyncgens())</span>
-<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>        asyncio.run(<span class="va">self</span>._loop.shutdown_default_executor())</span>
-<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>        <span class="co">#close other services</span></span>
-<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._close()</span>
-<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> OpenLoop() <span class="im">as</span> loop:</span>
-<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>    tasks <span class="op">=</span> [</span>
-<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>        loop.create_task(make_A()),</span>
-<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>        loop.create_task(make_B())</span>
-<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>    A, B <span class="op">=</span>loop.run_until_complete(asyncio.gather(<span class="op">*</span>tasks))</span>
-<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>display(A)</span>
-<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>display(B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div>
-
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">A</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>3</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div>
-
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">B</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>6</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="apply-this-to-stagemanager" class="level2">
-<h2 class="anchored" data-anchor-id="apply-this-to-stagemanager">Apply this to Stagemanager</h2>
-<p>OPTION 1: <strong>Use <code>multiprocess.Manager</code></strong></p>
-<p>Wrap my function in lambda for each target? We can see if we can wrap a dataframe in <code>manager</code>; the talk about manager maybe suited for processing two different dataframe? or any object?</p>
-<p>OPTION 2: <strong>Could <code>apply_async</code> maybe something better to use just simply within each stage?</strong></p>
-<p>So far all my function resulted in somewhere else?</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiprocessing <span class="im">import</span> Pool</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>pool <span class="op">=</span> Pool()</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>result1 <span class="op">=</span> pool.apply_async(solve1, [A])    <span class="co"># evaluate "solve1(A)" asynchronously</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>result2 <span class="op">=</span> pool.apply_async(solve2, [B])    <span class="co"># evaluate "solve2(B)" asynchronously</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>answer1 <span class="op">=</span> result1.get(timeout<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>answer2 <span class="op">=</span> result2.get(timeout<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>OPTION 3: <strong>Use Component Graph</strong> to split into several process and then combine them back?</p>
-<p>Also its possible to split into component? That means <strong>there needs to be a method to convert the dependency graph into a Chain</strong> object.</p>
-<p>OPTION 4: The <code>asyncio</code> implementation; that means we either have to write everything in await style, or def as normal let the python do the conversion;</p>
-<section id="async-cache-task-result-within-one-loop" class="level3">
-<h3 class="anchored" data-anchor-id="async-cache-task-result-within-one-loop">Async Cache Task Result within one Loop!</h3>
-<div id="cell-32" class="cell" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_A_normal():</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame({<span class="st">'A'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]})</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_B_normal():</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame({<span class="st">'B'</span>: [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]})</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> make_A_async():</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> asyncio.sleep(<span class="dv">1</span>)</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> make_A_normal()</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> make_B_async():</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> asyncio.sleep(<span class="dv">2</span>)</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> make_B_normal()</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'type(make_A_normal): </span><span class="sc">{</span><span class="bu">type</span>(make_A_normal)<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'type(make_A_async): </span><span class="sc">{</span><span class="bu">type</span>(make_A_async)<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a> <span class="co"># first way to do it is just create a singular task</span></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> OpenLoop() <span class="im">as</span> loop:</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    tasks <span class="op">=</span> [  loop.create_task(make_A_async())</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>             , loop.create_task(make_B_async())]</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># call it till complete</span></span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    t0 <span class="op">=</span> time.time()</span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>    A, B <span class="op">=</span> loop.run_until_complete(asyncio.gather(<span class="op">*</span>tasks))</span>
-<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>    t1 <span class="op">=</span> time.time()</span>
-<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span>
-<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Time taken: </span><span class="sc">{</span>t1<span class="op">-</span>t0<span class="sc">:.2f}</span><span class="ss"> seconds'</span>)</span>
-<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span>
-<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Now lets try do it again with a for loop"</span>)</span>
-<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>    t0 <span class="op">=</span> time.time()</span>
-<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> task <span class="kw">in</span> tasks:</span>
-<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> task</span>
-<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>    t1 <span class="op">=</span> time.time()</span>
-<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span>
-<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Time taken: </span><span class="sc">{</span>t1<span class="op">-</span>t0<span class="sc">:.2f}</span><span class="ss"> seconds'</span>)</span>
-<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="passive-perk-auto-caching-within-same-loop" class="level3">
+<h3 class="anchored" data-anchor-id="passive-perk-auto-caching-within-same-loop">Passive Perk: Auto Caching within same loop</h3>
+<p>Another perk I have found is that async function will not recalculate your reuslt</p>
+<div id="cell-35" class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_A_normal():</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame({<span class="st">'A'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]})</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_B_normal():</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame({<span class="st">'B'</span>: [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]})</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> make_A_async():</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> asyncio.sleep(<span class="dv">1</span>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> make_A_normal()</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> make_B_async():</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> asyncio.sleep(<span class="dv">2</span>)</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> make_B_normal()</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'type(make_A_normal): </span><span class="sc">{</span><span class="bu">type</span>(make_A_normal)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'type(make_A_async): </span><span class="sc">{</span><span class="bu">type</span>(make_A_async)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a> <span class="co"># first way to do it is just create a singular task</span></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> OpenLoop() <span class="im">as</span> loop:</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>    tasks <span class="op">=</span> [  loop.create_task(make_A_async())</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>             , loop.create_task(make_B_async())]</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># call it till complete</span></span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>    t0 <span class="op">=</span> time.time()</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>    A, B <span class="op">=</span> loop.run_until_complete(asyncio.gather(<span class="op">*</span>tasks))</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>    t1 <span class="op">=</span> time.time()</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Time taken: </span><span class="sc">{</span>t1<span class="op">-</span>t0<span class="sc">:.2f}</span><span class="ss"> seconds'</span>)</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Now lets try do it again with a for loop"</span>)</span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>    t0 <span class="op">=</span> time.time()</span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> task <span class="kw">in</span> tasks:</span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> task</span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>    t1 <span class="op">=</span> time.time()</span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Time taken: </span><span class="sc">{</span>t1<span class="op">-</span>t0<span class="sc">:.2f}</span><span class="ss"> seconds'</span>)</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>type(make_A_normal): &lt;class 'function'&gt;
 type(make_A_async): &lt;class 'function'&gt;
@@ -776,55 +828,357 @@ Time taken: 0.00 seconds
 --------------------------------------------------</code></pre>
 </div>
 </div>
-<p>Looking at above! The time taken shrink completely!</p>
-<div id="cell-34" class="cell" data-execution_count="57">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> OpenLoop() <span class="im">as</span> loop:</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    t0 <span class="op">=</span> time.time()</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    taskA <span class="op">=</span> asyncio.create_task(make_A_async())</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    taskB <span class="op">=</span> asyncio.create_task(make_B_async())</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># you can actually just await task</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> <span class="cf">await</span> taskA</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="cf">await</span> taskB</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    t1 <span class="op">=</span> time.time()</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Time taken: </span><span class="sc">{</span>t1<span class="op">-</span>t0<span class="sc">:.2f}</span><span class="ss"> seconds'</span>)</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Looking at above! The second time took <strong>zero</strong> second!</p>
+</section>
+</section>
+<section id="apply-this-to-my-stagemanager" class="level2">
+<h2 class="anchored" data-anchor-id="apply-this-to-my-stagemanager">Apply this to my <code>Stagemanager</code></h2>
+<p>OPTION 1: <strong>Use <code>multiprocess.Manager</code></strong></p>
+<p>Wrap my function in lambda for each target? We can see if we can wrap a dataframe in <code>manager</code>; the talk about manager maybe suited for processing two different dataframe? or any object?</p>
+<p>OPTION 2: <strong>Could <code>apply_async</code> maybe something better to use just simply within each stage?</strong></p>
+<p>So far all my function resulted in somewhere else?</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiprocessing <span class="im">import</span> Pool</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>pool <span class="op">=</span> Pool()</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>result1 <span class="op">=</span> pool.apply_async(solve1, [A])    <span class="co"># evaluate "solve1(A)" asynchronously</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>result2 <span class="op">=</span> pool.apply_async(solve2, [B])    <span class="co"># evaluate "solve2(B)" asynchronously</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>answer1 <span class="op">=</span> result1.get(timeout<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>answer2 <span class="op">=</span> result2.get(timeout<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>OPTION 3: <strong>Use Component Graph</strong> to split into several process and then combine them back?</p>
+<p>Also its possible to split into component? That means <strong>there needs to be a method to convert the dependency graph into a Chain</strong> object.</p>
+<p>OPTION 4: The <code>asyncio</code> implementation; that means we either have to write everything in await style, or def as normal let the python do the conversion;</p>
+<p><strong>Concerning multi-processor’s memeory management system;</strong></p>
+<p>One drawback with multi-processor to me is share any class variables easily between different tasks don’t seems as inuitive. A lot of give example will use python global scoping varible to demo; For understanding, I have to revisit python global variable scoping (I don’t want when I create a package, those passive function will refuse to modify the variable I want to modify correctly);</p>
+<p>Revisiting Python Global Variable Scoping:</p>
+<blockquote class="blockquote">
+<ul>
+<li>…if referencing variable outside function, it is okay (READONLY)</li>
+<li>..to modify a variable outside function, you have to use the keyword <strong>global</strong>.</li>
+<li>…but for mutable oject such as class, list dict you dont need specify global</li>
+</ul>
+</blockquote>
+<p>I’m not clear with how multi-processor produce a output variable and pass it to the next processor? right now it seems multi-processor is good for when you have a database and multiple user is trying to access this database?</p>
+<p>The best use case I can think of (involve passive function) is when you have a data pipeline run in cloud and bucket, and you would want those data pipeline to run in order, and directly mutate the object in a particular order (use que and lock) – indeed, because copying the staging variable around could potentially cause a lot of data transfer/storage cost?</p>
+<p><strong>Paral computing with Async/Await</strong> The syntax is very demure… but in somecases it don’t work as parallel, you have to await a task; hint:</p>
+<blockquote class="blockquote">
+<ul>
+<li><code>asyncio.gather</code> |&gt; <code>loop.run_until_complete</code></li>
+<li><code>await task</code>, <code>task = asyncio.create_task()</code> You also have to be carful because the you cannot process a sub fork by default.</li>
+</ul>
+</blockquote>
+<p><strong>My real problem is DAG</strong> README from the open-source package to acheive this <strong>?@sec-mayromr-async-dag</strong> , explain this really well (there is a issue with typing [^2] the package author has to use a lot of redundant code of typing things).</p>
+<section id="use-edge-table-for-parsing" class="level3">
+<h3 class="anchored" data-anchor-id="use-edge-table-for-parsing">Use Edge Table For Parsing</h3>
+<div id="cell-40" class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fztools <span class="im">import</span> StageManager</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>stage1 <span class="op">=</span> StageManager(<span class="st">"stage1"</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>stage2 <span class="op">=</span> StageManager(<span class="st">"stage2"</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="at">@stage1.register</span>(<span class="st">"A"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plus_one(a):</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="at">@stage1.register</span>(<span class="st">"B"</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> power_two(b):</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> b <span class="op">*</span> b</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="at">@stage2.register</span>(<span class="st">"C"</span>, [<span class="st">"A"</span>, <span class="st">"B"</span>])</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_all(a, b):</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>chain <span class="op">=</span> stage1 <span class="op">&gt;&gt;</span> stage2</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>chain.<span class="bu">input</span> <span class="op">=</span> {<span class="st">"A"</span>: <span class="dv">1</span>, <span class="st">"B"</span>: <span class="dv">2</span>}</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>chain.invoke()</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>chain.output</span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>chain.edge_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">source_id</th>
+<th data-quarto-table-cell-role="th">source_ele</th>
+<th data-quarto-table-cell-role="th">target_id</th>
+<th data-quarto-table-cell-role="th">target_ele</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>&lt;function plus_one at 0x10660aac0&gt;</td>
+<td>0</td>
+<td>A</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0</td>
+<td>&lt;function power_two at 0x10660a160&gt;</td>
+<td>0</td>
+<td>B</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1</td>
+<td>&lt;function sum_all at 0x10660aa20&gt;</td>
+<td>1</td>
+<td>C</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">0</td>
+<td>-1</td>
+<td>A</td>
+<td>0</td>
+<td>&lt;function plus_one at 0x10660aac0&gt;</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>-1</td>
+<td>B</td>
+<td>0</td>
+<td>&lt;function power_two at 0x10660a160&gt;</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0</td>
+<td>A</td>
+<td>1</td>
+<td>&lt;function sum_all at 0x10660aa20&gt;</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0</td>
+<td>B</td>
+<td>1</td>
+<td>&lt;function sum_all at 0x10660aa20&gt;</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="cell-41" class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>chain.as_table()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">stage_id</th>
+<th data-quarto-table-cell-role="th">stage_name</th>
+<th data-quarto-table-cell-role="th">output</th>
+<th data-quarto-table-cell-role="th">prev_stage_id</th>
+<th data-quarto-table-cell-role="th">inputs</th>
+<th data-quarto-table-cell-role="th">func</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>stage</td>
+<td>A</td>
+<td>-1</td>
+<td>[A]</td>
+<td>&lt;function plus_one at 0x10660aac0&gt;</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0</td>
+<td>stage</td>
+<td>B</td>
+<td>-1</td>
+<td>[B]</td>
+<td>&lt;function power_two at 0x10660a160&gt;</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1</td>
+<td>stage</td>
+<td>C</td>
+<td>0</td>
+<td>[A, B]</td>
+<td>&lt;function sum_all at 0x10660aa20&gt;</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="cell-42" class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>stgs <span class="op">=</span> chain.stages</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> stg <span class="kw">in</span> stgs:</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(stg.funcs)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(stg.funcs_args)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>--------------------------------------------------
-Time taken: 2.00 seconds
---------------------------------------------------</code></pre>
+<pre><code>{'A': &lt;function plus_one at 0x10660aac0&gt;, 'B': &lt;function power_two at 0x10660a160&gt;}
+{'A': ['A'], 'B': ['B']}
+{'C': &lt;function sum_all at 0x10660aa20&gt;}
+{'C': ['A', 'B']}</code></pre>
+</div>
+</div>
+<p>There are a few problem with this method; both because variable without a function registered will pass on as it is… But from <code>as_table</code> we can attempt to parase assign type;</p>
+<div id="cell-44" class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> asyncio</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_async_stage(stage):</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    funcs <span class="op">=</span> stage.funcs</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    funcs_args <span class="op">=</span> stage.funcs_args</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    async_stage_funcs <span class="op">=</span> {}</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, func <span class="kw">in</span> stage.funcs.items():</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">async</span> <span class="kw">def</span> async_func(<span class="op">*</span>args,<span class="op">**</span>kwargs):</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> func(<span class="op">*</span>args,<span class="op">**</span>kwargs)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>        async_stage_funcs[key] <span class="op">=</span> async_func</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> async_stage_funcs</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>input_dict <span class="op">=</span> {<span class="st">"A"</span>: <span class="dv">1</span>, <span class="st">"B"</span>: <span class="dv">2</span>}</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> {}</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>async_stage_funcs <span class="op">=</span> make_async_stage(stage1)</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="cf">with</span> asyncio.TaskGroup() <span class="im">as</span> tg:</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, async_func <span class="kw">in</span> async_stage_funcs.items():</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="bu">type</span>(async_func))</span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>        arg <span class="op">=</span> input_dict[key]</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>        task <span class="op">=</span> tg.create_task(async_func(arg))</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>        d <span class="op">=</span> <span class="cf">await</span> task</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>        result[key] <span class="op">=</span> d</span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'function'&gt;
+&lt;class 'function'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>{'A': 1, 'B': 4}</code></pre>
+</div>
+</div>
+<p>Now the problem became, how to wrap an unevaulated expectation? (Future)</p>
+<div id="cell-46" class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nest_asyncio <span class="im">import</span> <span class="bu">apply</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">apply</span>()</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> set_after(fut, delay, value):</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sleep for *delay* seconds.</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> asyncio.sleep(delay)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set *value* as a result of *fut* Future.</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    fut.set_result(value)</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> main():</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the current event loop.</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    loop <span class="op">=</span> asyncio.get_running_loop()</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a new Future object.</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>    fut <span class="op">=</span> loop.create_future()</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Run "set_after()" coroutine in a parallel Task.</span></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We are using the low-level "loop.create_task()" API here because</span></span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we already have a reference to the event loop at hand.</span></span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Otherwise we could have just used "asyncio.create_task()".</span></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>    loop.create_task(</span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>        set_after(fut, <span class="dv">1</span>, <span class="st">'... world'</span>) )</span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'hello ...'</span>)</span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Wait until *fut* has a result (1 second) and print it.</span></span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="cf">await</span> fut)</span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>asyncio.run(main())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>hello ...
+... world</code></pre>
 </div>
 </div>
 </section>
-<section id="aysnc-task-group" class="level3">
-<h3 class="anchored" data-anchor-id="aysnc-task-group">Aysnc task Group</h3>
-<p>Turn out you don’t create your task loop object, instead you use the default Taskgroup to create tasks that needs to be completed at the same time;</p>
-<div id="cell-36" class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="cf">with</span> asyncio.TaskGroup() <span class="im">as</span> tg:</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    taskA <span class="op">=</span> tg.create_task(make_A_async())</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    taskB <span class="op">=</span> tg.create_task(make_B_async())</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    t0 <span class="op">=</span> time.time()</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> <span class="cf">await</span> taskA</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="cf">await</span> taskB</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    t1 <span class="op">=</span> time.time()</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Time taken: </span><span class="sc">{</span>t1<span class="op">-</span>t0<span class="sc">:.2f}</span><span class="ss"> seconds'</span>)</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="the-one-i-need" class="level3">
+<h3 class="anchored" data-anchor-id="the-one-i-need">The One I Need!</h3>
+<p>Finally I have found a menimum example of establish coroutine based on something is done or not; This technical is essential dfs search all at the time;</p>
+<div id="cell-48" class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randrange</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function for the creation of simple sample coroutine</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_sample_coro(n):</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="kw">def</span> coro():</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Start of task </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> ..."</span>)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> asyncio.sleep(randrange(<span class="dv">1</span>, <span class="dv">5</span>))</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"... End of task </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> coro</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> main():</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Simple graph in standard representation (node =&gt; neighbours)</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>    graph <span class="op">=</span> {<span class="dv">1</span>: {<span class="dv">2</span>, <span class="dv">5</span>}, <span class="dv">2</span>: {<span class="dv">3</span>}, <span class="dv">3</span>: {<span class="dv">4</span>}, <span class="dv">4</span>: <span class="bu">set</span>(), <span class="dv">5</span>: {<span class="dv">4</span>}}</span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>    tasks <span class="op">=</span> {n: make_sample_coro(n) <span class="cf">for</span> n <span class="kw">in</span> graph}</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>    tasks_done <span class="op">=</span> <span class="bu">set</span>()</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="kw">def</span> execute_task(ID):</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Trying to execute task </span><span class="sc">{</span>ID<span class="sc">}</span><span class="ss"> ..."</span>)</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>        predecessors <span class="op">=</span> {n <span class="cf">for</span> n, ns <span class="kw">in</span> graph.items() <span class="cf">if</span> ID <span class="kw">in</span> ns}</span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="kw">not</span> predecessors <span class="op">&lt;=</span> tasks_done:  <span class="co"># Check if task can be started</span></span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">await</span> asyncio.sleep(<span class="fl">0.1</span>)</span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> tasks[ID]()</span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>        tasks_done.add(ID)</span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">await</span> asyncio.gather(<span class="op">*</span>[execute_task(n) <span class="cf">for</span> n <span class="kw">in</span> graph])</span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"... Finished"</span>)</span>
+<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> main()</span>
+<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>--------------------------------------------------
-Time taken: 2.00 seconds
---------------------------------------------------</code></pre>
+<pre><code>Trying to execute task 1 ...
+Start of task 1 ...
+Trying to execute task 2 ...
+Trying to execute task 3 ...
+Trying to execute task 4 ...
+Trying to execute task 5 ...
+... End of task 1
+Start of task 2 ...
+Start of task 5 ...
+... End of task 5
+... End of task 2
+Start of task 3 ...
+... End of task 3
+Start of task 4 ...
+... End of task 4
+... Finished</code></pre>
 </div>
+</div>
+<p>Note that this is not a chain; because each node are run at the same time, so actually you only need to search the dependency up one level!</p>
+<p>It does not explicitly identify the graphical root; The root 1 would not have a dependency;</p>
+<div id="cell-50" class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to esplain the set operator;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> {<span class="dv">1</span>} <span class="op">&lt;=</span> {<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>}</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> {<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>} <span class="op">&lt;=</span> {<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>}</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> ({<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>} <span class="op">&lt;=</span> {<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>}) <span class="op">==</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 <section id="reference" class="level2">
 <h2 class="anchored" data-anchor-id="reference">Reference</h2>
 <ul>
-<li><a href="https://stackoverflow.com/questions/46827007/error-runtimeerror-this-event-loop-is-already-running-in-python">Event Loop Runtime Error</a></li>
-<li><a href="https://stackoverflow.com/questions/50757497/simplest-async-await-example-possible-in-python">Async Await Demo</a>: key takeaway is when writing a demo its better to use the <code>async.sleep</code> for time pulse.</li>
+<li><p><a href="https://stackoverflow.com/questions/46827007/error-runtimeerror-this-event-loop-is-already-running-in-python">Event Loop Runtime Error</a> – came across this when try run sample code in jupyter notebook;</p></li>
+<li><p><a href="https://stackoverflow.com/questions/50757497/simplest-async-await-example-possible-in-python">Async Await Demo</a>: key takeaway is when writing a demo its better to use the <code>async.sleep</code> for time pulse.</p></li>
+<li><p><em>mayromr</em> Development Async DAG library: <a href="https://github.com/mayromr/async-dag/tree/main" id="sec-mayromr-async-dag">mayromr/async-dag: A simple library for running complex DAG of async tasks</a></p>
+<ul>
+<li>A side issue of this is typing <a href="https://github.com/python/typing/issues/1216">TypeVarTuple Transformations Before Unpack · Issue #1216 · python/typing</a></li>
+</ul></li>
+<li><p><a href="https://stackoverflow.com/questions/78670718/how-to-execute-a-dag-of-tasks-using-async-io">Original StackOverflow post contribute to DAG solution</a></p></li>
 </ul>
 
 
