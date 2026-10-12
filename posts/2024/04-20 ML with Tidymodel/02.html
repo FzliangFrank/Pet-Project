@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-05-10">
+
+<title>Work with AMES Data – Frank’s Goldfish Projects</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-d75dc15f82e59377ef6a330af5bc2df5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-04f32df8507d7e5a592441fcc65135dc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-d75dc15f82e59377ef6a330af5bc2df5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="../../../site_libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="../../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../../../site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../../site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="../../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Frank’s Goldfish Projects</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About (Frank Liang)</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../cv/cv.qmd"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/FzliangFrank"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/frank-liang/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Work with AMES Data</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 10, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#study-features" id="toc-study-features" class="nav-link active" data-scroll-target="#study-features">Study Features</a>
+  <ul class="collapse">
+  <li><a href="#experiment-of-a-rotated-2d-surface-in-a-3d-surfaces" id="toc-experiment-of-a-rotated-2d-surface-in-a-3d-surfaces" class="nav-link" data-scroll-target="#experiment-of-a-rotated-2d-surface-in-a-3d-surfaces">Experiment of a rotated 2D surface in a 3D surfaces</a></li>
+  </ul></li>
+  <li><a href="#actual-model" id="toc-actual-model" class="nav-link" data-scroll-target="#actual-model">Actual Model</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ames <span class="ot">&lt;-</span> <span class="fu">mutate</span>(ames, <span class="at">Sale_Price =</span> <span class="fu">log10</span>(Sale_Price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="study-features" class="level2">
+<h2 class="anchored" data-anchor-id="study-features">Study Features</h2>
+<p>My first intuition is create a factor analysis so I can try understand which dimensions are related which are not.</p>
+<p>Explore data using pca for analysing top performing featuresfviz_pca_ind</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ames.numb <span class="ot">=</span> ames <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">"Year_"</span>), <span class="sc">-</span>Longitude, <span class="sc">-</span> Latitude, <span class="sc">-</span>Sale_Price)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ames.numb |&gt; glimpse()</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>ames.fct <span class="ot">=</span> ames.numb <span class="sc">|&gt;</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prcomp</span>(<span class="at">scale=</span>T) <span class="co"># the function</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># # fviz_eig from factoextra package</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ames.fct <span class="sc">|&gt;</span> <span class="fu">fviz_eig</span>() <span class="co">#Extract and visualize the eigenvalues/variances of dimensions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From this plot the elbow seems to be two or three. This visualization seems to be better at explaining factors (I will continue my fascination with PCA later).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  ames.fct</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  ,<span class="at">col.var =</span> <span class="st">"contrib"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  ,<span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  ,<span class="at">repel =</span> <span class="cn">TRUE</span>     <span class="co"># Avoid text overlapping</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Actually you can use PCA with tidy-model (because you can also train and predict)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ames_tts <span class="ot">=</span> ames <span class="sc">|&gt;</span> <span class="fu">initial_split</span>(<span class="at">prop =</span> <span class="fl">0.8</span>, <span class="at">strata =</span> Sale_Price)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ames_train <span class="ot">=</span> ames_tts <span class="sc">|&gt;</span> <span class="fu">training</span>()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ames_test <span class="ot">=</span> ames_tts <span class="sc">|&gt;</span> <span class="fu">testing</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pca_trans <span class="ot">=</span> ames_train <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(<span class="sc">~</span>.) <span class="sc">|&gt;</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric</span>(), <span class="at">num_comp =</span> <span class="dv">2</span>)<span class="co"># still </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Getting data out, according to receipt example, instead of train or predict you do so by <code>prep</code> and <code>bake</code>.</p>
+<p>This results in scoring of the two latent feature for each individual row.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pca_estimate <span class="ot">=</span> pca_trans <span class="sc">|&gt;</span> <span class="fu">prep</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>pca_data <span class="ot">&lt;-</span> <span class="fu">bake</span>(pca_estimate,ames_train)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>pca_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,342 × 2
+     PC1    PC2
+   &lt;dbl&gt;  &lt;dbl&gt;
+ 1 2.49   0.827
+ 2 3.29   0.468
+ 3 2.70  -0.329
+ 4 2.44  -1.23 
+ 5 2.73  -1.60 
+ 6 1.14   1.47 
+ 7 3.29   0.339
+ 8 2.62   2.95 
+ 9 3.52  -0.285
+10 0.412 -2.76 
+# ℹ 2,332 more rows</code></pre>
+</div>
+</div>
+<p>Extract coeficient feature for against all score?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## visualise coeficiency results</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidytext)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: tidytext</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(pca_estimate,<span class="at">number=</span><span class="dv">2</span>,<span class="at">type=</span><span class="st">"coef"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(component <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"PC1"</span>,<span class="st">"PC2"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y=</span>terms, <span class="at">fill=</span>component)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Extracting Feature from Tidyverse Principle Component"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>By calculating corelation matrix is indeed, you replicate the same value from the latent feature.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> ames_train <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">where</span>(is.numeric), <span class="sc">-</span>Sale_Price)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(X, pca_data ) <span class="sc">|&gt;</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(PC1, PC2)) <span class="sc">|&gt;</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>rowname, <span class="at">x=</span>value, <span class="at">fill=</span>name)) <span class="sc">+</span> </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Calcuate Corelation Matrix from Scratch"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(pca_estimate,<span class="at">number=</span><span class="dv">2</span>,<span class="at">type=</span><span class="st">"variance"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> value, <span class="at">x =</span> component,<span class="at">fill=</span>terms)) <span class="sc">+</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>terms,<span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Experimenting closest feature.</p>
+<p>However I am interested in see which feature should below in which under laying factor?</p>
+<p>So I created this visualisaion:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>magic function for compare features</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>compare_factor <span class="ot">=</span> <span class="cf">function</span>(tidybaked, pca1, pca2) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  pca1Quo <span class="ot">=</span> <span class="fu">quo</span>(<span class="fu">get</span>(pca1))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  pca2Quo <span class="ot">=</span> <span class="fu">quo</span>(<span class="fu">get</span>(pca2))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  tidybaked <span class="sc">|&gt;</span> </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(component <span class="sc">%in%</span> <span class="fu">c</span>(pca1,pca2)) <span class="sc">|&gt;</span> </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">names_from=</span>component</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>      ,<span class="at">values_from=</span>value</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">diff =</span> <span class="sc">!!</span>pca2Quo <span class="sc">-</span> <span class="sc">!!</span>pca1Quo) <span class="sc">|&gt;</span> </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(diff) <span class="sc">|&gt;</span> </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rowwise</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">mxv=</span><span class="fu">max</span>(<span class="sc">!!</span>pca2Quo, <span class="sc">!!</span>pca1Quo), <span class="at">miv=</span><span class="fu">min</span>(<span class="sc">!!</span>pca2Quo, <span class="sc">!!</span>pca1Quo)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">terms =</span> <span class="fu">fct_inorder</span>(terms)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>      ,<span class="at">is_pc2=</span>diff <span class="sc">&gt;=</span> <span class="dv">0</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>      ,<span class="at">abs_diff=</span><span class="fu">abs</span>(diff)) <span class="sc">|&gt;</span> </span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span> terms,<span class="at">alpha=</span>abs_diff)) <span class="sc">+</span> </span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_linerange</span>(</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">xmin=</span>miv,<span class="at">xmax=</span>mxv,<span class="at">color=</span>is_pc2)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>      ,<span class="at">linewidth=</span><span class="dv">2</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span> </span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="sc">!!</span>pca1Quo),<span class="at">color=</span><span class="st">"lightcoral"</span>) <span class="sc">+</span> </span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="sc">!!</span>pca2Quo),<span class="at">color=</span><span class="st">"cyan3"</span>) <span class="sc">+</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_alpha_continuous</span>(<span class="at">trans=</span><span class="st">"sqrt"</span>) <span class="sc">+</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>This compares principle component 1 against 2</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(pca_estimate,<span class="at">number=</span><span class="dv">2</span>,<span class="at">type=</span><span class="st">"coef"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compare_factor</span>(<span class="st">"PC1"</span>, <span class="st">"PC2"</span>) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Feature Alocation of two principle component"</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    ,<span class="st">"Compare coeficency of PCA1 against PCA2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This compares principle component from 2 against 3</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(pca_estimate,<span class="at">number=</span><span class="dv">2</span>,<span class="at">type=</span><span class="st">"coef"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compare_factor</span>(<span class="st">"PC2"</span>, <span class="st">"PC3"</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Feature Aloocation of two principle component"</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    ,<span class="st">"Compare PCA2 against PCA3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>However I don’t understand this visualisation enough to understand if what this PCA says about data (if they are latend or not). So I am creating below experiment to understand PCA.</p>
+<section id="experiment-of-a-rotated-2d-surface-in-a-3d-surfaces" class="level3">
+<h3 class="anchored" data-anchor-id="experiment-of-a-rotated-2d-surface-in-a-3d-surfaces">Experiment of a rotated 2D surface in a 3D surfaces</h3>
+<p>First is by creating on latent variable we understand.</p>
+<p>If project a 2D sheet in a 3D space the surface point on that 2D sheet has underlaying latent space of the 2 dimension.</p>
+<p>First we need to sample a surface point and rotate this surface</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">x =</span> x</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  ,<span class="at">y =</span> y </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(x) <span class="sc">|&gt;</span> </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> x <span class="sc">+</span> y)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>plotly<span class="sc">::</span><span class="fu">plot_ly</span>(d</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  ,<span class="at">x=</span><span class="sc">~</span>x</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  ,<span class="at">y=</span><span class="sc">~</span>y</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  ,<span class="at">z=</span><span class="sc">~</span>z</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  ,<span class="at">marker=</span><span class="fu">list</span>(</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">color=</span><span class="st">"blue"</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    ,<span class="at">size=</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>No trace type specified:
+  Based on info supplied, a 'scatter3d' trace seems appropriate.
+  Read more about this trace type -&gt; https://plotly.com/r/reference/#scatter3d</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>No scatter3d mode specifed:
+  Setting the mode to markers
+  Read more about this attribute -&gt; https://plotly.com/r/reference/#scatter-mode</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-f740b94fac9b8612a3b2" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-f740b94fac9b8612a3b2">{"x":{"visdat":{"11683590d05f1":["function () ","plotlyVisDat"]},"cur_data":"11683590d05f1","attrs":{"11683590d05f1":{"x":{},"y":{},"z":{},"marker":{"color":"blue","size":2},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20]}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"x"},"yaxis":{"title":"y"},"zaxis":{"title":"z"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-2.9699741399573085,-2.7071775814240797,-2.6900044715972458,-2.669090335399726,-2.6195231539938968,-2.5167613495138998,-2.4585182967012749,-2.401717424224596,-2.3968444603980052,-2.3736219146151289,-2.3454408390813675,-2.3436739198644521,-2.325416277005897,-2.3204872092299422,-2.3032943644383139,-2.3029259425192929,-2.286414641877486,-2.2647554009046029,-2.2391891479974384,-2.2289328432235012,-2.1737743082875158,-2.1661274330605873,-2.1509288436506475,-2.0814960185027083,-2.0749931646325606,-2.0735035807252293,-2.0390121230679514,-2.035919453052998,-1.9988352359379853,-1.9258744741618568,-1.9231921640866865,-1.8839945290293862,-1.851411282730778,-1.8424684532926905,-1.8389678729332721,-1.8377081118655987,-1.8296136425173002,-1.8162610285062841,-1.8070231490314044,-1.8048997788836367,-1.7526989045129875,-1.7485414463164846,-1.7418441300742393,-1.7227613853082284,-1.709412100005482,-1.6722370668073232,-1.6712815832980001,-1.6632990901502336,-1.6597298198312194,-1.6517714749415959,-1.6350125584240112,-1.632457447065023,-1.6271163990226787,-1.6039558991753569,-1.5935681145751579,-1.5624842288317169,-1.5322652799543921,-1.5318572362112679,-1.5270794959802145,-1.5206780280436105,-1.51515513484565,-1.5112722268068217,-1.5083714562534005,-1.4891729903602524,-1.4854968265426671,-1.4747378361052492,-1.4703588816456397,-1.4699734919944385,-1.463924402719835,-1.4636432448545622,-1.4614901238077451,-1.4575642194993068,-1.4562262501267234,-1.4534749815113148,-1.4516371780752366,-1.443658079961724,-1.4288955876800453,-1.4054780677816037,-1.402381594079763,-1.3987218849581353,-1.3969530871038673,-1.3953194974669787,-1.3931896573458347,-1.3896604936469219,-1.3881167116528317,-1.3817209499528853,-1.3742602585345156,-1.3709834529951657,-1.3682971193999545,-1.3576476057673341,-1.3574394276140591,-1.3512132936331984,-1.3494972392296201,-1.3478644765218823,-1.3453480894341954,-1.3220371582200976,-1.3183325073540355,-1.3168678037178103,-1.309217156831326,-1.2985508560053298,-1.2942689598025692,-1.2864481078747705,-1.2826552983706991,-1.2818968206182919,-1.2803527535509358,-1.2777008830110324,-1.2734090698143592,-1.2660421860412507,-1.2633937408065259,-1.2606995568450712,-1.2487271362804273,-1.2422732512770331,-1.2380929518950416,-1.2371407503392944,-1.2305736874647346,-1.2300425258342642,-1.222701035521162,-1.2224888832657907,-1.2191570802334242,-1.2181913826040267,-1.2164562829575298,-1.2121078675169712,-1.2093198486597643,-1.1913360555968306,-1.1895041701553708,-1.1874351585447465,-1.1864035813637372,-1.183310121570361,-1.1771261545889058,-1.1769861004282247,-1.1764770146665824,-1.1712081076106693,-1.166800616555385,-1.1659809390855969,-1.1638074446909725,-1.1592112402724539,-1.1558105487822921,-1.152672877434163,-1.148143366350022,-1.147811266289229,-1.144591312047768,-1.1435573394974792,-1.1434602783312542,-1.1418884610464506,-1.1402802215411096,-1.1385855069235953,-1.1339791948330598,-1.1270755630711071,-1.1233091678643525,-1.1227841509567458,-1.1226241107535464,-1.1186001710890905,-1.1184595169321265,-1.1057870116892243,-1.0984581585257678,-1.0981062242816033,-1.0980015643581851,-1.0969936826807147,-1.0954328769562161,-1.0947425689146346,-1.091837777945472,-1.0835149129797488,-1.0676216040155486,-1.0626934740175333,-1.0569843763928333,-1.055307711974613,-1.0533182293533676,-1.049907183968277,-1.0479084223778106,-1.0430678978928389,-1.0377764108702634,-1.0254074900810517,-1.0244062918209456,-1.0234962054221945,-1.0224222461345294,-1.0143966608263699,-1.0099794507314455,-1.0078177506843176,-1.0056051508250148,-0.9926805179610998,-0.98581519343700441,-0.97672022255229085,-0.97574238023619841,-0.9676204762059194,-0.96298409624806247,-0.94881112985611715,-0.94767008631461103,-0.94258303654316866,-0.94201813012563096,-0.94195780446397603,-0.94035440477322463,-0.93702287502903059,-0.93541401973680849,-0.93184053877626938,-0.93167072186938094,-0.92812939599382782,-0.92778926063423439,-0.9244807659644958,-0.92439753361863419,-0.92095522906443894,-0.91780989052996376,-0.91078692161413166,-0.90922296668193758,-0.90799485360119114,-0.90784823373964552,-0.90332470601754611,-0.90226638859367658,-0.90002267138081005,-0.89234729841467419,-0.88920973648201906,-0.88775005535142282,-0.88599886692552354,-0.8823701904377852,-0.87968019800607544,-0.87295196116389329,-0.8718904204799226,-0.85710632393185315,-0.85598005424991996,-0.85128187535625865,-0.8502029180167533,-0.84843659229144264,-0.84708524427981358,-0.84346680507615157,-0.84069254784399516,-0.8381161834877856,-0.83730618312780303,-0.83676059623236576,-0.83241860462420769,-0.83048417297475197,-0.82905583752834489,-0.8242220309301852,-0.816524063480349,-0.80672281996529505,-0.80498146693231398,-0.80109224408056723,-0.80105093316710629,-0.79789728751477107,-0.79241350630887719,-0.78415791112436783,-0.78119054551245382,-0.78113211229140389,-0.77939152390233302,-0.77742612923067811,-0.7757110721949334,-0.77474209839925212,-0.77292039661920808,-0.77163369433186613,-0.76946784613891694,-0.76807660352168905,-0.76748282814663493,-0.76069755184967125,-0.75830650728338089,-0.75609143083107078,-0.75327214472173321,-0.74664697316750439,-0.74559779201370857,-0.74499735474472195,-0.74343264391422492,-0.74098475651114459,-0.73821339720038781,-0.73676677738503704,-0.73483021332714793,-0.73454427728957594,-0.72403095774659942,-0.70938572426033009,-0.70936772152959104,-0.70034836720591498,-0.69314964512676147,-0.68749770983968195,-0.68613097952258129,-0.68537636329862306,-0.68061844930296189,-0.67956642025700487,-0.67703663444745743,-0.66667984086948551,-0.66461772929548701,-0.66446564785867224,-0.66250303715762782,-0.66214468872056975,-0.65372447329259509,-0.64924635809310993,-0.64720540334542476,-0.64494412939847778,-0.63892972370181045,-0.63687825664185771,-0.63668973428166509,-0.63646862422765338,-0.62914346243493935,-0.62265230091685886,-0.62030650797300024,-0.6188279116626213,-0.61879212545685658,-0.61561193228025124,-0.61236472202147207,-0.60863069333603259,-0.6079831764153899,-0.60549666273911407,-0.60302298099001772,-0.59848799852020806,-0.59802139275397126,-0.59311163022425717,-0.58354012578017012,-0.57957567335590277,-0.56067341483051991,-0.55980734208365457,-0.55137705256314717,-0.55126765981138104,-0.55086409478925014,-0.54925742908692488,-0.54753199320989498,-0.54315782206973029,-0.54039595794115791,-0.53877184875623019,-0.53466325105845935,-0.53238620197112652,-0.52758732044673051,-0.52288189830660559,-0.52168193466231827,-0.51996071317632209,-0.5196945044063418,-0.51747370501339451,-0.51661364016415434,-0.51521850066026498,-0.51169886642219264,-0.50366007381923783,-0.49691590991463847,-0.49690295154999464,-0.49285542045315378,-0.48693975470460382,-0.47932268543821271,-0.47821072546523657,-0.47148823754510621,-0.46982339164723885,-0.46789441986728175,-0.46760163122009296,-0.46209122995001845,-0.46068051402996174,-0.45926311997913383,-0.45489673227327621,-0.44612090230368145,-0.44285914024768913,-0.43468494815796077,-0.43063901665521503,-0.43048645686733938,-0.42926042509204415,-0.42678917967694535,-0.42645335635710996,-0.4257311756843562,-0.42375912690137368,-0.42028678128918018,-0.41884404598141523,-0.41880578548198588,-0.41835623556800561,-0.41388884073875115,-0.41332341175291504,-0.40898516540465685,-0.39972912084534012,-0.39679655461029278,-0.39610041039516147,-0.39530209880759232,-0.39218962150745695,-0.39039956749102817,-0.38945456490328606,-0.38747075300066708,-0.38629479887989471,-0.37950141442662227,-0.37705463991919869,-0.37617257376690794,-0.36884503315175826,-0.34919589620311897,-0.34856235332630531,-0.34778764097290982,-0.3463117226219895,-0.3429234825402192,-0.34107609793232868,-0.33847041847481879,-0.33649422203005291,-0.3357278977789811,-0.3307028730967348,-0.33050286835567771,-0.3295678362053131,-0.32565796942048414,-0.31948000918613162,-0.3192789386065833,-0.31919388743935673,-0.31654531327088131,-0.31434518232429615,-0.31344111512897765,-0.30865190901211187,-0.30059464866010244,-0.29693337935319458,-0.29509816054898275,-0.29478059682061947,-0.29353904401670716,-0.29069518289557494,-0.28295486403501319,-0.2797333815615593,-0.27273137146265275,-0.26867589662001373,-0.26596958717104013,-0.25883370908073794,-0.25881105976383761,-0.25868359445592576,-0.25769459837384029,-0.25615742465610558,-0.2559320930049126,-0.25478020369680171,-0.25281946646406805,-0.25248139346250897,-0.24890247923208944,-0.24630229998021286,-0.24595268828229294,-0.2457809761783751,-0.245112555532325,-0.24474145942735659,-0.24360183244533321,-0.24289128702441282,-0.23950701233035346,-0.23460042515479748,-0.2344458030511862,-0.23416491202655665,-0.2289795152884882,-0.22751658808306183,-0.22394135039831659,-0.21638580322599119,-0.21627869240114847,-0.21568902400859213,-0.21435194129333837,-0.21311926670894868,-0.20636399877744888,-0.20529649835043787,-0.20476211576390524,-0.20070919934969197,-0.19588738790706098,-0.19458088293614403,-0.19029897027102774,-0.1845497512830872,-0.18266587608939253,-0.18152381951858934,-0.17998893798144794,-0.17978085064437929,-0.17931528542537908,-0.17811918236508498,-0.17229332539648776,-0.17173746102041632,-0.16947624117864551,-0.16859238272998986,-0.16619022115204191,-0.16536052766180701,-0.16117893562030369,-0.16061390880860352,-0.15809994565521773,-0.15395130986843011,-0.15333822562399918,-0.15024127850174099,-0.15015105108278226,-0.14805855855380148,-0.14681576927261805,-0.13963467268528082,-0.13382186013569664,-0.13093946583737359,-0.12313726653761518,-0.12210764659001455,-0.1219312464052623,-0.12025012819009433,-0.11588888938586754,-0.11198546190906741,-0.10930628572080256,-0.10887800365322835,-0.10812079982198089,-0.10557253072353188,-0.10410502330966741,-0.1038742671716565,-0.10332586303429442,-0.10060900527386846,-0.099356961439143826,-0.091581974947549841,-0.091101206711189167,-0.086606774268911974,-0.084516569497904856,-0.082709375499228591,-0.080117717536130145,-0.07791732593665629,-0.077840882303316511,-0.063495873984801304,-0.061377435096959657,-0.058675273293225826,-0.055125929472658895,-0.04400119229567704,-0.043966574473457698,-0.040689266706539329,-0.04005835733787081,-0.03705823955794435,-0.034442249254642468,-0.025430330983374598,-0.013989385524897296,-0.0041461050520442558,-0.0017637089254832579,0.012032703558499541,0.014677975598691849,0.01529677242647063,0.015368014563089009,0.017577796089156262,0.020906458294105951,0.02117381405523884,0.024769304395666523,0.024847675136951314,0.029011692706596755,0.033097731642206016,0.034631791075845242,0.03737693386697611,0.038228635347106112,0.039707609605401331,0.039748559233424609,0.04987535882741511,0.05280608374334101,0.055047104338449671,0.056508618952136415,0.057484986136781095,0.070568992680632728,0.070654579688422495,0.079690981083806886,0.079805437001554153,0.080163822061916482,0.080931545031739938,0.082684440348489915,0.085573674739247818,0.085952802513915488,0.086585725202418223,0.08842932561195084,0.089963146640474986,0.09154282194264772,0.091829619027533518,0.092261199652680689,0.093540297468957714,0.093780321418003867,0.093851635911131839,0.094473176059338651,0.096374311080555441,0.096624089907532865,0.098719392137620779,0.10002682664374513,0.10074521535324818,0.10285623256473173,0.10880173584885763,0.11560993919202998,0.11581054006036146,0.11797960267741692,0.11931938860117179,0.1201056351324726,0.12074351806008669,0.12914500483328484,0.12943566218885291,0.12950038079746398,0.12968839886089456,0.13184690562867188,0.13495827470849409,0.13816814034562475,0.13876621972809211,0.14498494568618855,0.14504380918873394,0.15208872871845963,0.15227029415959573,0.15276138740927589,0.15961865522323421,0.16479015079669104,0.16573355046632549,0.16729220412697088,0.17064717440057925,0.17073641521753172,0.17657727342064009,0.17700421592036517,0.18182105525782111,0.18633772371713433,0.19096962983919216,0.19201448489033254,0.19726470728034637,0.19828931251635235,0.19993094647928469,0.20020364814412964,0.20119308769286537,0.20280559604037299,0.20469506563775344,0.2050755380767301,0.21107653242794391,0.2161803979538158,0.21628278281926322,0.218248197710571,0.22236947792764086,0.22272767963048351,0.22632416013719719,0.22762551614331852,0.23198238421668846,0.23231074185603867,0.23434640429179579,0.24339297242464836,0.24672218515683039,0.25213634197114021,0.25524185292693324,0.25557391682252872,0.25713065100396598,0.25783090275655873,0.26217249659107977,0.26862859782083215,0.27024356132461275,0.27315966802825159,0.27416464596362727,0.27445673639710216,0.27643812067160489,0.28039629767875363,0.2825933441625722,0.2887889123329509,0.29117425143150599,0.29333089411395263,0.29767718699287721,0.29849232668081599,0.29949480429396985,0.30359319883204905,0.30636791706146166,0.30728722702090683,0.3110614687266377,0.31239048644084622,0.31591160339728941,0.3185539364530357,0.32033900131700455,0.32864075559447209,0.32887625164638901,0.33299199560707982,0.33376066313769365,0.33441715444597453,0.33665037386439772,0.3370357892954301,0.33830754814022834,0.34152699727078012,0.34536759171990661,0.34883244652175333,0.35109757132699754,0.35514213386309873,0.35564971806790141,0.35638614217978937,0.35694685660231978,0.35891574633223172,0.35927887171869438,0.36245149798886972,0.36413685284470593,0.36705963591176,0.36739233296016111,0.37033959943919875,0.37115256224037618,0.37135624392081634,0.37351393328124732,0.38012591267454965,0.38238468595375485,0.38327225965285083,0.38402358965607269,0.38704199212506607,0.38722459884287991,0.39392892260088941,0.39583249295478368,0.39891222514575086,0.39950344178239683,0.40026077310089964,0.40045679239868603,0.40263475365036933,0.41179991214718636,0.4125464700942541,0.41773805386577639,0.41914752748086503,0.42327571876703196,0.4250554356530134,0.42597549164485726,0.43226014715721756,0.43443672826618418,0.43487210124786957,0.43742282483927702,0.43791313512771679,0.44110732335950326,0.44265377008203544,0.44687366775016718,0.45064305489562489,0.45087667381716096,0.45291345470904365,0.45295905987926782,0.45451030790245384,0.46535991997011106,0.46902540647641,0.47627641462408776,0.47978074665958231,0.48320626274922007,0.48323464138734651,0.48710375946385748,0.49157195301287138,0.49473318599788951,0.49604810681381328,0.50207437920161202,0.50438298330671028,0.50979434239606902,0.51248731368609812,0.51837545839638621,0.51933243250980476,0.52202440029428854,0.52566204382130799,0.52621077497797275,0.52826544092869909,0.53135906891973594,0.53244033658505285,0.53366363731201738,0.53648066522687055,0.54233520389478962,0.54631398884857885,0.54766858134059127,0.55210780575134588,0.55274089551191286,0.55524877187145372,0.56044265380564018,0.56115777124519362,0.56260589508000713,0.56724111904160357,0.57223133928484682,0.58401520880955116,0.58424072883405131,0.59020950520889737,0.59233151472854551,0.59350587757996009,0.5953265363439233,0.59977292503835034,0.60524231710213328,0.61141264185522448,0.61419039006237286,0.61599753296454851,0.61628728481004036,0.61748077349892205,0.61987519389634294,0.6263812528116729,0.62674477216106617,0.63239386554996935,0.63241206573533881,0.64869569000443783,0.65359313712378764,0.65652672937727108,0.65741860464472368,0.65955584000652678,0.66516231025891914,0.66733216921312821,0.66874196242845152,0.67098071069430698,0.67102754553193966,0.67576132760071239,0.67956420200469436,0.68131241701474421,0.68131717651249846,0.68435027557772288,0.68520667470947627,0.68574509707244558,0.68669744277722722,0.69181298183694151,0.69246878638626774,0.69293003859430458,0.69903448350472541,0.69915056707992729,0.70726931629694523,0.70860954281175503,0.71525442727848787,0.72338684520915786,0.72374342632784727,0.72397858756147992,0.72856183673498431,0.72859234945771389,0.73260153262375827,0.73397972159553815,0.73539967115208738,0.73816080865839784,0.74298034007957658,0.7462396094338859,0.7471834537044032,0.75133827816990306,0.75162793940147254,0.7516365425991639,0.75348040805325167,0.75628874584823269,0.75653872479331674,0.76102036899379688,0.76482641356992564,0.76865020678227558,0.77539741003959706,0.78159806467932191,0.78296752917014456,0.78354729304177539,0.78821637438524117,0.79032908576296734,0.79684213579778118,0.79901169280965345,0.79934730715702185,0.80004745062781679,0.81643200383929226,0.81720234254225432,0.8223864767356035,0.82394485492776193,0.83561496881114505,0.83847648996541546,0.84329939827029088,0.84960723886199507,0.85434029348375995,0.86236895424397009,0.86484137448926668,0.86729235777567903,0.87033866753473021,0.87262822008506391,0.87319588836567286,0.88450396678536247,0.88652128187335766,0.89727813816388957,0.90234547863680059,0.90686577004369751,0.91290468717780149,0.91684867710465989,0.92514223658893613,0.93065878786227507,0.93144946860194178,0.93268519884535972,0.93488669986555639,0.93864351340584007,0.94199940179704211,0.94990936665276293,0.97285349702701573,0.97335289563235738,0.98570868433261127,0.98589912386952261,1.0017044309768373,1.0118569477790342,1.0158269997557459,1.0176698905744104,1.0198692867919736,1.0266237503293092,1.0326636961419069,1.0346335533704585,1.0410814592487916,1.0421830118291657,1.0441349806026661,1.0572547148841513,1.0595568197782812,1.0634336478504622,1.0637147811453451,1.0689815722173808,1.0748905533198654,1.0785000925552712,1.0793652131083922,1.0805479816318138,1.0810757774890143,1.0816449333152551,1.0817365036800048,1.0835878247923778,1.086045855989578,1.0916397973347389,1.0926546679105154,1.0980793316933133,1.0984335183274483,1.0988698431219723,1.1005218343982472,1.1025152554291726,1.1091859439321061,1.1134472939696418,1.1220913910483303,1.1281472814567857,1.1309211215519603,1.1350632926024247,1.1367101222774332,1.1371164695460911,1.1420285517607762,1.1492030594869347,1.1497763557710625,1.1597196645414329,1.1678506869443859,1.1723222306752401,1.1854465599713357,1.191483270583126,1.1935716006003665,1.1962171876200578,1.1968148855579293,1.2018194586763207,1.2127706572020556,1.213194296679307,1.2164394849672417,1.2199623896577878,1.2236208581947186,1.226689119410133,1.230190396004494,1.236767095538448,1.2421697516859311,1.2470060289245011,1.2517969061096961,1.2541302045146987,1.2668338780577673,1.2721566813100982,1.2911021553139137,1.2922308474847217,1.2992884260661606,1.2998968092880396,1.3029114819056087,1.30471607947269,1.305382305078242,1.3089714877664367,1.3140456697433511,1.3157078496549468,1.3171187918625626,1.3227019962757418,1.3246370136513179,1.3278586928682765,1.3535747700164635,1.3557586442373148,1.3697759224633492,1.3757488443027284,1.3793308781255609,1.3815791893684151,1.383105410592385,1.3883098260230173,1.392374947470469,1.3943561861652172,1.3978687940233776,1.4144626211132614,1.4153893600875391,1.4241124125468381,1.4278150376581913,1.4287548406993671,1.4360277417165148,1.4485031089551359,1.4486463774842582,1.4552363896901719,1.4644515705657195,1.47611640093671,1.4782487573564203,1.4992240605645413,1.4997693065379378,1.5160750122856543,1.5200710118938026,1.5206717764387139,1.5309371981338626,1.5430733587159797,1.5589702744692617,1.5716305318013475,1.5762778627617482,1.5822750990048831,1.6046342553402531,1.6189502461053951,1.6695710163420652,1.6702335717197685,1.6910301761207653,1.69223563521487,1.7394873866822664,1.7533188525017762,1.7658519865202351,1.769405426283589,1.7713282026396207,1.775663130340897,1.7880385573060305,1.7990214417315262,1.8015562938572973,1.8081776465691408,1.8350576580548437,1.8436171800239913,1.847688726423464,1.8518443926540098,1.8654106407201678,1.8691853031425767,1.8770636090461181,1.899025698040324,1.9052415220725341,1.9117117298973045,1.9139005227844264,1.9155405179398941,1.9460977277931455,1.9483077696346225,1.9775518977984892,1.9859259711096353,2.0156297698157948,2.0285632417537891,2.035995305595085,2.0488847542445132,2.0725904594090019,2.1102396993347146,2.1164910375636503,2.1787362027253039,2.1853004417890438,2.2228810660977514,2.231746249541279,2.2326965229793325,2.2702530613262639,2.2940594950943214,2.3609161154026936,2.3714561475073141,2.4063591322824456,2.4119109136655523,2.4343394030587433,2.478814297683428,2.7244146324572607,2.7285533436604252,2.7661018393200703,2.7726333455244427,2.8881550008033008,3.3987691586113322],"y":[1.2765340721703879,0.47839238226569564,-0.54009941454798471,-0.9629293279882899,-0.10478487675909261,-0.79622535366490921,0.61844897805747678,-0.21646567426664287,-0.52133827058990001,0.16631006244747309,-1.5171634428198593,-0.5286906688213201,-0.47163420171846743,1.8783923857252225,1.7916602303182774,1.0666324944701926,-0.71526398194900287,1.1758421877480134,0.067821823929785433,-0.12345290007984071,-1.9288967917599296,0.44066814842526469,-0.58318007911609537,-2.072526065411715,-0.32552962935115437,2.8008123260040536,-0.75745098555624424,-0.41341222358103613,-1.6719190572433633,-0.97067062107675006,-1.5967232114346257,0.014785767655398692,0.31286661000742233,0.011581677558224807,0.070057886595782951,0.5664288844637676,-1.5442682451316743,-0.48925117300580828,-0.3550010213142758,-0.52393384958065681,-1.2334404786413904,0.78321219090740757,-0.10740082121750619,-0.062142444535922922,1.1322466394445463,-0.81692522085503871,1.6847519512673126,-0.27015739647216869,-0.33418244209877079,0.78578303456037679,-0.1846223110418018,-1.9740806142053744,-0.084830515283874364,-0.95072447556581197,0.07405497071992545,1.060683342004777,-0.50761981447515958,-1.4561286747477058,-0.046598241484440694,-0.55829196202709674,-1.5355014342230573,0.79119999775222072,0.16596043682263159,0.52877760388689365,-1.0920023925408369,1.4673435908699841,-0.12783803127465701,-1.5722639523558202,0.74883043185510278,-0.73940440336931323,0.39969357070015044,-0.58394648735159438,-0.13919431310194416,0.39988650872285814,-0.079924159305071338,1.7817100990279455,-0.56499251431882458,1.754162107915425,0.063916475634368169,2.1213803984242703,-1.5741935884431399,1.0608264852648881,1.7690733814815407,0.32668228659846216,0.82233305822501113,-0.23262381991776285,0.88053178979643576,1.9934528184619393,-0.7923553777850687,0.90848135895414761,-0.98240825131471909,-1.4526462702549401,-0.42738940399965791,1.4102324727235185,1.215291488481224,1.5752626270014831,-0.164584421584379,0.2917836677701191,0.50901736683443299,-0.21004181364166916,-0.53910117047094064,0.44701436033456066,-0.58574523259449196,0.26812064241509598,-2.5027903199041681,0.3364971325268204,1.7271566351058492,-1.2259329266004189,-2.0489189932329612,1.5551772742736099,0.14094294537185231,0.058402219801604018,-1.4462965466374886,-1.5701188781886379,-1.2101259701582086,0.73769147517112688,1.3538201443781093,0.37028382460121145,0.43646039401710618,-0.52330591970365614,-1.080703065458698,1.6087810771531246,-1.3278531193464549,1.2796438035727316,0.22789966362428901,0.73723610114904381,-0.34087382044714665,0.12591490372515421,-2.7508194964427974,-0.39121004214493493,-0.23203773445547632,0.83678038827943402,0.15314658473559156,0.67082429954704648,1.2906783952481657,-1.6279889766979507,-0.034507751743580548,1.2798842251979567,-0.48176870553888923,0.032993971853525976,-1.5687547710234766,-0.23051504785475935,2.3606136426962401,0.58497138713302999,-0.025228274569898151,0.76414345286254504,0.41761654090728989,0.2089149280802427,-0.333609663302673,-0.28425220611215563,-1.0030650493527693,0.63932100625252841,0.47708697608699313,1.8469361621877707,-0.47386497071731709,0.37839045100780622,0.088943142433810102,1.384117878136526,-0.67353982589341999,-0.30820153415892054,0.044184586159112721,-0.060682498841059328,0.69559655548116017,0.31930076218681913,0.65462464789145614,-0.72053359960993757,0.69991027824745389,-0.82444668109457508,0.21440600863916207,-0.033894629307493769,0.56558729118661843,-1.1946943926523512,1.2403287326009282,-1.2200803709060337,-0.50488024921970487,-1.2855834664652805,-1.298946284842607,-0.69124933800851396,-0.10065556310736051,0.58149318744384171,1.2540779365224151,-0.38338143334711089,-0.73096942536334908,0.64261496792772532,0.71940875135382609,0.12293585015862593,-0.19528328222863353,-1.4080461986141446,0.45172067887540152,-0.085636283364195709,0.45220405498197508,-1.1046923964498192,-2.189478065941532,0.66065416124066323,-1.2754206332653883,0.70580386901312986,-0.4581039272376875,0.60722828939658036,-0.6841683189434431,0.9819327048048857,-0.14851753115449984,0.62405267221479965,-0.92506719496793222,0.11579426159840116,-0.95884537582454465,0.68102129037925552,1.2617104440362681,0.3932664459679901,1.1829285710884747,-1.1665163983990157,0.016492568973310553,-1.2062508762879627,-1.5184816334041051,-1.6938698467610036,0.29554305555003763,0.61491662593976781,0.50517045613082523,0.35171945918808067,-0.73237153187834292,0.83148862207089147,0.50153270407892836,-0.4019524388301598,-1.0198353310864881,-0.39526198168985383,0.40842467086845285,2.6748761766213338,1.1365805079710765,1.2946210946508536,-0.75669315945948012,-0.46176530466730992,-1.1436038629108198,-1.7569467577551505,-0.66592444606807699,-2.3151406980361382,-1.0222178165737756,-0.094014563521657907,0.51231388865121341,1.6603091560954966,1.2899740383800864,-0.74234057162144973,-0.49687920834771426,-0.63114391262117264,1.5867350386023971,0.36899246058789742,0.26918562286158776,-1.1254459487032968,-1.9352786625171674,-1.6345507117327125,-1.1366672397062951,0.39482165521584095,0.46458542821562898,-0.72162571644474005,1.0433236622815725,-1.0736354077209564,-0.17218531033668913,0.092545289640977524,-0.97843638614712836,1.0596067103478397,1.2706861615062743,-1.1225388099740898,-1.3647798395790851,-0.287131230203298,-0.023933333240825257,-0.4730248471458347,-0.90893942743350009,0.85946666313804509,0.1838058419749716,-0.64130273764387125,0.097926325810578987,-0.82182321977520489,-0.096633371359109432,0.028434023787977023,-1.9916778861076225,-0.039218346052197671,0.82255062128406609,0.19551042890376424,0.95679164011107554,0.18016572209945281,1.6885398819798687,-0.73012592735239012,-0.32693491076737097,0.42915084189881969,0.44706600493518733,0.42469694276059478,0.43676942298614246,-0.041625591330068788,0.89755720648485027,0.93417956951924008,-0.83208025007417241,-0.60532824956355413,0.5831825571751158,-0.41755459384001953,-1.3856697772747222,-0.48490359013926515,1.6797854204275997,-0.59230944604364888,1.385301846197067,1.3980120751432836,-1.0173982842015141,-0.37324534329183934,2.9287882974487602,0.50218588055958024,0.56803156587115733,-0.29077390341173037,0.29061389667953369,-0.65103057663872876,0.33367811261615266,0.54536670207579108,2.3288469180019433,-0.18383894597865913,-0.91646272692923847,-1.0956146223171224,0.88352040536904819,-1.8752989257259538,1.6009756623808407,0.49741445790392297,1.0221610003039496,0.62957913061171444,0.17710768308004518,2.3272018625613682,1.0480788204843023,-2.219933140109569,0.56388020783794635,-1.1957623188371787,0.022716609573887075,-0.93578887939634758,0.49215919448603801,0.048017643636390044,0.96903341504079854,0.84501061871348193,-0.47490740566878015,-0.24429952606133296,0.39609619109909439,-0.34890960381171121,-1.0915976385831119,1.7681433108270073,-1.6485229268216042,0.70401947053428771,0.044975103020079343,-0.036426143496203746,-0.40892634104544739,2.246755919892522,-1.2526027788212459,0.58041323067176598,-0.38495687710810811,1.5741110887359637,2.3774318424177636,-0.49287822065324116,1.1902135841774493,-0.3120777645292816,-0.7141354752657163,1.0515364825515003,-0.2187884908016012,0.52250092577808638,0.7048726180938536,-0.20572083484077988,-3.1804332790354981,-0.82979830777157859,0.44240216706696917,-0.91388310946583806,0.45515758349632729,-0.50112869932874948,0.17931359189448656,-1.0436713422839228,1.2627708863159242,0.99059247785661331,1.353827460037178,0.095438533935773645,0.10470228951905852,0.037360395301870269,-0.71889353873518402,0.99969163562108054,-0.98742433165223364,0.43304478858545131,1.1096458542425316,-1.2061506706876299,-0.59318734375386462,0.25584673002737418,-0.25330679947768964,-1.0311035503504378,-1.364735958318938,-0.89990287285870307,0.61130850748150178,-0.061986955713072632,0.40240698119365459,0.34510594109372139,-1.0144532263794759,-1.275493977777596,0.13757889540738913,-1.1884211919021685,-2.0130464564547985,0.70452149876941306,-0.3126683074272944,-0.082408343435159057,-0.07084558801730606,1.7998464133805387,-1.0869784102805176,-0.7538876810945524,-1.6085658200537432,0.29519641328127838,-0.64547357584907183,-2.1828628477748104,1.8228166479296004,-1.8311519719379987,-0.82739776899396311,0.063001001287815661,-0.65489854365353917,-0.7236477437469182,-0.7882715020508686,-0.39661920905628334,0.84881749872898882,-0.82418521324675542,0.23132043783063555,-0.69111214508460339,0.31710377817365493,-0.41558878452693127,-0.69602341096587639,0.37697017674349848,0.31652998127392401,-0.5714309168692826,1.6310748224319558,-0.36326114001688781,1.4907877471657645,-0.4963728457859764,0.12955836173287238,-0.7743553876372834,2.1547338626395409,0.39354837777448992,0.26375742510614197,-2.1809698035617791,0.6456886227266091,0.66734972410840521,-0.86797894329446346,-1.247440807823206,-0.82445002716170079,-0.58792152713247425,-0.20154923833660093,0.59364137948692364,-1.8041980791709231,0.39410813607176987,-1.3993243116316112,-0.22248582767416628,-2.2262371921493389,0.7218175421214974,0.043730053255272579,-0.28372749016338517,1.1064368136750162,-0.30570339398390589,0.11433503527212506,0.75902043686576459,1.7615780153860332,-0.36184781396613613,0.76022232943880208,0.14857281133234496,1.5715034327079711,1.3524829124615265,0.11921308476921647,1.5560453191477552,0.66880135721801226,-0.18364423954238759,-0.27674774872227115,-0.76072389953781772,-0.60707998347662007,0.070219101539590753,-1.1121892788883043,0.86731863095372408,-0.57403660793820355,-0.39415113623594172,-1.5700418309447954,0.79968531871124293,1.1600735534913063,0.086537088575729199,0.13335824549907446,-1.2230439079529791,-0.86037151138716661,-1.3195748135862437,1.306502241495902,0.80119258245689862,-1.7853650846026548,-1.4947187714941434,0.54830404346578743,0.049630676391606593,0.18620711555054636,-0.6132203430939337,-0.25265095884804256,0.68201617291381322,0.61165882944067129,0.16958161506066158,0.58026585216027649,-0.75173966122914848,-1.470787958415354,0.46854772855858062,0.21492228316627515,0.72623911881246039,-0.59992461296892219,1.4815108826662149,0.43756875583996457,0.24512480964127614,-0.743122772677698,0.80321221266977949,1.577988482577215,-0.36221829532871741,-1.1613447949857745,-0.07496057377830094,0.35932157597617048,-0.62748382763723454,0.14153904476969426,2.3107486842476783,-0.7375485117992685,1.0431568987683595,0.31385348933952373,0.58189610808275605,0.25087681216099228,-2.0954979636454105,-1.6205823350712938,0.52158328165433521,-0.61503913283946532,-1.3058392253907509,-0.084553772434627181,0.9271714436251538,-0.95463383432798299,0.5925692856197633,0.64001904335775806,0.22949877141792921,0.017177245824514034,0.017862484617178043,1.5016476855845835,-1.4551506789516193,1.1235822297926217,-1.0861367488515654,0.46665555531071801,-0.084406172580842889,-0.70041466063600211,-0.092025320659300594,-0.13483672083635703,1.9404655131088984,1.6676268186817393,0.71012997361929775,0.64174373145489794,0.39083571141008511,-0.21228986248982659,-0.39944499119232929,1.5386633263764318,-0.31349422758553003,2.5197710097418788,-0.16388268945975532,0.13864905195927152,0.71075364961737697,0.10567960683708812,1.0819126463570736,0.12314792588870253,-0.016398237391202778,0.7180468172091129,-1.4328366348112083,-0.087638859823518808,-0.3903880284837985,-0.8355162598274094,-0.27663045541320286,-0.77989125596544218,-0.78837099311935144,-0.31007082403077196,-2.2906485034665049,2.0383695558032291,0.084691985221739388,0.83981513202860725,1.2113872977310929,0.46933126234749734,-1.5156064096657516,-0.56078600586207938,0.24987470283340552,-0.31391176182556324,0.49836811503958744,-0.56121923632049997,1.1313306811475929,-0.85255591629224736,0.86043826122562916,0.93196290412178695,-1.3838428244534646,-0.51901008067791632,-0.65975085395494149,-0.43367233657136539,-0.65615345795389879,1.2058781797400326,-0.74489606637173122,-0.12524515612663853,0.027989013861404701,1.2930284111953692,-0.4400452304759972,-0.049418239923851429,-0.44408858891362063,1.5756350898040272,-1.0743311526568093,0.43227451805916195,0.88273318040856974,-0.90154552603344396,-0.83766538992707074,0.057953320855393273,-1.2167136103620213,0.7800514878984236,2.2337514667544736,0.24186360227861695,0.13495305635524193,0.98635566334281788,-1.2729383794923379,1.9426369092208211,0.11252792661440061,0.50123732142164923,-1.0639847725044065,-0.13172101504186792,-0.094730215460230291,-1.1627038714888303,1.3774936003314389,-0.7331848712959772,1.7431457285824632,-1.1239152753611916,0.17831816948586032,-1.020635938249095,0.15599854857374118,1.5066354662017694,0.64224911708359755,1.3275723277955722,1.4534016747587521,2.8915955738185626,-0.19268319931419262,-0.12325229267223332,1.2521676221901894,-1.5903893521005004,-0.43970948376239793,-1.1837461140079355,0.5310930067046169,-1.3702739758561271,0.64137714770786047,-0.39480044073267767,0.39909077036689228,0.16589549165245077,0.20769527281791256,-0.43480586839740765,0.40247902357401516,0.79492899600873845,0.77580652327610133,-0.71508338069066613,-0.075196994533150152,-0.0012511850042464293,-0.68792123928082771,-1.3308892126029783,1.311268866584318,0.20945516096581845,0.97871496741755593,0.85980350695931407,0.36729960855510141,-1.0436521133181034,0.87004045419363218,0.96384088457844364,-0.3188953867302024,-0.42013575031827971,0.93860455052998693,-0.17836140503342368,0.33171336793904077,-0.99045972036813812,0.87524373897355456,-0.98477175544720108,3.0347965414809024,0.394114645789233,-0.75810585322730795,-0.2546258562330454,-0.050624093042043468,1.0574532367873117,-0.88292630950473638,0.43607592457565275,-0.59478398119475628,0.19698485587606718,1.3546908863748996,-0.49671391114314828,0.79721133630875229,-0.41727422386809404,-1.5635819880445831,-0.13593596312423353,-0.12170905566067544,-0.77053844756787204,-0.1376366079481755,-0.35592041000297975,0.40339794634723425,-2.6561585160099779,-0.93307289761070933,-0.20909836005584378,-0.55412457329015041,0.53937787891395594,-1.9112981527600721,1.4418367887697312,-0.13661586311923843,1.3045679757277464,-1.3454838868672516,-0.8044027360365984,-0.81299333848763755,-0.086361735016659724,-0.46269683704985959,-0.20536425180730422,-0.022740173636045777,0.92160527045646701,-0.13844627559164693,-0.1322180206172231,0.43935838065971639,-0.96708583538172987,-0.88891279479616447,-0.14499879931582091,-0.089460490358277731,0.17931866913297803,0.24419044825883701,-0.22708125708338062,0.32615891554304804,-0.7357806645817917,0.1589700672464468,-0.090561630105251659,-0.96715712062686854,1.1037101160223346,-0.045005455507060657,-0.22787060493419031,0.55168576921028867,-0.84672225343202334,-0.22104814817149257,1.7818718236580589,-1.4080191423226684,-0.60204411650719347,-1.5960000382270647,1.8523072265513993,0.55905271084716546,-1.6416624607101054,-0.64369515446915404,0.42704752488886466,-0.23139576389373762,0.33014651168515108,0.76980625103495715,-0.28041377893106595,0.88340196019548256,0.74956682716908984,1.9800668379513784,-2.3274453771586452,-0.65523719128920699,-1.3427788858822158,-1.0941312474626299,-0.33272305406970981,-0.026584728297699499,0.072934710933248464,-1.8876156806589259,0.24526931326978607,0.96052355444497262,0.55391586300895923,1.0823222257478493,-0.37924426730658034,-0.12399103132068631,-1.1257998591137572,0.13935537776195953,0.57518937544635784,1.7099826236371016,0.68620423413080867,-1.1090426311021349,-0.70426312467268037,0.52977459711890529,1.440064542835825,-0.03520692921569752,0.42975782380841959,-0.20255636238117364,-0.96032047924238451,0.25391689911188881,0.5591592530227073,-2.7453735337892247,1.1416144815229905,-0.20519825546030687,0.067206344038856974,-0.86614521223653063,-0.018067223426970876,-1.3958931435561002,-0.69352906822094718,-0.30070574005222228,-0.76844797313669866,-0.52566126754712139,0.77448556121014489,-2.4515131717198568,1.0197389932074759,-1.9041400807124154,0.53506389320304626,0.33017936600585507,0.62072377557442426,0.57488217202698244,0.56698266931880958,-0.59675107667737659,-0.82350111908240775,1.2638710805759261,-1.2217003341662542,1.4467224945578736,1.1248254562344098,0.13352353722250637,0.37645750906487341,0.34946703346491292,1.4589568452873445,0.58606328876155511,0.48552499521987103,0.70221877378191433,0.23876709197356061,-1.2468932171534439,-0.065518912891418257,-0.89838969166539961,-0.17981092863743231,1.1622470308645363,1.308434775501168,0.10471672684565252,-0.1496568697903152,-0.53897263184372979,-1.5765489114423255,-1.2372057684271602,1.4603555772360362,-0.61919996462978244,1.0887445573526862,-0.56143175852091476,1.3433846772839839,-0.10039870137684664,-0.46569303048449362,0.40213892966853287,0.25711180995995397,-2.2664486434731095,-0.77728211857577356,0.74802530418808333,-0.066011564866227418,0.26831581725642883,-0.75018942836593616,0.42723324982353789,-1.9408788634592951,-2.8671808456771388,0.73573919840004753,0.065018228795778288,0.58097195324539275,-0.94355692854047912,-0.67880650668966114,-1.0455466645882132,1.2361223844939491,-1.8355149558979602,1.288883981408216,1.9618301168483345,-0.17801837084973393,2.998778660964271,-0.11391305815562751,0.64727423956694985,0.026445239663485619,1.4739697232483395,0.54661352994911949,1.7308613717267678,-0.83435619520059945,0.15731021638370818,-0.37856960803848144,-1.8014159589673462,0.87882275284317479,0.25679063165936222,1.0148015231006111,-0.58317052273482328,-0.64450379148255255,-0.52622898916203809,-2.1755203749201617,0.57168744655655801,-0.97818494669253542,0.50366367729874195,-0.27574722312316902,0.15221678519793364,2.0858961138992824,-0.29740712668345726,1.2463904017685998,0.34383145174525681,0.28776062300822586,-0.1072579434163282,-0.1970863981790098,-1.991733864039531,-1.0600529914524695,-0.52548571294345281,-0.13814340347655402,2.0806959752445637,-0.2109078639375338,1.5634767169416901,-1.2674474085737364,-0.63744313059012636,-0.57359103784434951,-0.46564873335876045,0.91772373809979857,-0.49366170733236303,-0.67829153289804422,-0.82880912924163097,-0.17953635283449043,-0.94825747573596098,-0.43456890273545834,1.7474458461143845,-1.0542875533537415,0.3743428798591466,0.56758369533742525,0.56242474280838817,0.56609365966959446,1.3324262174147132,-0.27176961796530547,-1.7620583043250719,-1.7110980166730076,0.91259717887839975,0.17669609537821063,-1.5731154705320949,-2.3186810317254789,0.30249078493670528,0.76965613251462994,0.42103450300709649,0.092614985143496836,0.81328592635711094,0.27277356376423484,1.1520182737399616,-1.036164867594906,0.98008979093392934,-0.11102876902642655,-0.83507123626766833,0.89016541033020669,-1.014723128369635,1.061801246393939,0.11316829020729754,-0.29366482472184396,-1.0276163047178415,-1.6383736018860411,-0.36974589374747863,-0.72297390256299088,-0.33234698713792699,0.22415600089263502,-0.12834905168423436,1.2893849134389352,1.1440739849828272,0.60148809473935017,-0.40143763020256445,0.65805433405095426,-1.4012919458396249,0.19286434583514261,-1.0591404867005922,-1.5110934524220523,-0.53068631625917484,-0.63508377703637697,-1.3733309451269982,1.9205854238583657,1.0109627872173603,-2.017259071974836,0.23304089713773757,-0.52255970382974148,2.0714448145747144,-0.30814985030116659,0.75659034363663402,0.26962338082391135,-0.68509039785973935,-1.2647604091349651,-1.2126233211718009,-0.17366444872310233,1.4097264896730792,-0.27421745025164562,0.15348196295522021,-1.8745807796852902,1.2977417380237442,0.43604463262861293,0.027987742162475425,-0.22041518063627399,0.86374103373978317,-0.75312022657904032,0.060839160792227238,1.7317464286148754,-1.159815603405123,0.56935373070928341,2.093966268354972,-0.5244484812980682,1.0270235199537052,-0.43182021383684066,0.49749485458496395,0.92496198911928651,1.6689294396564003,0.13367361536289821,0.79805768207580141,0.33924323279205981,-0.36710377118437282,0.43201039334584246,0.6739889495202166,-2.343473384894899,-0.59188587304530893,0.89218226438468751,-1.7347190557556915,-0.94223194260199394,-0.652845011768029,-1.4788026083971166,-0.6206035317491847,0.075643814043829263,0.50188285425485002,-0.922231286262715,-1.1910181171574676,1.7238514946840211,-1.8197620170979596,-1.4309510876304374,0.31698524560320468,0.59463347361662866,-0.81750512221155791,-0.77214723858130085,0.9356841336878301,-0.20623924536840407,0.12818013831861591,-1.5752383412936464,-0.91027073109651668],"z":[-1.6934400677869206,-2.2287851991583842,-3.2301038861452307,-3.6320196633880157,-2.7243080307529892,-3.3129867031788089,-1.8400693186437982,-2.6181830984912389,-2.9181827309879051,-2.2073118521676558,-3.862604281901227,-2.8723645886857723,-2.7970504787243646,-0.44209482350471974,-0.51163413412003655,-1.2362934480491004,-3.0016786238264888,-1.0889132131565895,-2.1713673240676528,-2.3523857433033419,-4.102671100047445,-1.7254592846353227,-2.734108922766743,-4.1540220839144233,-2.4005227939837148,0.72730874527882428,-2.7964631086241956,-2.4493316766340341,-3.6707542931813486,-2.8965450952386069,-3.519915375521312,-1.8692087613739876,-1.5385446727233556,-1.8308867757344658,-1.7689099863374891,-1.271279227401831,-3.3738818876489747,-2.3055122015120926,-2.1620241703456804,-2.3288336284642934,-2.9861393831543781,-0.96532925540907699,-1.8492449512917455,-1.7849038298441513,-0.57716546056093576,-2.4891622876623618,0.013470367969312447,-1.9334564866224022,-1.99391226192999,-0.86598844038121914,-1.8196348694658129,-3.6065380612703972,-1.7119469143065531,-2.554680374741169,-1.5195131438552325,-0.50180088682693991,-2.0398850944295517,-2.9879859109589737,-1.5736777374646551,-2.078969990070707,-3.0506565690687073,-0.720072229054601,-1.342411019430769,-0.96039538647335876,-2.5774992190835038,-0.0073942452352651067,-1.5981969129202966,-3.0422374443502589,-0.71509397086473225,-2.2030476482238752,-1.0617965531075946,-2.0415107068509011,-1.5954205632286675,-1.0535884727884568,-1.5315613373803079,0.33805201906622151,-1.9938881019988699,0.34868404013382137,-1.3384651184453948,0.72265851346613497,-2.9711466755470073,-0.3344930122020906,0.37588372413570603,-1.0629782070484597,-0.56578365342782055,-1.6143447698706481,-0.49372846873807985,0.62246936546677367,-2.1606524971850232,-0.44916624681318651,-2.3398476789287783,-2.8038595638881385,-1.776886643229278,0.062367996201636133,-0.13005660095297134,0.25322546878138552,-1.4829169289384145,-1.0250841359476912,-0.80019978999689301,-1.5085926696469989,-1.8333701302735097,-0.83943374754020983,-1.8684005309651912,-1.013776178203196,-3.7831430734551041,-0.9412037504842119,0.45374756529148996,-2.4919751126416694,-3.3123127340394873,0.29447771742853868,-1.1077841909085751,-1.183871031475429,-2.6843894985325303,-2.8072596285279321,-2.4406996576229432,-0.49235105066313734,0.13111910885694722,-0.8522050586645793,-0.78269668621631805,-1.7414973023076827,-2.297159348416228,0.39667320963615338,-2.5371729680062192,0.088307747975900908,-0.96160450653108176,-0.45019905739570265,-1.5272774018108839,-1.0573952178452068,-3.9279456510317035,-1.5681961425731596,-1.4085147491220587,-0.33442771933123527,-1.0136540318197935,-0.49515663953855038,0.12687095055719322,-2.7872002169704047,-1.1903183005258726,0.12721134776379373,-1.6299120718889113,-1.1148172944357031,-2.7133460830712446,-1.3740723873522385,1.2171533643649859,-0.5569170739134206,-1.1655084961110078,-0.37444205406105024,-0.71636265392576992,-0.91816063499086442,-1.4569188311670256,-1.4070363570689013,-2.1256891601063157,-0.47927916483656208,-0.6413725408451334,0.74114915049854635,-1.5723231292430848,-0.7197157732737971,-1.009058421924375,0.28712419545581125,-1.768972702849636,-1.4029441030735552,-1.0476531917863592,-1.144197411820808,-0.37202504853438845,-0.7433927118307142,-0.40235972850137713,-1.7758413115845506,-0.35340795110591372,-1.8743538650628522,-0.83350241373864853,-1.0769625272003327,-0.47218911968364496,-2.2201018827334029,0.21592244077998268,-2.2435765763282283,-1.5273024953542342,-2.2999801272916507,-2.3089257355740527,-1.6990670886928316,-1.1062607139323752,-0.41118733051725809,0.26826274308541065,-1.3601016558994017,-1.7067118055995474,-0.32500550827819408,-0.24357534489423638,-0.82587527969749119,-1.1429533685432445,-2.3506292351573133,-0.49029745125022944,-1.0275940878281717,-0.48815034979124955,-2.04171527147885,-3.1248920856783404,-0.27118637753560615,-2.2070913551347693,-0.22232552698069796,-1.3858931878719218,-0.31725247656791544,-1.6085658525620774,0.060977475740446763,-1.0663274216844636,-0.28673424939933201,-1.8342901616498697,-0.79220059200279003,-1.8666936095641902,-0.22230341563829059,0.3594440554425915,-0.50675622541281995,0.29058127267380052,-2.0557261348810347,-0.87125748637811229,-2.0922497432134861,-2.4008518238418901,-2.5735500447670789,-0.57740890561385561,-0.25697379454015479,-0.35193586780102792,-0.50426059506183929,-1.5836534072346016,-0.018714295945861825,-0.34690388821251428,-1.2490376831099734,-1.8633021361626396,-1.235954529533849,-0.42969151261933275,1.8375699934935308,0.2998199117387107,0.46220249002664593,-1.5871773324342322,-1.2908211421956548,-1.9678258938410051,-2.5734708212354995,-1.472647266033372,-3.1201221649684521,-1.8233100606543429,-0.89506549668876423,-0.28558339886355766,0.86789564978661937,0.50581612725571856,-1.5235311171339037,-1.2780113206391182,-1.4105354365235057,0.80930890937171895,-0.40671861160703598,-0.50555647553766436,-1.898366345322505,-2.7069123568490334,-2.4040185578716295,-1.9047438432279842,-0.37266117293079398,-0.29611212363404227,-1.4799322237281209,0.2872322314505017,-1.8269075524426897,-0.91883228350419355,-0.65305250237273105,-1.7234337408918503,0.31617406643361479,0.52970140499512974,-1.8607522071744778,-2.1015466169641224,-1.0219614435304458,-0.75847761053040119,-1.1970558048924342,-1.6183251516938302,0.15009894160845405,-0.51654252523094335,-1.3344523827706327,-0.58957138402910292,-1.5079541992977861,-0.78200973465773249,-0.6521844255149849,-2.6712443063646276,-0.71625498049965508,0.15587078041458058,-0.46910730039172277,0.2923259922524033,-0.48233731505817501,1.026395193259299,-1.3838504006449852,-0.97618126886048096,-0.21805456144660507,-0.19787812446329045,-0.21423278094121567,-0.20010883365571525,-0.67831532561173391,0.26108858225719689,0.30503610708430073,-1.4547325509910314,-1.2256347575365543,-0.035645354487505498,-1.0363467192968761,-2.0012817095549735,-1.0972683121607372,1.0711547270915671,-1.2002926224590387,0.77980518345795291,0.79498909415326591,-1.6158862827217222,-0.9712667360458106,2.3356766672245031,-0.081354245220589871,-0.011544107484745436,-0.85144731824225028,-0.26919344540412088,-1.2024076292018759,-0.21758954719522838,-0.0054973927134590594,1.7795894889150183,-0.73137093918855411,-1.4596205489989686,-1.6360105802582803,0.344748556612818,-2.409962176784413,1.0685894604097141,-0.030172862542807544,0.49927910199734404,0.10789719594939617,-0.34285303009627688,1.8075073581550263,0.53060511547090783,-2.7365467802737236,0.048661707177681368,-1.7074611852593713,-0.48094346424535073,-1.4327047893109861,-0.0047437570639566329,-0.44483777681676373,0.48209366033619472,0.36568793327526922,-0.95311813113401667,-0.71578776360643914,-0.073727200548144467,-0.81680402367899296,-1.5591992698032049,1.3060520808769889,-2.1092034408515659,0.24475635055515388,-0.40992162925319686,-0.48254704579988522,-0.85178548129313647,1.8120709717345611,-1.6832417954764609,0.14992677380442659,-0.8142173022001522,1.1473219090590183,1.9509784860606536,-0.91860939633759742,0.76645445727607564,-0.73236454581846178,-1.1329795212471314,0.63273069706951446,-0.63714472636960684,0.10861208503933523,0.29154920634093856,-0.61470600024543676,-3.5801623998808383,-1.2265948623818714,0.046301756671807692,-1.3091852082734303,0.062967961988870336,-0.8915282668197777,-0.2101409730087995,-1.4311420952845899,0.87647608743602945,0.61109106342999109,0.97677282011797928,-0.28073403983113432,-0.26414274363269974,-0.31183550090124867,-1.0674558920614894,0.65190399464817073,-1.3337360542742231,0.090121306045232108,0.76856975631020297,-1.5446210891624488,-0.92968156578391747,-0.079881167751606919,-0.58400967257442438,-1.3616064187061154,-1.6943037945242512,-1.2255608422791873,0.29182849829537016,-0.38126589431965591,0.083213093754297862,0.028560627822840079,-1.3287984087037721,-1.5889350929065738,-0.17107301360472274,-1.4890158405622711,-2.3099798358079933,0.40942333822043031,-0.60744890424791387,-0.37594738745186623,-0.361540770912881,1.5168915493455255,-1.3667117918420768,-1.0266190525572052,-1.8772417166737569,0.029226826110238247,-0.90430728492980972,-2.441673907538648,1.5641330534736746,-2.0888465703118388,-1.0835551936500687,-0.19293109171709694,-0.90967874735034093,-0.97646721021098626,-1.0407528955133776,-0.64552168828837275,0.60251519874877602,-1.0701379015290484,-0.014460538347739554,-0.93622470061692842,0.072362318746298337,-0.65919061697226444,-0.93891469799028915,0.13746316441314502,0.081929556119126529,-0.80587671992046883,1.396909910405399,-0.59224065530537606,1.2632711590827026,-0.72031419618429293,-0.086827441493118801,-0.9906340800384319,1.9390448386309487,0.17919643648115155,0.050638158397193295,-2.3873338023392279,0.44039212437617126,0.46258760834449997,-1.0686881426441555,-1.443328195730267,-1.0190309100978447,-0.77822049740350197,-0.38609898961968814,0.41097550339753108,-1.9857218986895124,0.21411919809032193,-1.5791051622759904,-0.40180111309954536,-2.4043563745144239,0.54952421672500962,-0.12800740776514374,-0.45320373134203068,0.93784443094502634,-0.4718936151359478,-0.051025492389681945,0.59784150124546087,1.6009641065774296,-0.51994775962135387,0.60627101957037199,-0.0047654142916542241,1.42126215420623,1.2023318613787444,-0.028845473784585018,1.4092295498751373,0.52916668453273141,-0.31746609967808426,-0.40768721455964474,-0.88386116607543286,-0.72918763006663467,-0.05171214486567155,-1.2324394070783986,0.75142974156785658,-0.68602206984727099,-0.50345742195674426,-1.6789198345980239,0.69156451888926207,1.0545010227677745,-0.017567934733938209,0.029483978327417962,-1.3263697709872735,-0.96098051666103501,-1.4189317750253876,1.2149202665483521,0.71009137574570946,-1.8719718588715668,-1.5792353409920483,0.46559466796655885,-0.030487041144523552,0.10828978961389008,-0.69106122539725023,-0.31614683283284384,0.62063873781685353,0.55298355614744543,0.11445568558800268,0.53626465986459948,-0.79570623570260612,-1.5114772251218933,0.42848937122070979,0.1778640436083308,0.69179686955781794,-0.62535494395229674,1.4675214971413175,0.4334226507879203,0.24336110071579289,-0.73109006911919849,0.81789018826847137,1.5932852550036856,-0.3468502807656284,-1.1437669988966181,-0.054054115484194989,0.38049539003140931,-0.60271452324156805,0.16638671990664558,2.339760376954275,-0.70445078015706253,1.0777886898442048,0.35123042320649983,0.62012474342986212,0.2905844217663936,-2.0557494044119857,-1.5707069762438788,0.57438936539767627,-0.55999202850101559,-1.2493306064386145,-0.027068786297846086,0.99774043630578657,-0.88397925463956051,0.6722602667035702,0.71982448035931224,0.3096625934798457,0.098108790856253972,0.10054692496566796,1.5872213603238312,-1.3691978764377037,1.2101679549950399,-0.99770742323961459,0.55661870195119301,0.007136649361804831,-0.6085850416084686,0.00023587899338009533,-0.041296423367399318,2.0342458345269021,1.7614784545928712,0.80460314967863644,0.73811804253545343,0.48745980131761796,-0.11357047035220581,-0.29941816454858416,1.63940854172968,-0.2106379950207983,2.6285727455907364,-0.048272750267725331,0.25445959201963297,0.82873325229479389,0.22499899543825991,1.2020182814895461,0.24389144394878923,0.11274676744208206,0.84748247939796584,-1.3033362540137443,0.042049539037375752,-0.25854112285512665,-0.70055798511891532,-0.13846231506757811,-0.64112503623735007,-0.64338604743316286,-0.16502701484203802,-2.1385597747480452,2.190639849962825,0.23745337263101529,0.99943378725184151,1.376177448527784,0.63506481281382277,-1.3483142055387807,-0.39013883146150014,0.4206111180509372,-0.13733448840492316,0.67537233095995264,-0.37939818106267886,1.3176684048647274,-0.66158628645305517,1.0524527461159616,1.1292276114021333,-1.1855535119371123,-0.31907913419863165,-0.45954720581081188,-0.23247924887850002,-0.45334786191352583,1.4105732453777862,-0.53982052829500116,0.085831376301305384,0.24416941181522051,1.5093111940146324,-0.2217970327654262,0.17295123800378942,-0.22136090928313712,1.8019592499412245,-0.84670563651349084,0.66425690227585044,1.1150439222646085,-0.66719912174164819,-0.59427241750242232,0.30467550601222365,-0.96457726839088109,1.0352933408253568,2.4893253835770022,0.49899425328258296,0.39278395911180064,1.2485281599338975,-1.0043097816715059,2.2128804705454339,0.38568759464265223,0.77540196738527656,-0.78952803610730427,0.14471710562973697,0.18566608221852332,-0.88011052732625805,1.6662825126643899,-0.44201061986447121,2.0364766226964157,-0.82623808836831447,0.47681049616667631,-0.72114113395512525,0.45959174740579023,1.8130033832632311,0.94953634410450438,1.63863379652221,1.7657921611995984,3.2075071772158519,0.12587073713884309,0.19708670864477124,1.5808083777846615,-1.2615131004541114,-0.10671748815531812,-0.8499854508702418,0.86551016115059143,-1.0336236019917293,0.97841293700329057,-0.056492892592449329,0.7406177676376724,0.51126308337235737,0.55652771933966583,-0.083708297070410109,0.75762115743711389,1.1505787140766399,1.1321926654558907,-0.35813652408834634,0.28371875179908157,0.35802768671444796,-0.32546974129195799,-0.96675235975827234,1.6783285024960779,0.57684749392597956,1.3490545668567546,1.2309560691996904,0.7386558524759177,-0.67013818003685599,1.2501663668681817,1.3462255705321984,0.064376872922648432,-0.036112160662207016,1.325646542655053,0.20886319380945623,0.72564229053993023,-0.59462722741335439,1.2741559641193054,-0.58526831366480425,3.435057314581802,0.79457143818791898,-0.35547109957693862,0.15717405591414096,0.36192237705221064,1.4751912906530882,-0.46377878202387135,0.85935164334268466,-0.16972854554174288,0.62296034752092444,1.7869510335321173,-0.062277182876964099,1.2320834375566219,0.020148600971182984,-1.1256688529168664,0.3051713602352697,0.32094471442135997,-0.32366477981770486,0.31300644694744939,0.094956263814181208,0.8563114010562779,-2.2031994561307102,-0.47856258970825549,0.25626155991426725,-0.085099166813740412,1.0156542935380437,-1.4315174061004898,1.9250430515189514,0.34661877826810805,1.7916717351916038,-0.85391193385438025,-0.30966955003870889,-0.31694523167382427,0.4157126441849523,0.041686146256850687,0.3044300905887648,0.48974714005005232,1.4399807288528532,0.38088615691815786,0.38980637967706544,0.96502042448102432,-0.44087506040375712,-0.36064735386746538,0.38636026960391501,0.44297984622677511,0.71298230644499538,0.78067111348570761,0.315253946811409,0.87247290439162684,-0.18811208324120043,0.71107787299779268,0.46217926540666121,-0.41190834875541482,1.6641527698279748,0.51615231573813292,0.33473529014581682,1.1189268882518921,-0.27449091414717652,0.36296706063805861,2.3661125524921101,-0.81780963711377108,-0.0097126017786479668,-1.0024941606471045,2.4476337628953226,1.1588256358855158,-1.0364201436079721,-0.032282512613929559,1.0412379149512376,0.38460176907081089,0.94643379649519144,1.3872870245338791,0.33946141496527699,1.5097832130071556,1.376311599330156,2.6124607035013478,-1.6950333114233063,-0.0065415012847691578,-0.6891857487584282,-0.43760451808535883,0.32469555057501387,0.63297111170882725,0.73809702119216758,-1.2202835114457977,0.91401127569823759,1.6315042651392795,1.224943408540899,1.7580835533485617,0.30031993469811402,0.55732138569405787,-0.44448268260125878,0.82370565333968238,1.2603960501558342,2.3957277207095471,1.372901676908036,-0.41722964926519335,-0.011794338286412631,1.2227046357132099,2.1390990263405505,0.66394363786422972,1.1370271401053649,0.50605318043058145,-0.24506605196389664,0.97730374432104661,1.2829026793505545,-2.021394946227745,1.8701763182579749,0.523394093997407,0.79980787666261521,-0.13216549064099248,0.71733244772511651,-0.65773233489770233,0.049451271858629409,0.44553386938166362,-0.021264519432295459,0.22567701062278167,1.5261135006116175,-1.699876629120693,1.7732194012607274,-1.1478513348641828,1.2916026179963631,1.0911997349996518,1.3855501891443498,1.3435323788092579,1.3423800793584066,0.18484698800194532,-0.04053358991226319,2.0474183736177016,-0.43348395978101306,2.2370515803208408,1.9216675920321911,0.93253523003215988,1.1758048162218953,1.1495144840927298,2.275388849126637,1.4032656313038094,1.3079114719554745,1.5261636287096763,1.0743820607847057,-0.40841672718802846,0.77778048537887257,-0.048782452803404541,0.67452936484632764,2.0246159851085066,2.1732761499904347,0.97200908462133151,0.72068179774441499,0.33365558824133412,-0.70335302307665259,-0.35270180164179776,2.3468768591093938,0.27807817353410713,1.9910900359894868,0.34543401152278275,2.2562893644617854,0.81644997572781319,0.45944920610444251,1.3327977175308079,1.1885612785618958,-1.3337634446277498,0.15760458128978283,1.6866688175939233,0.87598783693081472,1.2182251839091918,0.22266406866107957,1.4005861454558952,-0.95517017912668378,-1.8812817218076163,1.7374436293768847,1.0768751765748126,1.5967989530011386,0.074112962033931251,0.3410627801023125,-0.018922914258904022,2.2687860806358557,-0.80088140252750173,2.3299654406570074,3.0040131286775003,0.86611660975293214,4.0560333758484219,0.94564376162265373,1.7107078874174122,1.0901600208088307,2.5429512954657203,1.6215040832689849,2.809361464282039,0.24500901790779273,1.2378581980155219,0.70250616945053279,-0.71977102565209106,1.9605592565231795,1.34037845645174,2.1008473790901894,0.50846927459991564,0.44815087642796281,0.5718503425312752,-1.0770868565927134,1.6705572896785303,0.12233688770571183,1.6061789327279146,0.83343872080893711,1.2656640791675755,3.2079875049476128,0.83074015477332841,2.3773115233205599,1.4788947443476814,1.4244707452856591,1.029858526129763,0.94494215358176636,-0.84253080455259632,0.089723364318593068,0.63423395159798013,1.0297072834678318,3.2530182059198038,0.97453869603380194,2.7549599875248161,-0.0738758079733699,0.55877405702993144,0.62322384771357975,0.73617072531756023,2.130494395301854,0.71953258934694397,0.53814795206919752,0.39115326041615683,1.0440845053602281,0.27843164367417206,0.79562149326903564,2.9842129416528325,0.18788219833218966,1.6213489087836477,1.8193806014471212,1.8165549473230869,1.8329275377273617,2.6045828987248116,1.0193325373486082,-0.46982745684035021,-0.41180959060684708,2.2124939881664396,1.4796075772838193,-0.26839939105940491,-1.0132987266472369,1.611462272703142,2.083701802257981,1.7367423526620434,1.4097337770060594,2.1359879226328529,1.5974105774155527,2.4798769666082379,0.31740990242155753,2.3358484351712443,1.2587471534369228,0.54067760803506004,2.2694962884557675,0.3668560609987801,2.444906656986324,1.5014781162303148,1.0987101227486251,0.36673988144737568,-0.24050480786266348,1.0447167273657827,0.69241545752454825,1.0917654254089111,1.6519710385508264,1.3004057890151328,2.7254126551554503,2.5925770939379631,2.0501344722236086,1.0537987594876075,2.1225059046166739,0.07482445509708513,1.6711131031915629,0.44008357386394903,-0.011324145884114456,0.98538869602647949,0.88498723485742559,0.14734083131171571,3.4515226219922281,2.5540361459333401,-0.45828879750557427,1.8046714289390851,1.0537181589320066,3.6537199135795975,1.2964844050390865,2.375540589742029,1.9391943971659766,0.98514317386002914,0.42626976698580021,0.47961231404306903,1.5658229379591642,3.1630453421748554,1.4916345362685894,1.9228873892388092,-0.10325257704566959,3.0734048683646411,2.2240831899346434,1.8270091838940017,1.5811411132210234,2.6719186803089241,1.0819374314758035,1.9044563408162185,3.5794351550383396,0.69202878924888678,2.4347643714294511,3.9631515714975487,1.35261512774805,2.926049217994029,1.4734213082356935,2.4092065844822685,2.838862511903713,3.5844699575962942,2.0797713431560436,2.7463654517104237,2.316795130590549,1.6188221999252626,2.4476401631616373,2.7025521912740058,-0.30747807929981397,1.4569988811992043,2.9647727237936894,0.37552064357902304,1.1742590949616565,1.525891190957275,0.70649783339192718,1.6022775343485667,2.3073900635851081,2.7345793772341827,1.348021775063549,1.1030413779368538,4.0847676100867147,0.55169413040935456,0.97540804465200814,2.7288961592687571,3.0289728766753719,1.6613091754718701,1.9522673938759598,3.6642374773482551,2.5598625939516664,2.9008134838430588,1.3129166595096544,2.4884984275148154],"marker":{"color":"blue","size":2,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter3d","mode":"markers","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(factoextra)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>normal_fct <span class="ot">=</span> d <span class="sc">|&gt;</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prcomp</span>()</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>normal_fct <span class="sc">|&gt;</span> </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_eig</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        eigenvalue variance.percent cumulative.variance.percent
+Dim.1 3.038256e+00     7.442521e+01                    74.42521
+Dim.2 1.044038e+00     2.557479e+01                   100.00000
+Dim.3 8.719981e-31     2.136050e-29                   100.00000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## screen plot is ploting wahts</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>normal_fct <span class="sc">|&gt;</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fviz_eig</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this case, the true under-laying variance, it depends on how that surface you generated rotate.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>normal_fct <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fviz_pca_var</span>(<span class="at">repel=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fct_d <span class="ot">=</span> d <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>()</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>fct_d <span class="sc">|&gt;</span> <span class="fu">prep</span>() <span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  number operation type      trained skip  id             
+   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;lgl&gt;   &lt;lgl&gt; &lt;chr&gt;          
+1      1 step      normalize TRUE    FALSE normalize_BgsJY
+2      2 step      pca       TRUE    FALSE pca_3a5pS      </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="actual-model" class="level2">
+<h2 class="anchored" data-anchor-id="actual-model">Actual Model</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## classic geo-special machine-learning traning</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ames_rec <span class="ot">=</span> ames_train <span class="sc">|&gt;</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>           Neighborhood </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>         <span class="sc">+</span> Gr_Liv_Area </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>         <span class="sc">+</span> Year_Built </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>         <span class="sc">+</span> Bldg_Type</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>         <span class="sc">+</span> Latitude </span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>         <span class="sc">+</span> Longitude, <span class="at">data=</span>ames_train) <span class="sc">|&gt;</span> </span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Gr_Liv_Area, <span class="at">base=</span><span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold=</span><span class="fl">0.01</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>( <span class="sc">~</span> Gr_Liv_Area<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">"Bldg_Type_"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_ns</span>(Latitude,Longitude,<span class="at">deg_free=</span><span class="dv">20</span>)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>lm_model<span class="ot">=</span><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span> <span class="fu">set_engine</span>(<span class="st">"lm"</span>)</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>tree_model<span class="ot">=</span><span class="fu">rand_forest</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"ranger"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="do">## base line for use single model</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>lm_wflow <span class="ot">=</span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_model) <span class="sc">|&gt;</span> </span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_rec)</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="do">## use multiple model requires receipy and model match up</span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>wflowset <span class="ot">=</span> <span class="fu">workflow_set</span>(</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(ames_rec), </span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">models=</span><span class="fu">list</span>(lm_model, tree_model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>wflowset <span class="sc">|&gt;</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow_map</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fitted =</span> <span class="fu">map</span>(info, <span class="sc">~</span> <span class="fu">fit</span>(.x<span class="sc">$</span>workflow[[<span class="dv">1</span>]],ames_train) ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A workflow set/tibble: 2 × 5
+  wflow_id           info             option    result         fitted    
+  &lt;chr&gt;              &lt;list&gt;           &lt;list&gt;    &lt;list&gt;         &lt;list&gt;    
+1 recipe_linear_reg  &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;try-errr [1]&gt; &lt;workflow&gt;
+2 recipe_rand_forest &lt;tibble [1 × 4]&gt; &lt;opts[0]&gt; &lt;try-errr [1]&gt; &lt;workflow&gt;</code></pre>
+</div>
+</div>
+<p>You won’t be able to fit model because you have not learned re-sample yet.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

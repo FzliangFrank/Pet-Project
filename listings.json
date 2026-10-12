@@ -1,0 +1,32 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/2026/10-08/lets_hunt_alien/post.html",
+      "/posts/2025/08-18 SQL Achemy Trap/01.html",
+      "/posts/2025/06-14/post.html",
+      "/posts/2025/03-26 Try Apache Iceberg/notebooks/01.html",
+      "/posts/2025/03-22 Researcher Flow/03.html",
+      "/posts/2024/10-22 Mars Js/blog/02.html",
+      "/posts/2024/10-22 Mars Js/blog/01.html",
+      "/posts/2024/10-13 D3/notebook.html",
+      "/posts/2024/08-07 Noise Art and Distribution/01.html",
+      "/posts/2024/08-25 Rethink Statistic/01.html",
+      "/posts/2024/06-08 UFO Map/01.html",
+      "/posts/2024/05-19 Factor Analysis/lda.html",
+      "/posts/2024/05-19 Factor Analysis/pca.html",
+      "/posts/2024/04-20 ML with Tidymodel/02.html",
+      "/posts/2024/04-20 ML with Tidymodel/01.html",
+      "/posts/2024/03-15-Time-Series/Learn -Time Series.html",
+      "/posts/2024/03-15-Time-Series/r-book.html",
+      "/posts/2024/03-15-Time-Series/statlab - Normality of Data.html",
+      "/posts/2024/01-28 Geopandas and Altair Vega/vega-altair.html",
+      "/posts/2024/01-06 GUI Graphic Interface/Game of Life/01 Note.html",
+      "/posts/2024/01-01 Deep Learning Py/01-12.html",
+      "/posts/2024/01-01 Deep Learning Py/01-13.html",
+      "/posts/2024/01-01 Deep Learning Py/index.html",
+      "/posts/2024/01-01 Setup Delta Lake/01.html",
+      "/posts/2024/01-01 Setup Delta Lake/02.html"
+    ]
+  }
+]
